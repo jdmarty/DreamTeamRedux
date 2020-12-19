@@ -1,9 +1,11 @@
 const { Model, DataTypes } = require("sequelize");
+
 const sequelize = require("../config/connection");
+const Team = require("./Team");
 
-class Team extends Model {}
+class TeamPlayer extends Model {}
 
-Team.init(
+TeamPlayer.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,16 +13,20 @@ Team.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING,
-      defaultValue: `Team ${this.id}`,
-      allowNull: false,
-    },
-    user_id: {
+    team_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
+        model: "team",
         key: "id",
+        unique: false,
+      },
+    },
+    player_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "player",
+        key: "id",
+        unique: false,
       },
     },
   },
@@ -29,8 +35,8 @@ Team.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "team",
+    modelName: "team_player",
   }
 );
 
-module.exports = Team;
+module.exports = TeamPlayer;
