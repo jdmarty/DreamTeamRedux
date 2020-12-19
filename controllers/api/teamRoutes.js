@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
     });
 
     if (!teamData) {
-      res.status(404).json({ message: "No product found with this id!" });
+      res.status(404).json({ message: "No team found with this id!" });
       return;
     }
 

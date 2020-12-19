@@ -6,7 +6,7 @@ const teamPlayerRoutes = require('./teamPlayerRoutes');
 
 router.use('/users', userRoutes);
 router.use('/teams', teamRoutes);
-// router.use('players', playerRoutes);
+router.use('/players', playerRoutes);
 // router.use('./team_player', teamPlayerRoutes);
 
 module.exports = router;
