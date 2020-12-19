@@ -77,7 +77,7 @@ router.put("/:id", async (req, res) => {
 //delete a team
 router.delete("/:id", async (req, res) => {
   try {
-    //find all TeamPlayers for this project
+    //find all TeamPlayers for this player
     const teamPlayersToRemove = await TeamPlayer.findAll({
       where: { team_id: req.params.id },
     });
