@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Team, Player, TeamPlayer, User } = require("../../models");
+const { Team, Player, TeamPlayer } = require("../../models");
 
 // get all Players
 router.get("/", async (req, res) => {
