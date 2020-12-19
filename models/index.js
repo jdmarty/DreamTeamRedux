@@ -1,13 +1,31 @@
 const User = require('./User');
-const Project = require('./Project');
+const Team = require('./Team');
+const TeamPlayer = require('./TeamPlayer');
+const Player = require('./Player');
 
-User.hasMany(Project, {
+User.hasMany(Team, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
 
-Project.belongsTo(User, {
+Team.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-module.exports = { User, Project };
+Player.belongsToMany(Team, {
+  through: {
+    model: TeamPlayer,
+    unique: false
+  },
+  as: 'teams'
+});
+
+Team.belongsToMany(Player, {
+  through: {
+    model: TeamPlayer,
+    unique: false
+  },
+  as: 'players'
+})
+
+module.exports = { User, Team, Player, TeamPlayer };
