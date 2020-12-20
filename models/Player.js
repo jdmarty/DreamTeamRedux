@@ -16,10 +16,6 @@ Player.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    player_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     gp: {
       type: DataTypes.INTEGER,
       allowNull: false,
