@@ -21,51 +21,51 @@ Player.init(
       allowNull: false,
     },
     pts: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     fgm: {
-      type: DataTypes.DECIMAL(10, 3),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     fga: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     fgpct: {
-      type: DataTypes.DECIMAL(10, 3),
+      type: DataTypes.FLOAT(5, 3),
       allowNull: false,
     },
     oreb: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     dreb: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     reb: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     ast: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     stl: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     blk: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     tov: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
     tspct: {
-      type: DataTypes.DECIMAL(10, 3),
+      type: DataTypes.FLOAT(5, 3),
       allowNull: false,
     },
   },
