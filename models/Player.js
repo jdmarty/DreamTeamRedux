@@ -12,7 +12,7 @@ Player.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    player_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -20,16 +20,12 @@ Player.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    games_played: {
+    gp: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    season: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    min: {
-      type: DataTypes.STRING,
+    pts: {
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
     fgm: {
@@ -40,20 +36,8 @@ Player.init(
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
-    fg3m: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    fg3a: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    ftm: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    fta: {
-      type: DataTypes.DECIMAL(10, 2),
+    fgpct: {
+      type: DataTypes.DECIMAL(10, 3),
       allowNull: false,
     },
     oreb: {
@@ -80,27 +64,11 @@ Player.init(
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
-    turnover: {
+    tov: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
-    pf: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    pts: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    fg_pct: {
-      type: DataTypes.DECIMAL(10, 3),
-      allowNull: false,
-    },
-    fg3_pct: {
-      type: DataTypes.DECIMAL(10, 3),
-      allowNull: false,
-    },
-    ft_pct: {
+    tspct: {
       type: DataTypes.DECIMAL(10, 3),
       allowNull: false,
     },
