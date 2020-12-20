@@ -55,36 +55,4 @@ router.get("/player/:id", async (req, res) => {
   }
 });
 
-//create a new player
-router.post("/", async (req, res) => {
-  try {
-    const newPlayer = await Player.create(req.body);
-    res.status(201).json(newPlayer);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-//delete a player
-router.delete("/:id", async (req, res) => {
-  try {
-    //find all TeamPlayers for this player
-    const teamPlayersToRemove = await TeamPlayer.findAll({
-      where: { player_id: req.params.id },
-    });
-    const teamPlayerIdsToRemove = teamPlayersToRemove.map(({ id }) => id);
-    //remove Teams and TeamPlayers that match the provided ids
-    const removedItems = await Promise.all([
-      TeamPlayer.destroy({ where: { id: teamPlayerIdsToRemove } }),
-      Player.destroy({ where: { id: req.params.id } }),
-    ]);
-    res.status(200).json({
-      deletedPlayers: removedItems[1],
-      deletedTeamPlayers: removedItems[0],
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 module.exports = router;
