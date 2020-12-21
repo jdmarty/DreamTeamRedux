@@ -1,4 +1,4 @@
-const { Lions, Tigers } = require('./baseData');
+const { Cavs, Warriors, Best } = require('./baseData');
 const SimTeam = require("./SimTeam");
 
 class SimGame {
@@ -11,7 +11,7 @@ class SimGame {
   resolvePossession(offTeam, defTeam) {
     const record = {}
     const offResult = Math.ceil(Math.random() * 100) + offTeam.offense;
-    const defResult = Math.ceil(Math.random() * 75) + defTeam.defense;
+    const defResult = Math.ceil(Math.random() * 85) + defTeam.defense;
     if (offResult >= defResult) {
       offTeam.scoreTeam();
     }
@@ -59,8 +59,8 @@ class SimGame {
 
 }
 
-const game = new SimGame(Lions, Tigers)
+const game = new SimGame(Best, Warriors)
 
-console.log(game.awayTeam.players);
+game.runGame()
 
 module.exports = SimGame

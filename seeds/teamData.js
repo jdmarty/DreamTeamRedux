@@ -2,15 +2,15 @@ const { Team } = require('../models');
 
 const teamData = [
   {
-    name: "Lions",
+    name: "2016 Cavs",
     user_id: 1
   },
   {
-    name: "Tigers",
+    name: "2016 Warriors",
     user_id: 2
   },
   {
-    name: "Bears",
+    name: "The Best",
     user_id: 2
   },
 ];
