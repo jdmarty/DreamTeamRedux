@@ -29,10 +29,10 @@ class SimGame {
       //alternate possession  
       if (pos % 2) {
         const current = this.resolvePossession(this.awayTeam, this.homeTeam);
-        // this.log.push(current)
+        this.log.push(current)
       } else {
         const current = this.resolvePossession(this.homeTeam, this.awayTeam);
-        // this.log.push(current)
+        this.log.push(current)
       }
       if (Math.floor(posCount) === 50 && !this.log.includes("Second Quarter")) {
         this.log.push("Second Quarter");
@@ -57,10 +57,21 @@ class SimGame {
     return this.log
   }
 
+  getPlayerScores() {
+      const homeScores = this.homeTeam.players.map(player => {
+          return { name: player.name, points: player.points }
+      })
+      const awayScores = this.awayTeam.players.map((player) => {
+        return { name: player.name, points: player.points };
+      });
+      console.log(homeScores, awayScores, (this.homeTeam.score + this.awayTeam.score))
+  }
+
 }
 
-const game = new SimGame(Best, Warriors)
+// const game = new SimGame(Cavs, Warriors)
 
-game.runGame()
+// game.runGame()
+// game.getPlayerScores()
 
 module.exports = SimGame
