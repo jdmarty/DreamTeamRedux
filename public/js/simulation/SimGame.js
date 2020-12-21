@@ -1,60 +1,66 @@
-const { Team } = require("../../../models");
+const { Lions, Tigers } = require('./baseData');
 const SimTeam = require("./SimTeam");
 
 class SimGame {
   constructor(homeTeam, awayTeam) {
     this.homeTeam = new SimTeam(homeTeam);
     this.awayTeam = new SimTeam(awayTeam);
-    this.scoreboard = {
-      homeScore: 0,
-      awayScore: 0,
-    };
     this.log = [];
   }
 
   resolvePossession(offTeam, defTeam) {
+    const record = {}
     const offResult = Math.ceil(Math.random() * 100) + offTeam.offense;
-    const defResult = Math.ceil(Math.random() * 50) + defTeam.defense;
+    const defResult = Math.ceil(Math.random() * 75) + defTeam.defense;
     if (offResult >= defResult) {
       offTeam.scoreTeam();
-      if (offTeam === this.homeTeam) {
-        this.scoreboard.homeScore += 2;
-        this.log.push(this.scoreboard);
-      } else {
-        this.scoreboard.awayScore += 2;
-        this.log.push(this.scoreboard);
-      }
     }
+    record[this.homeTeam.name] = this.homeTeam.score;
+    record[this.awayTeam.name] = this.awayTeam.score;
+    return record
   }
 
   runGame() {
     let pos = 0;
     let posCount = 0;
     this.log.push('First Quarter')
-    while (posCount < 200 || this.scoreboard.homeScore === this.scoreboard.awayScore) {
-      if (!pos % 2) {
-        this.resolvePossession(this.homeTeam, this.awayTeam);
+    //run the game until all possessions are complete
+    while (posCount < 220 || this.homeTeam.score === this.awayTeam.score) {
+      //alternate possession  
+      if (pos % 2) {
+        const current = this.resolvePossession(this.awayTeam, this.homeTeam);
+        // this.log.push(current)
       } else {
-        this.resolvePossession(this.awayTeam, this.homeTeam);
+        const current = this.resolvePossession(this.homeTeam, this.awayTeam);
+        // this.log.push(current)
       }
-      if (Math.round(posCount) === 50 && !this.log.includes("Second Quarter")) {
+      if (Math.floor(posCount) === 50 && !this.log.includes("Second Quarter")) {
         this.log.push("Second Quarter");
       }
-      if (Math.round(posCount) === 100 && !this.log.includes("Third Quarter")) {
+      if (Math.floor(posCount) === 100 && !this.log.includes("Third Quarter")) {
         this.log.push("Third Quarter");
       }
-      if (Math.round(posCount) === 100 && !this.log.includes("Fourth Quarter")) {
+      if (Math.floor(posCount) === 150 && !this.log.includes("Fourth Quarter")) {
         this.log.push("Fourth Quarter");
       }
       posCount += 1 + Math.random() * 0.5;
       pos++;
     }
+    //log the final result
     this.log.push(`${this.homeTeam.name}: ${this.homeTeam.score} | ${this.awayTeam.name}: ${this.awayTeam.score}`)
-    if (this.homeScore > this.awayScore) {
-        this.log.push(`${this.homeTeam} Wins!`)
+    if (this.homeTeam.score > this.awayTeam.score) {
+        this.log.push(`${this.homeTeam.name} Win!`)
     } else {
-        this.log.push(`${this.homeTeam} Wins!`)
+        this.log.push(`${this.awayTeam.name} Win!`)
     }
+    console.log(this.log);
     return this.log
   }
+
 }
+
+const game = new SimGame(Lions, Tigers)
+
+console.log(game.awayTeam.players);
+
+module.exports = SimGame
