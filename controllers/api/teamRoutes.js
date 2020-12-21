@@ -73,7 +73,7 @@ router.post("/", async (req, res) => {
       where: { user_id: req.body.user_id },
     });
 
-    if (userTeams.length > 25) {
+    if (userTeams.length >= 25) {
       res.status(400).json({ message: "Users are limited to 25 teams" });
       return;
     }
