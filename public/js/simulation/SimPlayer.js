@@ -7,8 +7,10 @@ class SimPlayer {
     this.defense = stats.dreb + stats.stl + stats.blk;
     this.points = 0;
   }
-}
 
-console.log(players);
+  score() {
+    this.points += 2;
+  }
+}
 
 module.exports = SimPlayer;
