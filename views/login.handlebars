@@ -1,45 +1,48 @@
   
   {{!-- <h1 id="welcome">WELCOME TO THE DREAM TEAM !</h1> --}}
-
-
+{{!-- Container for sign in and register cards --}}
   <div class="row border border-success align-middle d-flex justify-content-center align-items-center" id="login-container">
       <div class="col-sm-12 col-md-12 col-lg-6">
+            {{!-- Sign in card --}}
             <div id="sign" class="card mb-3 mx-auto d-flex justify-content-center animate fadeInLeft">
               <div class="row no-gutters align-items-center d-flex justify-content-center">
                   <h1 for="signIn" class="form-label">Sign In</h1>
+                  {{!-- Sign in form --}}
                   <form>
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" placeholder="example@mail.com" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" placeholder="example@mail.com" id="#email-login" aria-describedby="emailHelp">
                       <div id="emailHelp" class="form-text"></div>
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Password</label>
-                      <input type="password" class="form-control" placeholder="************" id="exampleInputPassword1">
+                      <input type="password" class="form-control" placeholder="************" id="#password-login">
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <button type="submit" class="btn btn-primary" id="signin-form">Sign In</button>
                   </form>
               </div>
             </div>
       </div>
 
       <div class="col-sm-12 col-md-12 col-lg-6">
+            {{!-- Register Card --}}
             <div id="reg" class="card mb-3 mx-auto d-flex justify-content-center animate fadeInRight">
               <div class="row no-gutters align-items-center d-flex justify-content-center">
                   <h1 for="signIn" class="form-label">Register</h1>
+                  {{!-- Register form --}}
                   <form>
                     <label for="exampleInputName" class="form-label">Name</label>
-                    <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                    <input type="text" class="form-control" placeholder="First name" id="#name-signup" aria-label="First name">
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" placeholder="example@mail.com" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" placeholder="example@mail.com" id="#email-signup" aria-describedby="emailHelp">
                       <div id="emailHelp" class="form-text"></div>
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Password</label>
-                      <input type="password" class="form-control" placeholder="************" id="exampleInputPassword1">
+                      <input type="password" class="form-control" placeholder="************" id="#password-signup">
                     </div>
-                    <button type="submit" class="btn btn-success">Register</button>
+                    <button type="submit" class="btn btn-success" id="register-form">Register</button>
                   </form>
               </div>
           </div>
