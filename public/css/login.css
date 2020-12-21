@@ -2,31 +2,41 @@
     box-sizing: border-box ;
     padding: 0px;
     margin: 0px;
+    border: 0px;
 }
 
-/* #welcome {
-    margin-bottom: 500px;
-} */
-
-/* body {
+body {
     background-color: #d3b300;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-image: URL(https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg);
     background-repeat: no-repeat; 
-    background-position: center;
-   
-} */
-
-h1 {
-    color:black;
-    font-size: x-large;
-    font-weight: bolder;
-
+    background-position: center; */
+    overflow: hidden;
 }
 
-#cont{
-    margin-bottom: 200px;
+#login-container {
+    background-image: URL(https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg);
+    height: 825px;
+    border-radius: 25px;
+    padding:2rem;
+}
+
+#weather{
+    /* background-color: #fff; */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* filter: blur(10px); */
+    border-radius: 25px;
+    height: 350px;
+    width: auto;
+    padding:1rem;
+    border-style: solid;
+    border-color: #d3b300;
+    border-width: 2px;
+}
+
+.form-label {
+    color: white;
 }
