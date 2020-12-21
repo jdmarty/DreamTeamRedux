@@ -68,6 +68,16 @@ router.get("/team/:id", async (req, res) => {
 //create a new team
 router.post("/", async (req, res) => {
   try {
+    //check how many teams this user already owns
+    const userTeams = await Team.findAll({
+      where: { user_id: req.body.user_id },
+    });
+
+    if (userTeams.length > 25) {
+      res.status(400).json({ message: "Users are limited to 25 teams" });
+      return;
+    }
+    //create new team
     const newTeam = await Team.create({
       name: req.body.name,
       user_id: req.session.user_id || req.body.user_id,
