@@ -52,7 +52,7 @@ const start = async () => {
     const imgUrl = await findImgUrl(player.player_name);
     player.img_url = imgUrl;
     output.push(player);
-    console.log(player);
+    console.log("Added " + player.player_name);
   });
   //stringify the output array in JSON format
   const data = JSON.stringify(output, null, 2);
@@ -64,5 +64,3 @@ const start = async () => {
 }
 
 start()
-
-module.exports = findImgUrl;

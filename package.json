@@ -28,7 +28,7 @@
     "lint": "./node_modules/.bin/eslint **/*.js",
     "start": "node server.js",
     "seed": "node seeds/seed.js",
-    "refDb": "node db/scraper/scraper.js"
+    "refDb": "node db/scraper/"
   },
   "repository": {
     "type": "git",
