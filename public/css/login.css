@@ -2,31 +2,148 @@
     box-sizing: border-box ;
     padding: 0px;
     margin: 0px;
+    border: 0px;
 }
 
-/* #welcome {
-    margin-bottom: 500px;
-} */
-
-/* body {
+body {
     background-color: #d3b300;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-image: URL(https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg);
     background-repeat: no-repeat; 
-    background-position: center;
-   
-} */
+    background-position: center; */
+    overflow: hidden;
+}
+
+#login-container {
+    background-image: URL(https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg);
+    height: 825px;
+    border-radius: 25px;
+    padding:2rem;
+}
 
 h1 {
-    color:black;
-    font-size: x-large;
-    font-weight: bolder;
-
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
-#cont{
-    margin-bottom: 200px;
+
+
+#sign, #reg {
+    /* background-color: #fff; */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* filter: blur(10px); */
+    border-radius: 25px;
+    height: 375px;
+    width: auto;
+    padding:1rem;
+    border-style: solid;
+    border-color: #d3b300;
+    border-width: 2px;
 }
+
+/*=== Trigger  ===*/
+.animate {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+/*=== FADE IN  ===*/
+@-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+  }
+  
+
+.form-label {
+    color: white;
+}
+
+/*=== FADE IN LEFT ===*/
+@-webkit-keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  .fadeInLeft {
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+  }
+
+/*==== FADE IN RIGHT ===*/
+@-webkit-keyframes fadeInRight {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  .fadeInRight {
+    -webkit-animation-name: fadeInRight;
+    animation-name: fadeInRight;
+  }
