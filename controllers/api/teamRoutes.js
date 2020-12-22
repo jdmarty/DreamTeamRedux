@@ -19,8 +19,30 @@ router.get("/", async (req, res) => {
   }
 });
 
+//get all teams for a specific user id
+router.get("/user/:id", async (req, res) => {
+  try {
+    const teamData = await Team.findAll({
+      where: { user_id: req.params.id },
+      include: [
+        { model: User },
+        { model: Player, through: TeamPlayer, as: "players" },
+      ],
+    });
+
+    if (!teamData.length) {
+      res.status(404).json({ message: "No teams for this user" });
+      return;
+    }
+
+    res.status(200).json(teamData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
 // get one team
-router.get("/:id", async (req, res) => {
+router.get("/team/:id", async (req, res) => {
   try {
     //find one team by the associated id
     const teamData = await Team.findByPk(req.params.id, {
@@ -41,9 +63,21 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
+
 //create a new team
 router.post("/", async (req, res) => {
   try {
+    //check how many teams this user already owns
+    const userTeams = await Team.findAll({
+      where: { user_id: req.body.user_id },
+    });
+
+    if (userTeams.length >= 25) {
+      res.status(400).json({ message: "Users are limited to 25 teams" });
+      return;
+    }
+    //create new team
     const newTeam = await Team.create({
       name: req.body.name,
       user_id: req.session.user_id || req.body.user_id,

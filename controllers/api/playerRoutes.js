@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const { Team, Player, TeamPlayer } = require("../../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op
+
 
 // get all Players
 router.get("/", async (req, res) => {
@@ -15,31 +18,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-//get one player by player_id and season
-router.get("/player", async (req, res) => {
-  try {
-    const playerData = await Player.findOne({
-      where: { player_id: req.query.player_id, season: req.query.season },
-      include: { model: Team, through: TeamPlayer, as: "teams" },
-    });
-
-    if (!playerData) {
-      res
-        .status(404)
-        .json({ message: "No player found with these parameters!" });
-      return;
-    }
-
-    res.status(200).json(playerData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // get one player by id
 router.get("/player/:id", async (req, res) => {
   try {
-    //find one team by the associated id
+    //find one player by the associated id
     const playerData = await Player.findByPk(req.params.id, {
       include: { model: Team, through: TeamPlayer, as: "teams" },
     });
@@ -55,33 +37,26 @@ router.get("/player/:id", async (req, res) => {
   }
 });
 
-//create a new player
-router.post("/", async (req, res) => {
+// get one player by name
+router.get("/name", async (req, res) => {
   try {
-    const newPlayer = await Player.create(req.body);
-    res.status(201).json(newPlayer);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+    //remember to replace spaces with %20 when creating url
+    //find one player by name
+    const playerData = await Player.findAll({
+      include: { model: Team, through: TeamPlayer, as: "teams" },
+      where: {
+        player_name: {
+          [Op.like]: `%${req.query.search}%`
+        }
+      }
+    });
 
-//delete a player
-router.delete("/:id", async (req, res) => {
-  try {
-    //find all TeamPlayers for this player
-    const teamPlayersToRemove = await TeamPlayer.findAll({
-      where: { player_id: req.params.id },
-    });
-    const teamPlayerIdsToRemove = teamPlayersToRemove.map(({ id }) => id);
-    //remove Teams and TeamPlayers that match the provided ids
-    const removedItems = await Promise.all([
-      TeamPlayer.destroy({ where: { id: teamPlayerIdsToRemove } }),
-      Player.destroy({ where: { id: req.params.id } }),
-    ]);
-    res.status(200).json({
-      deletedPlayers: removedItems[1],
-      deletedTeamPlayers: removedItems[0],
-    });
+    if (!playerData) {
+      res.status(404).json({ message: "No player found with this name!" });
+      return;
+    }
+
+    res.status(200).json(playerData);
   } catch (err) {
     res.status(500).json(err);
   }

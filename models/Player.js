@@ -12,96 +12,60 @@ Player.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    player_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    player_id: {
+    gp: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    games_played: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    season: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    min: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    fgm: {
-      type: DataTypes.DECIMAL(10, 3),
-      allowNull: false,
-    },
-    fga: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    fg3m: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    fg3a: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    ftm: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    fta: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    oreb: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    dreb: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    reb: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    ast: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    stl: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    blk: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    turnover: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    pf: {
-      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
     pts: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
-    fg_pct: {
-      type: DataTypes.DECIMAL(10, 3),
+    fgm: {
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
-    fg3_pct: {
-      type: DataTypes.DECIMAL(10, 3),
+    fga: {
+      type: DataTypes.FLOAT(4, 2),
       allowNull: false,
     },
-    ft_pct: {
-      type: DataTypes.DECIMAL(10, 3),
+    fgpct: {
+      type: DataTypes.FLOAT(5, 3),
+      allowNull: false,
+    },
+    oreb: {
+      type: DataTypes.FLOAT(4, 2),
+      allowNull: false,
+    },
+    dreb: {
+      type: DataTypes.FLOAT(4, 2),
+      allowNull: false,
+    },
+    reb: {
+      type: DataTypes.FLOAT(4, 2),
+      allowNull: false,
+    },
+    ast: {
+      type: DataTypes.FLOAT(4, 2),
+      allowNull: false,
+    },
+    stl: {
+      type: DataTypes.FLOAT(4, 2),
+      allowNull: false,
+    },
+    blk: {
+      type: DataTypes.FLOAT(4, 2),
+      allowNull: false,
+    },
+    tov: {
+      type: DataTypes.FLOAT(4, 2),
+      allowNull: false,
+    },
+    tspct: {
+      type: DataTypes.FLOAT(5, 3),
       allowNull: false,
     },
   },
