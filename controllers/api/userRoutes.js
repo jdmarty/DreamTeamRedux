@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 
 router.post('/login', async (req, res) => {
   try {
+    console.log('here');
     const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {

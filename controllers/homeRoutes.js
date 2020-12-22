@@ -4,6 +4,7 @@ const { User } = require('../models');
 // Prevent non logged in users from viewing the homepage
 router.get('/', async (req, res) => {
   try {
+    console.log('here')
     res.render("login", {
       logged_in: req.session.logged_in
     })
