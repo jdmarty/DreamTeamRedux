@@ -1,5 +1,5 @@
 const { Player } = require("../models")
-const playerData = require("./nbaStats.json")
+const playerData = require("../db/scraper/nbaStats2.json")
 
 const seedPlayers = () => Player.bulkCreate(playerData);
 

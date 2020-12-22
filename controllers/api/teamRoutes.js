@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
         //join with Player after finding matching id in TeamPlayer named 'players'
         { model: Player, through: TeamPlayer, as: "players" },
       ],
+      limit: 25,
     });
     res.status(200).json(teamData);
   } catch (err) {

@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
     //find all Players
     const playerData = await Player.findAll({
       include: { model: Team, through: TeamPlayer, as: "teams" },
+      order: [['pts_total', 'DESC']],
       limit: 25,
     });
     res.status(200).json(playerData);
@@ -44,11 +45,12 @@ router.get("/name", async (req, res) => {
     //find one player by name
     const playerData = await Player.findAll({
       include: { model: Team, through: TeamPlayer, as: "teams" },
+      order: [["pts_total", "DESC"]],
       where: {
         player_name: {
-          [Op.like]: `%${req.query.search}%`
-        }
-      }
+          [Op.like]: `%${req.query.search}%`,
+        },
+      },
     });
 
     if (!playerData) {
