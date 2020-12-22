@@ -14,7 +14,7 @@ body {
     background-image: URL(https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg);
     background-repeat: no-repeat; 
     background-position: center; */
-    overflow: hidden;
+    overflow: auto;
 }
 
 #login-container {
