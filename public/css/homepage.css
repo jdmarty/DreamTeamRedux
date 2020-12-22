@@ -1,0 +1,29 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+.navbar {
+    padding: .2rem;
+}
+
+#navBar {
+    margin-right: 0rem;
+    padding: 0rem;
+}
+
+#leftCol {
+    background-color: white;
+    height: auto;
+}
+
+#rightCol {
+    background-color: white;
+    height: auto;
+}
+
+#bodyCol {
+    background-color: white;
+    height: 750px;
+}
