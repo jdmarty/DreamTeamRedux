@@ -9,12 +9,15 @@ Player.init(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
     },
     player_name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    pts_total: {
+      type: DataTypes.INTEGER,
+      allowNull: false,   
     },
     gp: {
       type: DataTypes.INTEGER,
@@ -68,6 +71,9 @@ Player.init(
       type: DataTypes.FLOAT(5, 3),
       allowNull: false,
     },
+    img_url: {
+      type: DataTypes.STRING
+    }
   },
   {
     sequelize,
