@@ -1,0 +1,29 @@
+{
+  "name": "EcommerceBankApp",
+  "version": "1.0.0",
+  "description": "13 Object-Relational Mapping (ORM): E-Commerce Back End",
+  "main": "api.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenjaminShostak/EcommerceBankApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenjaminShostak/EcommerceBankApp/issues"
+  },
+  "homepage": "https://github.com/BenjaminShostak/EcommerceBankApp#readme"
+}
