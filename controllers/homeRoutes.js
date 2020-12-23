@@ -13,12 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/homepage', async (req, res) => {
-
-  res.render('homepage');
-});
-
-router.get('/profile', async (req, res) => {
+router.get('/runGame', async (req, res) => {
     try {
       const userData = await User.findOne({
         where: { id: req.session.user_id },
