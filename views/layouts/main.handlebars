@@ -16,7 +16,6 @@
 <body>
   <header>
     <nav class="navbar navbar-dark bg-dark">
-
         <div class="container d-flex justify-content-cente">
           <a class="navbar-brand align-items-center" id="navBar" href="#">
             <svg style="width:30px;height:30px" viewBox="0 0 24 24">
@@ -32,7 +31,7 @@
         </div>
     </nav>
   </header>
-  <main class="container container-fluid mt-5">
+  <main class="container-fluid">
     {{{ body }}}
   </main>
   <footer>
@@ -43,6 +42,7 @@
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+
 </body>
 
 </html>
