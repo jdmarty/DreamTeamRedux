@@ -1,0 +1,3 @@
+Credit where it is due, follow this link for stats
+
+https://stats.nba.com/stats/leagueLeaders?ActiveFlag=No&LeagueID=00&PerMode=Totals&Scope=S&Season=All+Time&SeasonType=Regular+Season&StatCategory=PTS
