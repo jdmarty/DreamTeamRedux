@@ -17,8 +17,12 @@ const hbs = exphbs.create();
 
 // Configure and link a session object with the sequelize store
 const sess = {
-  secret: 'Super secret secret',
-  cookie: {},
+  secret: "Super secret secret",
+  cookie: {
+    //expire session after 30 minutes
+    maxAge: 1800000,
+  },
+  rolling: true,
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
