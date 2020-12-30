@@ -36,7 +36,6 @@ router.get("/user/:id", async (req, res) => {
       res.status(404).json({ message: "No teams for this user" });
       return;
     }
-
     res.status(200).json(teamData);
   } catch (err) {
     res.status(500).json(err);
