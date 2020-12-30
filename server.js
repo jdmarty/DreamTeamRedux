@@ -1,3 +1,4 @@
+//require modules
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -5,14 +6,16 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 // const helpers = require('./utils/helpers');
 
+//require connection
 const sequelize = require('./config/connection');
+const { Player } = require('./models')
 
 // Create a new sequelize store using the express-session package
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+// Basic App variables
 const app = express();
 const PORT = process.env.PORT || 3001;
-
 const hbs = exphbs.create();
 
 // Configure and link a session object with the sequelize store
@@ -30,6 +33,9 @@ const sess = {
   }),
 };
 
+//require functions to create players database
+const seedPlayers = require('./seeds/playerData')
+
 // Add express-session and store as Express.js middleware
 app.use(session(sess));
 
@@ -42,6 +48,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+sequelize.sync({ force: false }).then( async () => {
+  app.listen(PORT, () => console.log("Now listening"));
 });

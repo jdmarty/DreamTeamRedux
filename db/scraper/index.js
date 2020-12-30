@@ -3,11 +3,8 @@ const fetch = require("isomorphic-fetch");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const fs = require("fs");
-const rawStats = require('./rawStats.json')
-
-//get players without images from raw stats
+// const rawStats = require('./rawStats.json')
 const generatePlayers = require('./statsParser')
-const players = generatePlayers(rawStats);
 
 //scraper function to return image from basketball reference
 const findImgUrl = async (name) => {
@@ -48,6 +45,8 @@ async function asyncForEach(array, callback) {
 }
 
 const start = async () => {
+  //get current leaderboard from api
+  const players = await generatePlayers();
   await asyncForEach(players, async (player) => {
     const imgUrl = await findImgUrl(player.player_name);
     player.img_url = imgUrl;

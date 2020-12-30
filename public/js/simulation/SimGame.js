@@ -29,10 +29,10 @@ class SimGame {
       //alternate possession
       if (pos % 2) {
         const current = this.resolvePossession(this.awayTeam, this.homeTeam);
-        // this.log.push(current)
+        this.log.push(current)
       } else {
         const current = this.resolvePossession(this.homeTeam, this.awayTeam);
-        // this.log.push(current)
+        this.log.push(current)
       }
       if (Math.floor(posCount) === 50 && !this.log.includes("Second Quarter")) {
         this.log.push("Second Quarter");
