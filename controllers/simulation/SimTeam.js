@@ -14,50 +14,53 @@ class SimTeam {
     const generateChance = (players, type) => {
       let output = [];
       players.forEach((player) => {
-        for (let i = 0; i < Math.round(player[type]*10); i++) {
+        for (let i = 0; i < Math.round(player.chance[type]*10); i++) {
           output.push(player.id);
         }
       });
       return output;
     };
-    this.scoreChance = generateChance(this.players, 'pointScore');
-    this.assistChance = generateChance(this.players, 'assistScore');
-    this.reboundChance = generateChance(this.players, 'reboundScore');
-    this.blockChance = generateChance(this.players, 'blockScore');
-    this.stealChance = generateChance(this.players, "stealScore");
-    //generate an array to describe how this team plays defense
-    const generateDefense = players => {
+    //generate an array of events based on how a team plays defense
+    const generateDefense = (players) => {
       let output = [];
       players.forEach((player) => {
-        for (let i = 0; i < Math.round(player.reboundScore*10); i++) {
-          output.push('rebound')
+        for (let i = 0; i < Math.round(player.chance.reboundScore * 10); i++) {
+          output.push("rebound");
         }
-        for (let i = 0; i < Math.round(player.blockScore*10); i++) {
-          output.push('block')
+        for (let i = 0; i < Math.round(player.chance.blockScore * 10); i++) {
+          output.push("block");
         }
-        for (let i = 0; i < Math.round(player.stealScore*10); i++) {
+        for (let i = 0; i < Math.round(player.chance.stealScore * 10); i++) {
           output.push("steal");
         }
       });
-      return output
-    }
-    this.defenseType = generateDefense(this.players)
+      return output;
+    };
+    //create an array for each chance of an event occuring
+    this.eventChances = {
+      scoreChance: generateChance(this.players, "pointScore"),
+      assistChance: generateChance(this.players, "assistScore"),
+      reboundChance: generateChance(this.players, "reboundScore"),
+      blockChance: generateChance(this.players, "blockScore"),
+      stealChance: generateChance(this.players, "stealScore"),
+      defenseType: generateDefense(this.players),
+    };
     //initialize team with no score
     this.score = 0;
   };
 
   //method to determine which player participated on a play
   calcParticipant(arr, method) {
-    const participantIndex = Math.floor(Math.random() * this[arr].length);
-    const participantId = this[arr][participantIndex];
+    const participantIndex = Math.floor(Math.random() * this.eventChances[arr].length);
+    const participantId = this.eventChances[arr][participantIndex];
     const participant = this.players.find((player) => player.id === participantId);
     participant[method]()
   }
 
   //method to determine what type of turnover the defense forced
   calcDefenseType() {
-    const typeIndex = Math.floor(Math.random() * this.defenseType.length);
-    const type = this.defenseType[typeIndex];
+    const typeIndex = Math.floor(Math.random() * this.eventChances.defenseType.length);
+    const type = this.eventChances.defenseType[typeIndex];
     return type;
   }
   
@@ -72,14 +75,14 @@ class SimTeam {
       this.calcParticipant("assistChance", "assist");
     }
     //Randomly give a player a rebound based on rebound chance
-    if (didContribute > 95) {
+    if (didContribute > 90) {
       this.calcParticipant("reboundChance", "rebound")
     }
   }
 
   defenseTeam() {
     //determine what type of turnover occured
-    const type = this.calcDefenseType(this.defenseType)
+    const type = this.calcDefenseType()
     //for each type, determine which player did it and add to their stats
     if (type === 'rebound') {
       this.calcParticipant("reboundChance", "rebound");
@@ -91,6 +94,7 @@ class SimTeam {
   }
 }
 
-const team = new SimTeam(Cavs);
+// const team = new SimTeam(Cavs);
+// console.log(team.eventChances.defenseType)
 
 module.exports = SimTeam;

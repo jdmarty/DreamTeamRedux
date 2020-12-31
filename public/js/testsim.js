@@ -1,4 +1,3 @@
-
 $(document).ready(() => {
   //identify DOM elements
   const $homeTeamSelect = $(".home-team-select");
@@ -51,7 +50,27 @@ $(document).ready(() => {
       $awayTeamSelect[i].href = newUrlExtension;
     }
   };
-
+  //add links
   addHomeTeamLinks();
   addAwayTeamLinks();
+
+  //function to call api to get a game class
+  const getGame = async () => {
+      //get home team and away team ids
+      const homeTeamId = $('#homeTeamMenuButton').attr('data-teamid');
+      const awayTeamId = $("#awayTeamMenuButton").attr("data-teamid");
+      //create url for api call
+      const apiUrl = `/api/game?homeId=${homeTeamId}&awayId=${awayTeamId}`
+      //make api call to retrieve game class
+      const game = await $.get(apiUrl)
+      console.log(game)
+  }
+
+  //add event listener
+  $('#runGame').on('click', getGame)
+
+
+
+
+
 })

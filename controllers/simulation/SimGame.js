@@ -67,25 +67,29 @@ class SimGame {
     const homeStats = this.homeTeam.players.map((player) => {
       return { 
         name: player.name, 
-        points: player.points,
-        assists: player.assists,
-        rebounds: player.rebounds,
-        blocks: player.blocks,
-        steals: player.steals
+        points: player.gameStats.points,
+        assists: player.gameStats.assists,
+        rebounds: player.gameStats.rebounds,
+        // blocks: player.gameStats.blocks,
+        // steals: player.gameStats.steals
       };
     });
     const awayStats = this.awayTeam.players.map((player) => {
       return {
         name: player.name,
-        points: player.points,
-        assists: player.assists,
-        rebounds: player.rebounds,
-        blocks: player.blocks,
-        steals: player.steals,
+        points: player.gameStats.points,
+        assists: player.gameStats.assists,
+        rebounds: player.gameStats.rebounds,
+        // blocks: player.gameStats.blocks,
+        // steals: player.gameStats.steals,
       };
     });
     console.log(homeStats,awayStats);
   }
 }
+
+// const game = new SimGame(Cavs, Warriors)
+// game.runGame();
+// game.getPlayerStats();
 
 module.exports = SimGame;

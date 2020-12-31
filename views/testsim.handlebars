@@ -1,15 +1,20 @@
 <div class="container">
+    {{#if homeTeam}}
+    {{#if awayTeam}}
     <div class="row  pt-5">
         <div class="col-12 text-center">
-            <button class="btn btn-success btn-lg">Run Game</button>
+            <button class="btn btn-success btn-lg" id="runGame">Run Game</button>
         </div>
     </div>
+    {{/if}}
+    {{/if}}
     <div class="row py-5">
         <div class="col-6 text-center">
             <div class="dropdown">
                 <button 
                     class="btn btn-secondary dropdown-toggle" 
-                    type="button" id="homeTeamMenuButton" 
+                    type="button" 
+                    id="homeTeamMenuButton" 
                     {{#if homeTeam}} data-teamid="{{homeTeam.id}}"{{/if}}
                     data-bs-toggle="dropdown" 
                     aria-expanded="false">
@@ -34,7 +39,8 @@
         <div class="col-6 text-center">
             <button 
                 class="btn btn-secondary dropdown-toggle" 
-                type="button" id="awayTeamMenuButton"
+                type="button" 
+                id="awayTeamMenuButton"
                 {{#if awayTeam}} data-teamid="{{awayTeam.id}}"{{/if}}
                 data-bs-toggle="dropdown" 
                 aria-expanded="false">
