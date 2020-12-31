@@ -1,0 +1,35 @@
+/* Card Text Sizing */
+.sim-player-name {
+    font-size: 1.2em;
+  }
+
+@media only screen and (max-width: 992px) {
+   .sim-player-name {
+    font-size: 0.85em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+   .sim-player-name {
+    font-size: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+   .sim-player-name {
+    font-size: 0.8em;
+  }
+}
+
+/* Court Decoration */
+
+.center {
+  margin: auto;
+  width: 100%;
+}
+
+.sim-player-image {
+  display: block;
+  width: 100%;
+  max-height: 50%;
+}

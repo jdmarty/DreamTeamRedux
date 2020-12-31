@@ -63,10 +63,6 @@ $(document).ready(() => {
       const apiUrl = `/api/game?homeId=${homeTeamId}&awayId=${awayTeamId}`
       //make api call to retrieve a completed game
       const game = await $.get(apiUrl);
-      //show the scoardboard
-      $('#scoreboard').slideDown();
-      $('#home-final').text(game.homeTeam.score);
-      $("#away-final").text(game.awayTeam.score);
       //print scores to stat block
       game.homeTeam.players.forEach(player => {
           const $playerCard = $(`[data-playerId="${player.id}H"]`);
