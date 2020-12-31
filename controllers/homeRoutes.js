@@ -72,6 +72,48 @@ router.get("/game", withAuth, async (req, res) => {
   }
 });
 
+//Route to visit testsim page
+router.get("/testsim", async (req, res) => {
+  try {
+    let homeTeam, awayTeam;
+    //find all teams for this user
+    const userTeamsData = await Team.findAll({
+      where: { user_id: req.session.user_id || 2 },
+    });
+    //serialize teams
+    const userTeams = userTeamsData.map((team) => team.get({ plain: true }));
+
+    //find a home team if one is requested in the search
+    if (req.query.home) {
+      const homeTeamData = await Team.findByPk(req.query.home, {
+        include: { model: Player, through: TeamPlayer, as: "players" },
+      });
+      homeTeam = homeTeamData.get({ plain: true });
+      console.log(homeTeam.players)
+    }
+
+    //find an away team if one is request in the search
+    if (req.query.away) {
+      const awayTeamData = await Team.findByPk(req.query.away, {
+        include: { model: Player, through: TeamPlayer, as: "players" },
+      });
+      awayTeam = awayTeamData.get({ plain: true });
+      console.log(awayTeam.players)
+    }
+
+    //render the page with retrieved data
+    res.render("testsim", {
+      logged_in: req.session.logged_in,
+      userTeams,
+      homeTeam,
+      awayTeam,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+})
+
 //Route to visit the login page
 router.get("/login", (req, res) => {
   //If a session exists, redirect the request to the homepage
