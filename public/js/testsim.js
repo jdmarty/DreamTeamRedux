@@ -62,8 +62,8 @@ $(document).ready(() => {
       //create url for api call
       const apiUrl = `/api/game?homeId=${homeTeamId}&awayId=${awayTeamId}`
       //make api call to retrieve game class
-      const game = await $.get(apiUrl)
-      console.log(game)
+      const game = await $.get(apiUrl);
+      console.log(game);
   }
 
   //add event listener

@@ -23,7 +23,10 @@ router.get("/", async (req, res) => {
         const awayTeam = awayTeamData.get({ plain: true });
         //create a new game for these two teams
         const newGame = new SimGame(homeTeam, awayTeam)
-        res.status(200).send(newGame);
+        //run a game for these teams and send the results
+        const completedGame = newGame.runGame()
+        res.status(200).json(completedGame);
+        return newGame;
     } catch (err) {
         res.status(500).json(err);
     }

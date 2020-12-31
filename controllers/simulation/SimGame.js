@@ -60,7 +60,7 @@ class SimGame {
       this.log.push(`${this.awayTeam.name} Win!`);
     }
     // console.log(this.log)
-    return this.log;
+    return this;
   }
 
   getPlayerStats() {
