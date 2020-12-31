@@ -33,4 +33,12 @@ footer p {
 
 .card {
   border-radius: 25px;
+  border: 2px solid hsl(51, 100%, 41%);;
+  background-color: rgb(12, 12, 12);
+  color: hsl(0, 0%, 80%);
+}
+
+.profile-img {
+  margin-top: .5rem;
+  border-radius: 25px;
 }
