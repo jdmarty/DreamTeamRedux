@@ -14,6 +14,8 @@ class SimGame {
     const defResult = Math.ceil(Math.random() * 85) + defTeam.defense;
     if (offResult >= defResult) {
       offTeam.scoreTeam();
+    } else {
+      defTeam.defenseTeam();
     }
     record[this.homeTeam.name] = this.homeTeam.score;
     record[this.awayTeam.name] = this.awayTeam.score;
@@ -34,18 +36,17 @@ class SimGame {
         const current = this.resolvePossession(this.homeTeam, this.awayTeam);
         this.log.push(current)
       }
-      if (Math.floor(posCount) === 50 && !this.log.includes("Second Quarter")) {
+      //push messages to show quarter boundaries
+      if (Math.floor(posCount) > 50 && !this.log.includes("Second Quarter")) {
         this.log.push("Second Quarter");
       }
-      if (Math.floor(posCount) === 100 && !this.log.includes("Third Quarter")) {
+      if (Math.floor(posCount) > 100 && !this.log.includes("Third Quarter")) {
         this.log.push("Third Quarter");
       }
-      if (
-        Math.floor(posCount) === 150 &&
-        !this.log.includes("Fourth Quarter")
-      ) {
+      if (Math.floor(posCount) > 150 && !this.log.includes("Fourth Quarter")) {
         this.log.push("Fourth Quarter");
       }
+      //alternate possesion and increase posCount by a random toll
       posCount += 1 + Math.random() * 0.5;
       pos++;
     }
@@ -58,28 +59,39 @@ class SimGame {
     } else {
       this.log.push(`${this.awayTeam.name} Win!`);
     }
-    console.log(this.log);
+    // console.log(this.log)
     return this.log;
   }
 
-  getPlayerScores() {
-    const homeScores = this.homeTeam.players.map((player) => {
-      return { name: player.name, points: player.points };
+  getPlayerStats() {
+    const homeStats = this.homeTeam.players.map((player) => {
+      return { 
+        name: player.name, 
+        points: player.points,
+        assists: player.assists,
+        rebounds: player.rebounds,
+        blocks: player.blocks,
+        steals: player.steals
+      };
     });
-    const awayScores = this.awayTeam.players.map((player) => {
-      return { name: player.name, points: player.points };
+    const awayStats = this.awayTeam.players.map((player) => {
+      return {
+        name: player.name,
+        points: player.points,
+        assists: player.assists,
+        rebounds: player.rebounds,
+        blocks: player.blocks,
+        steals: player.steals,
+      };
     });
-    console.log(
-      homeScores,
-      awayScores,
-      this.homeTeam.score + this.awayTeam.score
-    );
+    console.log(homeStats,awayStats);
   }
 }
 
-const game = new SimGame(Best, Best);
+const game = new SimGame(Cavs, Warriors);
 
 game.runGame();
-game.getPlayerScores();
+game.getPlayerStats();
+
 
 module.exports = SimGame;
