@@ -32,7 +32,19 @@
             </div>
             <div id="home-player-list" class="my-2">
                 {{#each homeTeam.players as |player|}}
-                    <p>{{player.player_name}}</p>
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-2">
+                            <img src="{{player.img_url}}" class="img-thumbnail" alt="...">
+                        </div>
+                        <div class="col-md-5">
+                            <div class="card-body">
+                                <h5 class="card-title">{{player.player_name}}</h5>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {{/each}}
             </div>
         </div>
@@ -57,7 +69,19 @@
             </ul>
             <div id="away-player-list" class="my-2">
                 {{#each awayTeam.players as |player|}}
-                    <p>{{player.player_name}}</p>
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-2">
+                            <img src="{{player.img_url}}" class="img-thumbnail" alt="...">
+                        </div>
+                        <div class="col-md-5">
+                            <div class="card-body">
+                                <h5 class="card-title">{{player.player_name}}</h5>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {{/each}}
             </div>
         </div>
