@@ -1,15 +1,25 @@
 <div class="container">
+    <div class="row  pt-5">
+        <div class="col-12 text-center">
+            <button class="btn btn-success btn-lg">Run Game</button>
+        </div>
+    </div>
     <div class="row py-5">
-        <div class="col-5">
+        <div class="col-6 text-center">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{#if homeTeam}}
-                        {{homeTeam.name}}
-                    {{else}}
-                        Home Team
-                    {{/if}}
+                <button 
+                    class="btn btn-secondary dropdown-toggle" 
+                    type="button" id="homeTeamMenuButton" 
+                    {{#if homeTeam}} data-teamid="{{homeTeam.id}}"{{/if}}
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">
+                        {{#if homeTeam}}
+                            {{homeTeam.name}}
+                        {{else}}
+                            Home Team
+                        {{/if}}
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <ul class="dropdown-menu" aria-labelledby="homeTeamMenuButton">
                     {{#each userTeams as |team|}}
                         <li><a class="dropdown-item py-0 my-1 home-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
                     {{/each}}
@@ -21,15 +31,20 @@
                 {{/each}}
             </div>
         </div>
-        <div class="col-5">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                {{#if awayTeam}}
-                    {{awayTeam.name}}
-                {{else}}
-                    Away Team
-                {{/if}}
+        <div class="col-6 text-center">
+            <button 
+                class="btn btn-secondary dropdown-toggle" 
+                type="button" id="awayTeamMenuButton"
+                {{#if awayTeam}} data-teamid="{{awayTeam.id}}"{{/if}}
+                data-bs-toggle="dropdown" 
+                aria-expanded="false">
+                    {{#if awayTeam}}
+                        {{awayTeam.name}}
+                    {{else}}
+                        Away Team
+                    {{/if}}
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <ul class="dropdown-menu" aria-labelledby="awayTeamMenuButton">
                 {{#each userTeams as |team|}}
                     <li><a class="dropdown-item py-0 my-1 away-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
                 {{/each}}
@@ -39,9 +54,6 @@
                     <p>{{player.player_name}}</p>
                 {{/each}}
             </div>
-        </div>
-        <div class="col-2">
-            <button class="btn btn-primary">Run Game</button>
         </div>
     </div>
 </div>

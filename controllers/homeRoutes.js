@@ -89,7 +89,6 @@ router.get("/testsim", async (req, res) => {
         include: { model: Player, through: TeamPlayer, as: "players" },
       });
       homeTeam = homeTeamData.get({ plain: true });
-      console.log(homeTeam.players)
     }
 
     //find an away team if one is request in the search
@@ -98,7 +97,6 @@ router.get("/testsim", async (req, res) => {
         include: { model: Player, through: TeamPlayer, as: "players" },
       });
       awayTeam = awayTeamData.get({ plain: true });
-      console.log(awayTeam.players)
     }
 
     //render the page with retrieved data

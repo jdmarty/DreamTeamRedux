@@ -88,10 +88,4 @@ class SimGame {
   }
 }
 
-const game = new SimGame(Cavs, Warriors);
-
-game.runGame();
-game.getPlayerStats();
-
-
 module.exports = SimGame;

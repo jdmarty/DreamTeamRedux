@@ -1,10 +1,10 @@
+
 $(document).ready(() => {
-
   //identify DOM elements
-  $homeTeamSelect = $(".home-team-select");
-  $awayTeamSelect = $(".away-team-select");
+  const $homeTeamSelect = $(".home-team-select");
+  const $awayTeamSelect = $(".away-team-select");
 
-  //add correct links to dropdown menu items
+  //add correct links to homeTeam dropdown menu items
   const addHomeTeamLinks = () => {
     //pull out the current path and search string
     const url = document.location;
@@ -28,6 +28,7 @@ $(document).ready(() => {
     }
   };
 
+  //add correct links to awayTeam dropdown menu items
   const addAwayTeamLinks = () => {
     //pull out the current path and search string
     const url = document.location;
