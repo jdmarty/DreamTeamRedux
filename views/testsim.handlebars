@@ -1,14 +1,29 @@
 <div class="container">
     {{#if homeTeam}}
     {{#if awayTeam}}
-    <div class="row  pt-5">
+    <div class="jumbotron jumbotron-fluid collapse" id="scoreboard">
+        <div class="container-fluid">
+            <h1 class="display-4 text-center">FINAL SCORE</h1>
+            <div class="row d-flex justify-content-center">
+                <div class="col-6 text-center">
+                    <h1>{{homeTeam.name}}</h1>
+                    <p class="lead" id="home-final">120</p>
+                </div>
+                <div class="col-6 text-center">
+                    <h1>{{awayTeam.name}}</h1>
+                    <p class="lead" id="away-final">120</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-4">
         <div class="col-12 text-center">
             <button class="btn btn-success btn-lg" id="runGame">Run Game</button>
         </div>
     </div>
     {{/if}}
     {{/if}}
-    <div class="row py-5">
+    <div class="row py-4">
         <div class="col-6 text-center">
             <div class="dropdown">
                 <button 
@@ -30,21 +45,19 @@
                     {{/each}}
                 </ul>
             </div>
-            <div id="home-player-list" class="my-2">
+            <div id="home-player-list container" class="my-2">
                 {{#each homeTeam.players as |player|}}
-                <div class="card mb-3">
-                    <div class="row no-gutters">
-                        <div class="col-md-2">
-                            <img src="{{player.img_url}}" class="img-thumbnail" alt="...">
-                        </div>
-                        <div class="col-md-5">
-                            <div class="card-body">
-                                <h5 class="card-title">{{player.player_name}}</h5>
-                                <p class="card-text"></p>
-                            </div>
-                        </div>
+
+                <div class="row bg-white rounded m-3">
+                    <div class="col-md-2 my-auto px-auto">
+                        <img src="{{player.img_url}}" class="img-thumbnail d-none d-lg-block my-auto" alt="...">
+                    </div>
+                    <div class="col-md-10" data-playerId="{{player.id}}H">
+                        <h4 class="mt-2">{{player.player_name}}</h4>
+                        <p>Points:</p>
                     </div>
                 </div>
+
                 {{/each}}
             </div>
         </div>
@@ -69,19 +82,17 @@
             </ul>
             <div id="away-player-list" class="my-2">
                 {{#each awayTeam.players as |player|}}
-                <div class="card mb-3">
-                    <div class="row no-gutters">
-                        <div class="col-md-2">
-                            <img src="{{player.img_url}}" class="img-thumbnail" alt="...">
-                        </div>
-                        <div class="col-md-5">
-                            <div class="card-body">
-                                <h5 class="card-title">{{player.player_name}}</h5>
-                                <p class="card-text"></p>
-                            </div>
-                        </div>
+
+                <div class="row bg-white rounded m-3">
+                    <div class="col-md-2 my-auto px-auto">
+                        <img src="{{player.img_url}}" class="img-thumbnail d-none d-lg-block my-auto" alt="...">
+                    </div>
+                    <div class="col-md-10" data-playerId="{{player.id}}A">
+                        <h4 class="mt-2">{{player.player_name}}</h4>
+                        <p>Points:</p>
                     </div>
                 </div>
+
                 {{/each}}
             </div>
         </div>

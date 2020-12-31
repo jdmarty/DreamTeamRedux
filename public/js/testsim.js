@@ -61,8 +61,21 @@ $(document).ready(() => {
       const awayTeamId = $("#awayTeamMenuButton").attr("data-teamid");
       //create url for api call
       const apiUrl = `/api/game?homeId=${homeTeamId}&awayId=${awayTeamId}`
-      //make api call to retrieve game class
+      //make api call to retrieve a completed game
       const game = await $.get(apiUrl);
+      //show the scoardboard
+      $('#scoreboard').slideDown();
+      $('#home-final').text(game.homeTeam.score);
+      $("#away-final").text(game.awayTeam.score);
+      //print scores to stat block
+      game.homeTeam.players.forEach(player => {
+          const $playerCard = $(`[data-playerId="${player.id}H"]`);
+          $playerCard.find('p').text(`Points: ${player.gameStats.points}`)
+      })
+      game.awayTeam.players.forEach((player) => {
+        const $playerCard = $(`[data-playerId="${player.id}A"]`);
+        $playerCard.find("p").text(`Points: ${player.gameStats.points}`);
+      });
       console.log(game);
   }
 
