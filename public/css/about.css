@@ -3,6 +3,7 @@
   padding-bottom: 2rem;
   margin-bottom: 0;
   background-color: #fff;
+  border-radius: 25px 25px 0 0;
 }
 
 @media (min-width: 768px) {
@@ -50,7 +51,7 @@ footer p {
 
 .card {
   border-radius: 25px;
-  border: 2px solid hsl(51, 100%, 41%);;
+  border: 2px solid hsl(51, 100%, 41%);
   background-color: rgb(12, 12, 12);
   color: hsl(0, 0%, 80%);
 }
@@ -58,4 +59,8 @@ footer p {
 .profile-img {
   margin-top: .5rem;
   border-radius: 25px;
+}
+
+.album {
+  border-radius: 0 0 25px 25px;
 }
