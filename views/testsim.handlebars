@@ -33,9 +33,9 @@
                             Home Team
                         {{/if}}
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="homeTeamMenuButton">
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="homeTeamMenuButton">
                     {{#each userTeams as |team|}}
-                        <li><a class="dropdown-item py-0 my-1 home-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
+                        <li><a class="dropdown-item my-1 home-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
                     {{/each}}
                 </ul>
             </div>
@@ -103,9 +103,9 @@
                     {{/if}}
             </button>
             {{!-- Away Team Players --}}
-            <ul class="dropdown-menu" aria-labelledby="awayTeamMenuButton">
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="awayTeamMenuButton">
                 {{#each userTeams as |team|}}
-                    <li><a class="dropdown-item py-0 my-1 away-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
+                    <li><a class="dropdown-item my-1 away-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
                 {{/each}}
             </ul>
             <div id="away-player-list" class="my-2">

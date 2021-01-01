@@ -6,7 +6,7 @@ const teamData = [
     user_id: 2
   },
   {
-    name: "2016 Warriors xxxxxxxxxxxx",
+    name: "2016 Warriors",
     user_id: 2
   },
   {
