@@ -37,7 +37,7 @@
                 {{#each homeTeam.players as |player|}}
 
                 <div class="row bg-white rounded m-3">
-                    <div class="col-4 d-none d-md-flex my-0 my-md-auto p-0 px-lg-4">
+                    <div class="col-4 d-none d-md-flex my-0 my-md-auto p-0 px-xxl-4 px-xl-3 px-lg-2">
                         <img src="{{player.img_url}}" class="img-thumbnail" alt="{{player.player_name}}">
                     </div>
                     <div class="col-md-8 col-12" data-playerId="{{player.id}}H">
@@ -52,8 +52,31 @@
         {{#if homeTeam}}
         {{#if awayTeam}}
         {{!-- Game Zone Here --}}
-        <div class="col-md-6 col-12 order-1 order-md-3 d-flex justify-content-center">
-            <img src="https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg" class="img-fluid center" alt="...">
+        <div class="col-md-6 col-12 order-1 order-md-3 d-flex justify-content-center mb-2 backdrop">
+            <img src="https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg" class="img-fluid center" alt="court">
+            <div class="scoreboard container-fluid p-4 bg-white">
+                <div class="row">
+                    <div class="col-6 text-center border">
+                        <h1>Home</h1>
+                    </div>
+                    <div class="col text-center border">
+                        <h1>Away</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-center border">
+                        <p class="scoreText">100</p>
+                    </div>
+                    <div class="col-6 text-center border">
+                        <p class="scoreText">99</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center border">
+                        <h1>Home Team Wins!</h1>
+                    </div>
+                </div>
+            </div>
         </div>
         {{/if}}
         {{/if}}
@@ -83,10 +106,10 @@
                 {{#each awayTeam.players as |player|}}
 
                 <div class="row bg-white rounded m-3">
-                    <div class="col-4 d-none d-md-flex my-0 my-md-auto p-0 px-lg-4">
+                    <div class="col-4 d-none d-md-flex my-0 my-md-auto p-0 px-xxl-4 px-xl-3 px-lg-2">
                         <img src="{{player.img_url}}" class="img-thumbnail sim-player-image" alt="{{player.player_name}}">
                     </div>
-                    <div class="col-md-8 col-12" data-playerId="{{player.id}}H">
+                    <div class="col-md-8 col-12" data-playerId="{{player.id}}A">
                         <h5 class="mt-2 sim-player-name">{{player.player_name}}</h5>
                         <p>Points:</p>
                     </div>

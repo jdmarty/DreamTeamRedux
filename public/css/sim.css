@@ -1,35 +1,52 @@
-/* Card Text Sizing */
+/* Text Sizing */
 .sim-player-name {
-    font-size: 1.2em;
-  }
+  font-size: 1.2em;
+}
 
 @media only screen and (max-width: 992px) {
-   .sim-player-name {
+  .sim-player-name {
     font-size: 0.85em;
   }
 }
 
 @media only screen and (max-width: 768px) {
-   .sim-player-name {
+  .sim-player-name {
     font-size: 1.5em;
   }
 }
 
 @media only screen and (max-width: 576px) {
-   .sim-player-name {
-    font-size: 0.8em;
+  .sim-player-name {
+    font-size: 0.85em;
   }
 }
 
-/* Court Decoration */
+/* Court Container */
 
 .center {
   margin: auto;
   width: 100%;
 }
 
-.sim-player-image {
-  display: block;
-  width: 100%;
-  max-height: 50%;
+.backdrop {
+  position: relative;
+}
+
+.scoreboard {
+  position: absolute;
+  right: 0;
+  top: 25%;
+  left: 0%;
+  width: 75%;
+}
+
+/* Scoreboard Font */
+@font-face {
+  font-family: Digital;
+  src: url(/fonts/CursedTimerUlil-Aznm.ttf);
+}
+
+.scoreText {
+  font-family: Digital;
+  font-size: 4em;
 }
