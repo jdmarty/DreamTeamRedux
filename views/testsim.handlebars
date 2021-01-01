@@ -5,7 +5,7 @@
         <div class="col-12 text-center">
             {{#if ready}}
             <button class="btn btn-success btn-lg simButton" id="runGame">Run Game</button>
-            <a href="/testsim" class="btn btn-danger btn-lg simButton">Reset</a>
+            <a href="/testsim" class="btn btn-danger btn-lg sim-button">Reset</a>
             {{else}}
             <div class="sim-select-banner mb-2">
                 <h1 class="display-4">Select Your Teams</h1>
@@ -21,7 +21,7 @@
             {{!-- Home Team Dropdown --}}
             <div class="dropdown">
                 <button 
-                    class="btn btn-secondary dropdown-toggle" 
+                    class="btn btn-secondary dropdown-toggle sim-dropdown" 
                     type="button" 
                     id="homeTeamMenuButton" 
                     {{#if homeTeam}} data-teamid="{{homeTeam.id}}"{{/if}}

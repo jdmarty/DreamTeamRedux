@@ -1,10 +1,14 @@
 /* Top Buttons */
-.simButton {
+.sim-button {
     width: 128px;
 }
 
-/* Select Banner */
+/* Dropdown Buttons */
+.sim-dropdown {
+    max-width: 140px;
+    overflow: hidden;
 
+}
 
 /* Player Cards */
 .sim-player-card {
