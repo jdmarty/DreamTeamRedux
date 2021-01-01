@@ -1,15 +1,21 @@
 <div class="container-fluid px-0 px-md-2">
-    {{#if homeTeam}}
-    {{#if awayTeam}}
-    <div class="row pt-4">
+
+    <div class="row pt-4 py-4 pb-4 pb-md-0">
+
         <div class="col-12 text-center">
+            {{#if ready}}
             <button class="btn btn-success btn-lg simButton" id="runGame">Run Game</button>
             <a href="/testsim" class="btn btn-danger btn-lg simButton">Reset</a>
+            {{else}}
+            <div class="sim-select-banner mb-2">
+                <h1 class="display-4">Select Your Teams</h1>
+            </div>
+            {{/if}}
         </div>
+
     </div>
-    {{/if}}
-    {{/if}}
-    <div class="row py-4">
+
+    <div class="row d-flex justify-content-center">
         {{!-- Home Team Side --}}
         <div class="col-md-3 col-6 order-2 order-md-1 text-center px-0 px-md-2">
             {{!-- Home Team Dropdown --}}
@@ -37,9 +43,13 @@
             <div id="home-player-list container" class="my-2">
                 {{#each homeTeam.players as |player|}}
 
-                <div class="row bg-white rounded m-3">
+                <div class="row sim-player-card rounded m-3">
                     <div class="col-4 d-none d-md-flex my-0 my-md-auto p-0 px-xxl-4 px-xl-3 px-lg-2">
+                        {{#if player.img_url}}
                         <img src="{{player.img_url}}" class="img-thumbnail" alt="{{player.player_name}}">
+                        {{else}}
+                        <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/logoman.png" class="img-thumbnail" alt="{{player.player_name}}">
+                        {{/if}}
                     </div>
                     <div class="col-md-8 col-12" data-playerId="{{player.id}}H">
                         <h5 class="mt-2 sim-player-name">{{player.player_name}}</h5>
@@ -59,17 +69,17 @@
             <div class="scoreboard container-fluid">
                 <div class="row">
                     <div class="col-6 text-center">
-                        <h1 class="boardText">Home</h1>
-                        <span class="scoreText">100</span>
+                        <h1 class="board-text">Home</h1>
+                        <span class="score-text">100</span>
                     </div>
                     <div class="col text-center">
-                        <h1 class="boardText">Away</h1>
-                        <span class="scoreText">99</span>
+                        <h1 class="board-text">Away</h1>
+                        <span class="score-text">99</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="boardText">Home Team Wins!</h1>
+                        <h1 class="board-text">Home Team Wins!</h1>
                     </div>
                 </div>
             </div>
@@ -101,7 +111,7 @@
             <div id="away-player-list" class="my-2">
                 {{#each awayTeam.players as |player|}}
 
-                <div class="row bg-white rounded m-3">
+                <div class="row sim-player-card rounded m-3">
                     <div class="col-4 d-none d-md-flex my-0 my-md-auto p-0 px-xxl-4 px-xl-3 px-lg-2">
                         <img src="{{player.img_url}}" class="img-thumbnail sim-player-image" alt="{{player.player_name}}">
                     </div>

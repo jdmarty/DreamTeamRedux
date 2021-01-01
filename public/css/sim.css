@@ -3,6 +3,15 @@
     width: 128px;
 }
 
+/* Select Banner */
+
+
+/* Player Cards */
+.sim-player-card {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #d3b300;
+}
+
 /* Court Container */
 .center {
   margin: auto;
@@ -33,7 +42,7 @@
   font-size: 1.2em;
 }
 
-.boardText {
+.board-text {
   font-size: 2em;
 }
 
@@ -42,7 +51,7 @@
   src: url(/fonts/CursedTimerUlil-Aznm.ttf);
 }
 
-.scoreText {
+.score-text {
   font-family: Digital;
   font-size: 4em;
 }
@@ -60,10 +69,10 @@
   .scoreboard {
     top: 32%;
   }
-  .scoreText {
+  .score-text {
     font-size: 3.2em;
   }
-  .boardText {
+  .board-text {
     font-size: 1.8em;
   }
 }
@@ -84,10 +93,10 @@
   .scoreboard {
     top: 20%;
   }
-  .scoreText {
+  .score-text {
     font-size: 2.4em;
   }
-  .boardText {
+  .board-text {
     font-size: 1.4em;
   }
 }
@@ -99,10 +108,10 @@
   .scoreboard {
     top: 10%;
   }
-  .scoreText {
+  .score-text {
     font-size: 2em;
   }
-  .boardText {
+  .board-text {
     font-size: 0.8em;
   }
   .simButton {

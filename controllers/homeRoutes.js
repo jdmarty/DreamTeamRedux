@@ -75,7 +75,7 @@ router.get("/game", withAuth, async (req, res) => {
 //Route to visit testsim page
 router.get("/testsim", async (req, res) => {
   try {
-    let homeTeam, awayTeam;
+    let homeTeam, awayTeam
     //find all teams for this user
     const userTeamsData = await Team.findAll({
       where: { user_id: req.session.user_id || 2 },
@@ -99,12 +99,16 @@ router.get("/testsim", async (req, res) => {
       awayTeam = awayTeamData.get({ plain: true });
     }
 
+    //create a variable to describe if the game is ready
+    const ready = homeTeam && awayTeam ? true : false
+
     //render the page with retrieved data
     res.render("testsim", {
       logged_in: req.session.logged_in,
       userTeams,
       homeTeam,
       awayTeam,
+      ready,
     });
   } catch (err) {
     res.status(500).json(err);
