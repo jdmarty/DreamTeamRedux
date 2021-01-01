@@ -3,7 +3,8 @@
     {{#if awayTeam}}
     <div class="row pt-4">
         <div class="col-12 text-center">
-            <button class="btn btn-success btn-lg" id="runGame">Run Game</button>
+            <button class="btn btn-success btn-lg simButton" id="runGame">Run Game</button>
+            <a href="/testsim" class="btn btn-danger btn-lg simButton">Reset</a>
         </div>
     </div>
     {{/if}}
@@ -54,26 +55,21 @@
         {{!-- Game Zone Here --}}
         <div class="col-md-6 col-12 order-1 order-md-3 d-flex justify-content-center mb-2 backdrop">
             <img src="https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg" class="img-fluid center" alt="court">
-            <div class="scoreboard container-fluid bg-white">
+            {{!-- Scoreboard --}}
+            <div class="scoreboard container-fluid">
                 <div class="row">
-                    <div class="col-6 text-center border">
-                        <h1>Home</h1>
-                    </div>
-                    <div class="col text-center border">
-                        <h1>Away</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 text-center border">
+                    <div class="col-6 text-center">
+                        <h1 class="boardText">Home</h1>
                         <span class="scoreText">100</span>
                     </div>
-                    <div class="col-6 text-center border">
+                    <div class="col text-center">
+                        <h1 class="boardText">Away</h1>
                         <span class="scoreText">99</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 text-center border">
-                        <h1 class="winnerText">Home Team Wins!</h1>
+                    <div class="col-12 text-center">
+                        <h1 class="boardText">Home Team Wins!</h1>
                     </div>
                 </div>
             </div>
