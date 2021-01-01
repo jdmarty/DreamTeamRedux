@@ -11,7 +11,7 @@ class SimGame {
   resolvePossession(offTeam, defTeam) {
     const record = {};
     const offResult = Math.ceil(Math.random() * 100) + offTeam.offense;
-    const defResult = Math.ceil(Math.random() * 85) + defTeam.defense;
+    const defResult = Math.ceil(Math.random() * 90) + defTeam.defense;
     if (offResult >= defResult) {
       offTeam.scoreTeam();
     } else {
@@ -70,8 +70,8 @@ class SimGame {
         points: player.gameStats.points,
         assists: player.gameStats.assists,
         rebounds: player.gameStats.rebounds,
-        // blocks: player.gameStats.blocks,
-        // steals: player.gameStats.steals
+        blocks: player.gameStats.blocks,
+        steals: player.gameStats.steals
       };
     });
     const awayStats = this.awayTeam.players.map((player) => {
@@ -80,16 +80,23 @@ class SimGame {
         points: player.gameStats.points,
         assists: player.gameStats.assists,
         rebounds: player.gameStats.rebounds,
-        // blocks: player.gameStats.blocks,
-        // steals: player.gameStats.steals,
+        blocks: player.gameStats.blocks,
+        steals: player.gameStats.steals,
       };
     });
     console.log(homeStats,awayStats);
+  }
+
+  getFinalScore() {
+    console.log(
+      {home: this.homeTeam.name, score: this.homeTeam.score},
+      {away: this.awayTeam.name, score: this.awayTeam.score})
   }
 }
 
 // const game = new SimGame(Cavs, Warriors)
 // game.runGame();
 // game.getPlayerStats();
+// game.getFinalScore();
 
 module.exports = SimGame;

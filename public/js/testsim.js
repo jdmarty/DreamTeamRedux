@@ -2,6 +2,7 @@ $(document).ready(() => {
   //identify DOM elements
   const $homeTeamSelect = $(".home-team-select");
   const $awayTeamSelect = $(".away-team-select");
+  const $scoreboard = $('.scoreboard');
 
   //add correct links to homeTeam dropdown menu items
   const addHomeTeamLinks = () => {
@@ -65,21 +66,36 @@ $(document).ready(() => {
       const game = await $.get(apiUrl);
       //print scores to stat block
       game.homeTeam.players.forEach(player => {
-          const $playerCard = $(`[data-playerId="${player.id}H"]`);
-          $playerCard.find('p').text(`Points: ${player.gameStats.points}`)
+          const $playerCard = $("#home-player-list").find(`[data-playerId="${player.id}"]`);
+          $playerCard.find(".player-points").text(`Points: ${player.gameStats.points}`)
       })
       game.awayTeam.players.forEach((player) => {
-        const $playerCard = $(`[data-playerId="${player.id}A"]`);
-        $playerCard.find("p").text(`Points: ${player.gameStats.points}`);
+        const $playerCard = $("#away-player-list").find(`[data-playerId="${player.id}"]`);
+        $playerCard.find(".player-points").text(`Pts: ${player.gameStats.points}`);
       });
+      //print final to scoreboard
+      $("#home-score-name").text(game.homeTeam.name);
+      $("#away-score-name").text(game.awayTeam.name);
+      $("#home-score-final").text(game.homeTeam.score);
+      $("#away-score-final").text(game.awayTeam.score);
+      if (game.homeTeam.score > game.awayTeam.score) {
+        $('#score-message').text(`${game.homeTeam.name} Win`)
+      } else {
+        $("#score-message").text(`${game.awayTeam.name} Win`);
+      }
+      //show the scoreboard
+      $scoreboard.removeClass('d-none');
       console.log(game);
   }
 
-  //add event listener
+  //add event listener to run game
   $('#runGame').on('click', getGame)
 
+  //initialize function
+  const init = () => {
+    addHomeTeamLinks();
+    addAwayTeamLinks();
+  }
 
-
-
-
+  init();
 })

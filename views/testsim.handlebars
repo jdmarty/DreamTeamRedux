@@ -40,23 +40,9 @@
                 </ul>
             </div>
             {{!-- Home Team Players --}}
-            <div id="home-player-list container" class="my-2">
+            <div id="home-player-list" class="my-2">
                 {{#each homeTeam.players as |player|}}
-
-                <div class="row sim-player-card rounded m-3">
-                    <div class="col-4 d-none d-md-flex my-0 my-md-auto p-0 px-xxl-4 px-xl-3 px-lg-2">
-                        {{#if player.img_url}}
-                        <img src="{{player.img_url}}" class="img-thumbnail" alt="{{player.player_name}}">
-                        {{else}}
-                        <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/logoman.png" class="img-thumbnail" alt="{{player.player_name}}">
-                        {{/if}}
-                    </div>
-                    <div class="col-md-8 col-12" data-playerId="{{player.id}}H">
-                        <h5 class="mt-2 sim-player-name">{{player.player_name}}</h5>
-                        <p>Points:</p>
-                    </div>
-                </div>
-
+                {{> simPlayerCard}}
                 {{/each}}
             </div>
         </div>
@@ -66,20 +52,20 @@
         <div class="col-md-6 col-12 order-1 order-md-3 d-flex justify-content-center mb-2 backdrop">
             <img src="https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg" class="img-fluid center" alt="court">
             {{!-- Scoreboard --}}
-            <div class="scoreboard container-fluid">
+            <div class="scoreboard container-fluid d-none">
                 <div class="row">
                     <div class="col-6 text-center">
-                        <h1 class="board-text">Home</h1>
-                        <span class="score-text">100</span>
+                        <h1 class="board-text" id="home-score-name"></h1>
+                        <span class="score-text" id="home-score-final"></span>
                     </div>
                     <div class="col text-center">
-                        <h1 class="board-text">Away</h1>
-                        <span class="score-text">99</span>
+                        <h1 class="board-text" id="away-score-name"></h1>
+                        <span class="score-text" id="away-score-final"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="board-text">Home Team Wins!</h1>
+                        <h1 class="board-text" id="score-message">Home Team Wins!</h1>
                     </div>
                 </div>
             </div>
@@ -110,17 +96,7 @@
             </ul>
             <div id="away-player-list" class="my-2">
                 {{#each awayTeam.players as |player|}}
-
-                <div class="row sim-player-card rounded m-3">
-                    <div class="col-4 d-none d-md-flex my-0 my-md-auto p-0 px-xxl-4 px-xl-3 px-lg-2">
-                        <img src="{{player.img_url}}" class="img-thumbnail sim-player-image" alt="{{player.player_name}}">
-                    </div>
-                    <div class="col-md-8 col-12" data-playerId="{{player.id}}A">
-                        <h5 class="mt-2 sim-player-name">{{player.player_name}}</h5>
-                        <p>Points:</p>
-                    </div>
-                </div>
-
+                {{> simPlayerCard}}
                 {{/each}}
             </div>
         </div>

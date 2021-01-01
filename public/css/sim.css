@@ -14,6 +14,7 @@
 .sim-player-card {
     background-color: rgba(0, 0, 0, 0.8);
     color: #d3b300;
+    box-shadow: 5px 5px 8px black;
 }
 
 /* Court Container */

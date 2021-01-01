@@ -12,7 +12,7 @@ class SimPlayer {
     }
     //offense and defense score for team
     this.offense =
-      (stats.pts * 0.8 + stats.oreb * 0.2 + stats.ast * 0.2 - stats.tov * 0.1) *
+      (stats.pts * 0.7 + stats.oreb * 0.2 + stats.ast * 0.2 - stats.tov * 0.1) *
       (stats.tspct / 1.2);
     this.defense = stats.dreb + stats.stl + stats.blk;
     //initialize with empty stats
