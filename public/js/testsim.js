@@ -79,9 +79,9 @@ $(document).ready(() => {
       $("#home-score-final").text(game.homeTeam.score);
       $("#away-score-final").text(game.awayTeam.score);
       if (game.homeTeam.score > game.awayTeam.score) {
-        $('#score-message').text(`${game.homeTeam.name} Win`)
+        $('#score-message').text(`${game.homeTeam.name} Win!`)
       } else {
-        $("#score-message").text(`${game.awayTeam.name} Win`);
+        $("#score-message").text(`${game.awayTeam.name} Win!`);
       }
       //show the scoreboard
       $scoreboard.removeClass('d-none');

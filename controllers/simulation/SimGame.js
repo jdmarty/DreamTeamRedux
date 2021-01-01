@@ -11,7 +11,7 @@ class SimGame {
   resolvePossession(offTeam, defTeam) {
     const record = {};
     const offResult = Math.ceil(Math.random() * 100) + offTeam.offense;
-    const defResult = Math.ceil(Math.random() * 90) + defTeam.defense;
+    const defResult = Math.ceil(Math.random() * 100) -10 + defTeam.defense;
     if (offResult >= defResult) {
       offTeam.scoreTeam();
     } else {

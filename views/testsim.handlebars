@@ -1,10 +1,10 @@
 <div class="container-fluid px-0 px-md-2">
 
+    {{!-- Header Row --}}
     <div class="row pt-4 py-4 pb-4 pb-md-0">
-
         <div class="col-12 text-center">
             {{#if ready}}
-            <button class="btn btn-success btn-lg simButton" id="runGame">Run Game</button>
+            <button class="btn btn-success btn-lg sim-button" id="runGame">Run Game</button>
             <a href="/testsim" class="btn btn-danger btn-lg sim-button">Reset</a>
             {{else}}
             <div class="sim-select-banner mb-2">
@@ -12,9 +12,9 @@
             </div>
             {{/if}}
         </div>
-
     </div>
 
+    {{!-- Content Row --}}
     <div class="row d-flex justify-content-center">
         {{!-- Home Team Side --}}
         <div class="col-md-3 col-6 order-2 order-md-1 text-center px-0 px-md-2">
@@ -40,14 +40,13 @@
                 </ul>
             </div>
             {{!-- Home Team Players --}}
-            <div id="home-player-list" class="my-2">
+            <div id="home-player-list" class="my-2 animate fadeInLeft">
                 {{#each homeTeam.players as |player|}}
                 {{> simPlayerCard}}
                 {{/each}}
             </div>
         </div>
-        {{#if homeTeam}}
-        {{#if awayTeam}}
+        {{#if ready}}
         {{!-- Game Zone Here --}}
         <div class="col-md-6 col-12 order-1 order-md-3 d-flex justify-content-center mb-2 backdrop">
             <img src="https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg" class="img-fluid center" alt="court">
@@ -56,10 +55,16 @@
                 <div class="row">
                     <div class="col-6 text-center">
                         <h1 class="board-text" id="home-score-name"></h1>
+                    </div>
+                    <div class="col-6 text-center">
+                        <h1 class="board-text" id="away-score-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-center">
                         <span class="score-text" id="home-score-final"></span>
                     </div>
-                    <div class="col text-center">
-                        <h1 class="board-text" id="away-score-name"></h1>
+                    <div class="col-6 text-center">
                         <span class="score-text" id="away-score-final"></span>
                     </div>
                 </div>
@@ -68,9 +73,14 @@
                         <h1 class="board-text" id="score-message">Home Team Wins!</h1>
                     </div>
                 </div>
+                <div class="row mt-2">
+                    <div class="col-12 text-center">
+                        <span class="board-text link-secondary" data-bs-toggle="modal" data-bs-target="#statsModal">See Full Stats</span>
+                    </div>
+                </div>
             </div>
+
         </div>
-        {{/if}}
         {{/if}}
         {{!-- Away Team Side --}}
         <div class="col-md-3 col-6 order-3 text-center px-0 px-md-2">
@@ -94,13 +104,28 @@
                     <li><a class="dropdown-item my-1 away-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
                 {{/each}}
             </ul>
-            <div id="away-player-list" class="my-2">
+            <div id="away-player-list" class="my-2 animate fadeInRight">
                 {{#each awayTeam.players as |player|}}
                 {{> simPlayerCard}}
                 {{/each}}
             </div>
         </div>
     </div>
+</div>
+
+<!--Stats Modal -->
+<div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Game Stats</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
 </div>
 
 {{!-- Include jQuery --}}
