@@ -2,18 +2,19 @@ class SimPlayer {
   constructor(stats) {
     this.id = stats.id;
     this.name = stats.player_name;
-    //scores for chance calculations
-    this.chance = {
-      pointScore: stats.pts,
-      assistScore: stats.ast,
-      reboundScore: stats.reb,
-      blockScore: stats.blk,
-      stealScore: stats.stl
-    }
-    //offense and defense score for team
-    this.offense =
-      (stats.pts * 0.7 + stats.oreb * 0.2 + stats.ast * 0.2 - stats.tov * 0.1) *
-      (stats.tspct / 1.2);
+    //player stats
+    this.stats = {
+      points: stats.pts,
+      assists: stats.ast,
+      offRebs: stats.oreb,
+      defReb: stats.dreb,
+      rebounds: stats.reb,
+      blocks: stats.blk,
+      steals: stats.stl,
+      fgPercent: stats.fgpct*100
+    };
+    //overall offense and defense score
+    this.offense = stats.pts + stats.oreb + stats.ast
     this.defense = stats.dreb + stats.stl + stats.blk;
     //initialize with empty stats
     this.gameStats = {
@@ -22,7 +23,7 @@ class SimPlayer {
       rebounds: 0,
       blocks: 0,
       steals: 0,
-    }
+    };
   }
 
   score() {
@@ -30,20 +31,22 @@ class SimPlayer {
   }
 
   assist() {
-    this.gameStats.assists++
+    this.gameStats.assists++;
   }
 
   rebound() {
-    this.gameStats.rebounds++
+    this.gameStats.rebounds++;
   }
 
   block() {
-    this.gameStats.blocks++
+    this.gameStats.blocks++;
   }
 
   steal() {
-    this.gameStats.steals++
+    this.gameStats.steals++;
   }
 }
+// const player = new SimPlayer(stats)
+// console.log(player);
 
 module.exports = SimPlayer;

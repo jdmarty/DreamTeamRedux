@@ -1,5 +1,5 @@
 const SimPlayer = require("./SimPlayer");
-const { Cavs, Warriors, Best } = require("./baseData");
+// const { Cavs, Warriors, Best } = require("./baseData");
 
 class SimTeam {
   constructor(team) {
@@ -14,7 +14,7 @@ class SimTeam {
     const generateChance = (players, type) => {
       let output = [];
       players.forEach((player) => {
-        for (let i = 0; i < Math.round(player.chance[type]*10); i++) {
+        for (let i = 0; i < Math.round(player.stats[type]*10); i++) {
           output.push(player.id);
         }
       });
@@ -24,13 +24,13 @@ class SimTeam {
     const generateDefense = (players) => {
       let output = [];
       players.forEach((player) => {
-        for (let i = 0; i < Math.round(player.chance.reboundScore * 10); i++) {
+        for (let i = 0; i < Math.round(player.stats.rebounds * 10); i++) {
           output.push("rebound");
         }
-        for (let i = 0; i < Math.round(player.chance.blockScore * 10); i++) {
+        for (let i = 0; i < Math.round(player.stats.blocks * 10); i++) {
           output.push("block");
         }
-        for (let i = 0; i < Math.round(player.chance.stealScore * 10); i++) {
+        for (let i = 0; i < Math.round(player.stats.steals * 10); i++) {
           output.push("steal");
         }
       });
@@ -38,11 +38,11 @@ class SimTeam {
     };
     //create an array for each chance of an event occuring
     this.eventChances = {
-      scoreChance: generateChance(this.players, "pointScore"),
-      assistChance: generateChance(this.players, "assistScore"),
-      reboundChance: generateChance(this.players, "reboundScore"),
-      blockChance: generateChance(this.players, "blockScore"),
-      stealChance: generateChance(this.players, "stealScore"),
+      scoreChance: generateChance(this.players, "points"),
+      assistChance: generateChance(this.players, "assists"),
+      reboundChance: generateChance(this.players, "rebounds"),
+      blockChance: generateChance(this.players, "blocks"),
+      stealChance: generateChance(this.players, "steals"),
       defenseType: generateDefense(this.players),
     };
     //initialize team with no score
@@ -54,7 +54,11 @@ class SimTeam {
     const participantIndex = Math.floor(Math.random() * this.eventChances[arr].length);
     const participantId = this.eventChances[arr][participantIndex];
     const participant = this.players.find((player) => player.id === participantId);
-    participant[method]()
+    if (method) {
+      participant[method]();
+    } else {
+      return participant
+    }
   }
 
   //method to determine what type of turnover the defense forced
@@ -65,10 +69,10 @@ class SimTeam {
   }
   
   //score team and award points, assists, and rebounds
-  scoreTeam() {
+  scoreTeam(shooter) {
     this.score += 2;
-    //Randomly score a player based on score chance
-    this.calcParticipant('scoreChance', 'score')
+    //Score the player who took the shot
+    shooter.score()
     //Randomly give a player an assist based on assist chance
     const didContribute = Math.random() * 100
     if (didContribute > 25) {
