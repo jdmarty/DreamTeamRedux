@@ -56,9 +56,8 @@ class SimTeam {
     const participant = this.players.find((player) => player.id === participantId);
     if (method) {
       participant[method]();
-    } else {
-      return participant
     }
+    return participant
   }
 
   //method to determine what type of turnover the defense forced
@@ -70,31 +69,41 @@ class SimTeam {
   
   //score team and award points, assists, and rebounds
   scoreTeam(shooter) {
+    const result = []
     this.score += 2;
     //Score the player who took the shot
     shooter.score()
+    result.push({ type: 'Score', player: shooter.name })
     //Randomly give a player an assist based on assist chance
     const didContribute = Math.random() * 100
     if (didContribute > 25) {
-      this.calcParticipant("assistChance", "assist");
+      const assist = this.calcParticipant("assistChance", "assist");
+      result.push({ type: 'Assist', player: assist.name })
     }
     //Randomly give a player a rebound based on rebound chance
     if (didContribute > 90) {
-      this.calcParticipant("reboundChance", "rebound")
+      const rebound = this.calcParticipant("reboundChance", "rebound")
+      result.push({ type: 'Rebound', player: rebound.name });
     }
+    return result
   }
 
   defenseTeam() {
-    //determine what type of turnover occured
+    const result = [];
+    //determine what type of turnover occurred
     const type = this.calcDefenseType()
     //for each type, determine which player did it and add to their stats
     if (type === 'rebound') {
-      this.calcParticipant("reboundChance", "rebound");
+      const rebound = this.calcParticipant("reboundChance", "rebound");
+      result.push({ type: "Rebound", player: rebound.name });
     } else if (type === 'block') {
-      this.calcParticipant("blockChance", "block");
+      const block = this.calcParticipant("blockChance", "block");
+      result.push({ type: "Block", player: block.name });
     } else {
-      this.calcParticipant("stealChance", "steal")
+      const steal = this.calcParticipant("stealChance", "steal");
+      result.push({ type: "Steal", player: steal.name });
     }
+    return result
   }
 }
 

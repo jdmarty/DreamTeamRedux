@@ -23,12 +23,14 @@ class SimGame {
     //take a defended shot
     const shotResult = Math.random() * 100 + defender.defense - shootingOffset;
     if (shotResult <= shooter.stats.fgPercent) {
-      offTeam.scoreTeam(shooter);
+      const poss = offTeam.scoreTeam(shooter);
+      record.possession = poss
     } else {
-      defTeam.defenseTeam();
+      const poss = defTeam.defenseTeam();
+      record.possession = poss;
     }
-    record[this.homeTeam.name] = this.homeTeam.score;
-    record[this.awayTeam.name] = this.awayTeam.score;
+    record.homeScore = this.homeTeam.score;
+    record.awayScore = this.awayTeam.score;
     return record;
   }
 
@@ -73,36 +75,36 @@ class SimGame {
     return this;
   }
 
-  getPlayerStats() {
-    const homeStats = this.homeTeam.players.map((player) => {
-      return {
-        name: player.name,
-        points: player.gameStats.points,
-        assists: player.gameStats.assists,
-        rebounds: player.gameStats.rebounds,
-        blocks: player.gameStats.blocks,
-        steals: player.gameStats.steals,
-      };
-    });
-    const awayStats = this.awayTeam.players.map((player) => {
-      return {
-        name: player.name,
-        points: player.gameStats.points,
-        assists: player.gameStats.assists,
-        rebounds: player.gameStats.rebounds,
-        blocks: player.gameStats.blocks,
-        steals: player.gameStats.steals,
-      };
-    });
-    console.log(homeStats, awayStats);
-  }
+  // getPlayerStats() {
+  //   const homeStats = this.homeTeam.players.map((player) => {
+  //     return {
+  //       name: player.name,
+  //       points: player.gameStats.points,
+  //       assists: player.gameStats.assists,
+  //       rebounds: player.gameStats.rebounds,
+  //       blocks: player.gameStats.blocks,
+  //       steals: player.gameStats.steals,
+  //     };
+  //   });
+  //   const awayStats = this.awayTeam.players.map((player) => {
+  //     return {
+  //       name: player.name,
+  //       points: player.gameStats.points,
+  //       assists: player.gameStats.assists,
+  //       rebounds: player.gameStats.rebounds,
+  //       blocks: player.gameStats.blocks,
+  //       steals: player.gameStats.steals,
+  //     };
+  //   });
+  //   console.log(homeStats, awayStats);
+  // }
 
-  getFinalScore() {
-    console.log(
-      { home: this.homeTeam.name, score: this.homeTeam.score },
-      { away: this.awayTeam.name, score: this.awayTeam.score }
-    );
-  }
+  // getFinalScore() {
+  //   console.log(
+  //     { home: this.homeTeam.name, score: this.homeTeam.score },
+  //     { away: this.awayTeam.name, score: this.awayTeam.score }
+  //   );
+  // }
 }
 
 // const game = new SimGame(Best, Cavs);

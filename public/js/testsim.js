@@ -60,11 +60,13 @@ $(document).ready(() => {
     //empty the old stats data id any
     $('#home-stats-body').empty();
     $("#away-stats-body").empty();
+
     //function to print a row of stats for a player
     const printStatsRow = (player, table) => {
       //create and append a new row of stats
       const $newRow = $('<tr>');
       table.append($newRow)
+      //append data to appropriate data cells
       $newRow.append(`<th class='player-stats-name'>${player.name}</th>`);
       $newRow.append(`<td>${player.gameStats.points}</td>`);
       $newRow.append(`<td>${player.gameStats.assists}</td>`);
@@ -81,6 +83,7 @@ $(document).ready(() => {
       //print stats table row
       printStatsRow(player, $('#home-stats-body'))
     })
+
     //run again for each player on away team
     const sortedAwayScores = game.awayTeam.players.sort((a,b) => b.gameStats.points-a.gameStats.points)
     sortedAwayScores.forEach(player => {
@@ -90,6 +93,44 @@ $(document).ready(() => {
       //print stats table row
       printStatsRow(player, $("#away-stats-body"));
     })
+  }
+
+  const printGameLog = game => {
+    //set headers
+    $("#home-log-name").text(game.homeTeam.name);
+    $("#away-log-name").text(game.awayTeam.name);
+    //empty the old log data id any
+    $("#stats-log-body").empty();
+
+    //function to print a row of the game log
+    const printGameLogRow = (pos) => {
+      //create and append a new row
+      const $newRow = $("<tr>");
+      $("#stats-log-body").append($newRow);
+      //if the item in the array is a string, append a merged column
+      if (typeof pos === "string") {
+        $newRow.append(`<th class="table-secondary" colspan="5">${pos}</th>`);
+        //otherwise...
+      } else {
+        //append the current scores
+        $newRow.append(`<td>${pos.homeScore}</td>`);
+        $newRow.append(`<td>${pos.awayScore}</td>`);
+        //append a data cell for each item in the possession log
+        pos.possession.forEach((obj) => {
+          $newRow.append(`<td>${obj.type}: ${obj.player}</td>`);
+        });
+        //fill out any empty columns
+        console.log($newRow.children().length);
+        while ($newRow.children().length < 5) {
+          $newRow.append("<td>");
+        }
+      }
+    };
+
+    //run the above function for each item in the log
+    game.log.forEach((pos) => {
+      printGameLogRow(pos);
+    });
   }
 
   //function to call api to get a game class
@@ -115,6 +156,7 @@ $(document).ready(() => {
       $scoreboard.removeClass('d-none');
       //print full stats table
       printStatsTable(game);
+      printGameLog(game);
       console.log(game);
   }
 
