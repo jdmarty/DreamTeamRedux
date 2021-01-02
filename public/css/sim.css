@@ -42,6 +42,12 @@
   color: #d3b300;
 }
 
+/* Stats table name header */
+.player-stats-name {
+  width: 50%;
+  overflow: hidden;
+}
+
 /* Text Sizing and Positioning*/
 .sim-player-name {
   font-size: 1.2em;
@@ -63,7 +69,7 @@
 
 @media only screen and (max-width: 1200px) {
   .sim-player-name {
-    font-size: 0.85em;
+    font-size: 1em;
   }
   .scoreboard {
     top: 30%;
@@ -72,7 +78,7 @@
 
 @media only screen and (max-width: 992px) {
   .scoreboard {
-    top: 32%;
+    top: 30%;
   }
   .score-text {
     font-size: 3.2em;
@@ -96,7 +102,7 @@
     font-size: 0.9em;
   }
   .scoreboard {
-    top: 20%;
+    top: 15%;
   }
   .score-text {
     font-size: 2.4em;

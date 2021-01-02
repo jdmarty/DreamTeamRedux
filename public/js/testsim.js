@@ -51,9 +51,46 @@ $(document).ready(() => {
       $awayTeamSelect[i].href = newUrlExtension;
     }
   };
-  //add links
-  addHomeTeamLinks();
-  addAwayTeamLinks();
+
+  //function to print stats to modal table
+  const printStatsTable = game => {
+    //set headers
+    $('#home-stats-name').text(game.homeTeam.name);
+    $("#away-stats-name").text(game.awayTeam.name);
+    //empty the old stats data id any
+    $('#home-stats-body').empty();
+    $("#away-stats-body").empty();
+    //function to print a row of stats for a player
+    const printStatsRow = (player, table) => {
+      //create and append a new row of stats
+      const $newRow = $('<tr>');
+      table.append($newRow)
+      $newRow.append(`<th class='player-stats-name'>${player.name}</th>`);
+      $newRow.append(`<td>${player.gameStats.points}</td>`);
+      $newRow.append(`<td>${player.gameStats.assists}</td>`);
+      $newRow.append(`<td>${player.gameStats.rebounds}</td>`);
+      $newRow.append(`<td>${player.gameStats.steals}</td>`);
+      $newRow.append(`<td>${player.gameStats.blocks}</td>`);
+    }
+    //run above function for each player on home team
+    const sortedHomeScores = game.homeTeam.players.sort((a,b) => b.gameStats.points-a.gameStats.points)
+    sortedHomeScores.forEach(player => {
+      //print points to each player card
+      const $playerCard = $("#home-player-list").find(`[data-playerId="${player.id}"]`);
+      $playerCard.find(".player-points").text(`Points: ${player.gameStats.points}`)
+      //print stats table row
+      printStatsRow(player, $('#home-stats-body'))
+    })
+    //run again for each player on away team
+    const sortedAwayScores = game.awayTeam.players.sort((a,b) => b.gameStats.points-a.gameStats.points)
+    sortedAwayScores.forEach(player => {
+      //print points to each player card
+      const $playerCard = $("#away-player-list").find(`[data-playerId="${player.id}"]`);
+      $playerCard.find(".player-points").text(`Pts: ${player.gameStats.points}`);
+      //print stats table row
+      printStatsRow(player, $("#away-stats-body"));
+    })
+  }
 
   //function to call api to get a game class
   const getGame = async () => {
@@ -64,15 +101,6 @@ $(document).ready(() => {
       const apiUrl = `/api/game?homeId=${homeTeamId}&awayId=${awayTeamId}`
       //make api call to retrieve a completed game
       const game = await $.get(apiUrl);
-      //print scores to stat block
-      game.homeTeam.players.forEach(player => {
-          const $playerCard = $("#home-player-list").find(`[data-playerId="${player.id}"]`);
-          $playerCard.find(".player-points").text(`Points: ${player.gameStats.points}`)
-      })
-      game.awayTeam.players.forEach((player) => {
-        const $playerCard = $("#away-player-list").find(`[data-playerId="${player.id}"]`);
-        $playerCard.find(".player-points").text(`Pts: ${player.gameStats.points}`);
-      });
       //print final to scoreboard
       $("#home-score-name").text(game.homeTeam.name);
       $("#away-score-name").text(game.awayTeam.name);
@@ -85,6 +113,8 @@ $(document).ready(() => {
       }
       //show the scoreboard
       $scoreboard.removeClass('d-none');
+      //print full stats table
+      printStatsTable(game);
       console.log(game);
   }
 
