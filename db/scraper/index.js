@@ -16,23 +16,32 @@ const findImgUrl = async (name) => {
   //first two letters of first name
   const firstName = name.split(" ")[0].replace(/[^a-z]/gi, "");
   const fn2 = firstName.split("").slice(0, 2).join("").toLowerCase();
-  //make fetch request
-  let url = `https://www.basketball-reference.com/players/${ln1}/${ln5}${fn2}01.html`;
-  let response = await fetch(url);
-  let text = await response.text();
-  let dom = await new JSDOM(text);
-  let image = dom.window.document.querySelector(".media-item");
-  if (image) return image.firstChild.src
-  //run another search at other dom
-  else {
-    url = `https://www.basketball-reference.com/players/${ln1}/${ln5}${fn2}02.html`;
-    response = await fetch(url);
-    text = await response.text();
-    dom = await new JSDOM(text);
-    image = dom.window.document.querySelector(".media-item");
-    if (image) return image.firstChild.src;
-    else return null
+  const firstNameMatch = new RegExp(firstName, "i");
+  //function to make a fetch request
+  const fetchDom = async (domExt) => {
+    let url = `https://www.basketball-reference.com/players/${ln1}/${ln5}${fn2}${domExt}.html`;
+    let response = await fetch(url);
+    let text = await response.text();
+    let dom = await new JSDOM(text);
+    let image = dom.window.document.querySelector(".media-item");
+    if (image) {
+      if (image.firstChild.alt.replace(/[^a-z]/gi, "").match(firstNameMatch)) {
+        return image.firstChild.src
+      } else {
+        return null
+      }
+    } else {
+      return null
+    }
   }
+  //check all three doms
+  const dom1 = await fetchDom('01');
+  if (dom1) return dom1;
+  const dom2 = await fetchDom('02');
+  if (dom2) return dom2;
+  const dom3 = await fetchDom('03');
+  if (dom3) return dom3;
+  return null
 };
 
 //Async functions to add image url to players object
@@ -51,7 +60,7 @@ const start = async () => {
     const imgUrl = await findImgUrl(player.player_name);
     player.img_url = imgUrl;
     output.push(player);
-    console.log("Added " + player.player_name);
+    console.log("Added " + player.player_name + ' ' + player.img_url+'\n');
   });
   //stringify the output array in JSON format
   const data = JSON.stringify(output, null, 2);
@@ -63,3 +72,5 @@ const start = async () => {
 }
 
 start()
+
+
