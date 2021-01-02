@@ -6,14 +6,8 @@
 }
 
 body {
-    background-color: #d3b300;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-image: URL(https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg);
-    background-repeat: no-repeat; 
-    background-position: center; */
+    /* hsl (hue, saturation, lightness) */
+    background-color: hsl(51, 100%, 41%);
     overflow: auto;
 }
 
@@ -29,12 +23,26 @@ h1 {
     margin-bottom: 0px;
 }
 
+#btn-reg {
+    /* width: 100px; */
+    margin-top: .5rem;
+    /* display: none; */
+}
 
+#pw-bulletin > * {
+    margin-bottom: 10px;;
+    color: hsl(0, 100%, 50%);
+    text-align: right;
+  }
+
+.pw-checks {
+    padding-left: 0px;
+    padding-right: 12px;
+    max-width: 62px;
+}
 
 #sign, #reg {
-    /* background-color: #fff; */
     background-color: rgba(0, 0, 0, 0.8);
-    /* filter: blur(10px); */
     border-radius: 25px;
     height: 375px;
     width: auto;
@@ -146,4 +154,61 @@ h1 {
   .fadeInRight {
     -webkit-animation-name: fadeInRight;
     animation-name: fadeInRight;
+  }
+
+  /* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: hsl(51, 100%, 41%);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: hsl(51, 100%, 41%) transparent transparent transparent;
+  }
+  
+  /* Toggle this class - hide and show the popup */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
   }

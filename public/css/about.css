@@ -3,10 +3,28 @@
   padding-bottom: 2rem;
   margin-bottom: 0;
   background-color: #fff;
+  border-radius: 25px 25px 0 0;
 }
+
 @media (min-width: 768px) {
   .jumbotron {
     padding-top: 2rem;
+  }
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 25px;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
   }
 }
 
@@ -32,5 +50,21 @@ footer p {
 }
 
 .card {
+  border: 2px hsl(51, 100%, 41%);
+  border-style: solid;
+  border-radius: 25px;
+  background-color: rgb(12, 12, 12);
+  color: hsl(0, 0%, 80%);
+}
+
+.profile-img {
+  margin-top: .5rem;
   border-radius: 25px;
 }
+
+.album {
+  border-radius: 0 0 25px 25px;
+}
+
+/* footer styling */
+
