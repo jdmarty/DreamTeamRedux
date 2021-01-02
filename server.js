@@ -33,7 +33,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // adding image path for server side image rendering
-app.use(express.static('./img'));
+app.use(express.static('./public/img'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

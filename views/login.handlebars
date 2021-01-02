@@ -30,23 +30,115 @@
                   <h1 for="signIn" class="form-label">Register</h1>
                   {{!-- Register form --}}
                   <form class="register-form">
+                    <div class="mb-2">
                     <label for="exampleInputName" class="form-label">Name</label>
                     <input type="text" class="form-control" placeholder="First name" id="name-signup" aria-label="First name">
-                    <div class="mb-3">
+                    </div>
+                    <div class="mb-2">
                       <label for="exampleInputEmail1" class="form-label">Email address</label>
                       <input type="email" class="form-control" placeholder="example@mail.com" id="email-signup" aria-describedby="emailHelp">
                       <div id="emailHelp" class="form-text"></div>
                     </div>
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Password</label>
-                      <input type="password" class="form-control" placeholder="************" id="#password-signup">
+                    <div class="mb-2">
+                      <label for="exampleInputPassword1" class="form-label">
+
+                        <div class="popup" onclick="myFunction()">
+                          Password <i class="far fa-question-circle"></i>
+                          <span class="popuptext" id="myPopup">Include 8 Characters at least 1 Upper, Lower, Number, Special Character</span>
+                        </div>
+
+                      </label>
+                      <input type="password" class="form-control" placeholder="************" id="password-signup">
                     </div>
-                    <button type="submit" class="btn btn-success" >Register</button>
+                    <button type="submit" class="btn btn-success" id="btn-reg">Register</button>
                   </form>
               </div>
+                    <div class="row justify-content-end" id="pw-bulletin">
+                      <div class="col-2"></div>
+                    </div>
           </div>
       </div>
     </div>
 <script src="./js/login.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script>
+    const passwordInput = document.querySelector("#password-signup");
+    const status = document.querySelector("#pw-bulletin");
+    const regBtn = document.querySelector("#btn-reg")
+
+    passwordInput.addEventListener("input", displayStatus)
+    
+    displayStatus()
+
+    function displayStatus() {
+      const validate = validatePassword(passwordInput.value)
+      console.log(validate)
+
+      status.innerHTML = ''
+      validate.forEach(validate => {
+        if (validate == null) return
+        const message = document.createElement('div')
+        message.setAttribute("class", "col-2 pw-checks")
+        message.innerText = validate.message
+        status.appendChild(message)
+      })
+    }
+
+    function validatePassword(password) {
+        const validate  = []
+        validate.push(validateLength(password))
+        validate.push(validateLowercase(password))
+        validate.push(validateUppercase(password))
+        validate.push(validateNumbers(password))
+        validate.push(validateSpecial(password))
+        return validate
+    }
+
+    function validateLength(password) {
+        const length = password.length
+
+        if (length <= 8) {
+            return {
+                message: "8 Char"
+            }
+        }
+
+        if (length >= 8) {
+          return {
+            message: ""
+          }
+        }
+    }
+
+    function validateLowercase(password) {
+        return validateCharacters(password, /[a-z]/g, 'a-z')
+    }
+
+    function validateUppercase(password) {
+        return validateCharacters(password, /[A-Z]/g, 'A-Z')
+    }
+
+    function validateNumbers(password) {
+      return validateCharacters(password, /[0-9]/g, '123')
+    }
+
+    function validateSpecial(password) {
+      return validateCharacters(password, /[^0-9a-zA-Z\s]/g, '!@#$')
+    }    
+
+    function validateCharacters(password, regex, type){
+      const match = password.match(regex) || []
+      
+      if (match.length === 0){
+        return {
+          message: `${type}`
+        }
+      }
+    }
+
+    function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+</script>

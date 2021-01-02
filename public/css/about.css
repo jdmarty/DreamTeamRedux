@@ -50,8 +50,9 @@ footer p {
 }
 
 .card {
+  border: 2px hsl(51, 100%, 41%);
+  border-style: solid;
   border-radius: 25px;
-  border: 2px solid hsl(51, 100%, 41%);
   background-color: rgb(12, 12, 12);
   color: hsl(0, 0%, 80%);
 }
@@ -64,3 +65,6 @@ footer p {
 .album {
   border-radius: 0 0 25px 25px;
 }
+
+/* footer styling */
+
