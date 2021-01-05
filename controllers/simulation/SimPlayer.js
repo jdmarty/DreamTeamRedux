@@ -11,6 +11,7 @@ class SimPlayer {
       rebounds: stats.reb,
       blocks: stats.blk,
       steals: stats.stl,
+      fgmade: stats.fgm,
       fgPercent: stats.fgpct*100
     };
     //overall offense and defense score

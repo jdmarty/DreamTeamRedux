@@ -1,5 +1,5 @@
 const SimPlayer = require("./SimPlayer");
-// const { Cavs, Warriors, Best } = require("./baseData");
+const { Cavs, Warriors, Best } = require("./baseData");
 
 class SimTeam {
   constructor(team) {
@@ -10,6 +10,14 @@ class SimTeam {
     //sum the offense and defense player stats to get a team stat
     this.offense = this.players.reduce((a, b) => a + b.offense, 0);
     this.defense = this.players.reduce((a, b) => a + b.defense, 0);
+    //sum other stats for calculations of assists and rebounds
+    this.totalAssists = this.players.reduce((a, b) => a + b.stats.assists, 0);
+    this.totalFGM = this.players.reduce((a, b) => a + b.stats.fgmade, 0);
+    this.assistPerFGM = this.totalAssists / (this.totalFGM);
+    this.assistBeat = (1 - this.assistPerFGM) * 100;
+    this.totalORebs = this.players.reduce((a, b) => a + b.stats.offRebs, 0);
+    this.oRebsPerPos = this.totalORebs / 105;
+    this.oRebBeat = (1- this.oRebsPerPos) * 100;
     //generate an array of ids to represent a players chance of performing an action
     const generateChance = (players, type) => {
       let output = [];
@@ -76,12 +84,12 @@ class SimTeam {
     result.push({ type: 'Score', player: shooter.name })
     //Randomly give a player an assist based on assist chance
     const didContribute = Math.random() * 100
-    if (didContribute > 25) {
+    if (didContribute > this.assistBeat) {
       const assist = this.calcParticipant("assistChance", "assist");
       result.push({ type: 'Assist', player: assist.name })
     }
     //Randomly give a player a rebound based on rebound chance
-    if (didContribute > 90) {
+    if (didContribute > this.oRebBeat) {
       const rebound = this.calcParticipant("reboundChance", "rebound")
       result.push({ type: 'Rebound', player: rebound.name });
     }
@@ -107,7 +115,7 @@ class SimTeam {
   }
 }
 
-// const team = new SimTeam(Cavs);
-// console.log(team.eventChances.defenseType)
+const team = new SimTeam(Cavs);
+const other = new SimTeam(Best);
 
 module.exports = SimTeam;

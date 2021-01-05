@@ -39,7 +39,7 @@ class SimGame {
     let posCount = 0;
     this.log.push("First Quarter");
     //run the game until all possessions are complete
-    while (posCount < 220 || this.homeTeam.score === this.awayTeam.score) {
+    while (posCount < 210 || this.homeTeam.score === this.awayTeam.score) {
       //alternate possession
       if (pos % 2) {
         const current = this.resolvePossession(this.awayTeam, this.homeTeam);
