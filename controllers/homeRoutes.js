@@ -22,9 +22,33 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
+//Route to visit create team page
+router.get("/create-team", withAuth, async (req, res) => {
+
+
+  res.render("createteam")
+})
+
+//Route to visit update team page
+router.get("/update-team/:id", withAuth, async (req, res) => {
+  try {
+    const teamData = await Team.findByPk(req.params.id, {
+      include: { model: Player, through: TeamPlayer, as: "players" },
+    });
+    team = teamData.get({ plain: true });
+    res.render("createteam", {
+      team
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+  res.render("createteam")
+})
+
 
 //Route to visit game page
-router.get("/game", async (req, res) => {
+router.get("/game", withAuth, async (req, res) => {
   try {
     let homeTeam, awayTeam
     //find all teams for this user
