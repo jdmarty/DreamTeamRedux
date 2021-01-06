@@ -1,10 +1,12 @@
-<header>
     <nav class="navbar navbar-dark bg-dark">
-        <div class="container d-flex justify-content-cente">
-            <a class="navbar-brand align-items-center" id="navBar" href="#">
-                <i class="fas fa-basketball-ball" style="color:orange;font-size:2rem"></i>
-                <span id="navBarTitle" style="font-size:2rem">DreamTeam</span>
-            </a>
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                <i class="fas fa-basketball-ball" style="color:orange;font-size:32px"></i>
+                <img class="" src="dreamteam.png" alt="navbarlogo" height="32">
+                </div>
+            </div>
+
             {{#if logged_in}}
             <button class="btn btn-outline-success" type="submit" id="logout">Logout</button>
             {{else}}
@@ -12,4 +14,3 @@
             {{/if}}
         </div>
     </nav>
-</header>
