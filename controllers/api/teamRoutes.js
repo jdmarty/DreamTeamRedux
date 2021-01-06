@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Team, Player, TeamPlayer, User } = require("../../models");
 
+//GET ROUTES====================================================================
 // get all teams
 router.get("/", async (req, res) => {
   try {
@@ -8,7 +9,7 @@ router.get("/", async (req, res) => {
     const teamData = await Team.findAll({
       include: [
         //join with User on matching user_id
-        { model: User },
+        { model: User, attributes: ['id', 'name'] },
         //join with Player after finding matching id in TeamPlayer named 'players'
         { model: Player, through: TeamPlayer, as: "players" },
       ],
@@ -26,7 +27,7 @@ router.get("/user/:id", async (req, res) => {
     const teamData = await Team.findAll({
       where: { user_id: req.params.id },
       include: [
-        { model: User },
+        { model: User, attributes: ["id", "name"] },
         { model: Player, through: TeamPlayer, as: "players" },
       ],
     });
@@ -35,20 +36,19 @@ router.get("/user/:id", async (req, res) => {
       res.status(404).json({ message: "No teams for this user" });
       return;
     }
-
     res.status(200).json(teamData);
   } catch (err) {
     res.status(500).json(err);
   }
 })
 
-// get one team
+// get one team by ID
 router.get("/team/:id", async (req, res) => {
   try {
     //find one team by the associated id
     const teamData = await Team.findByPk(req.params.id, {
       include: [
-        { model: User },
+        { model: User, attributes: ["id", "name"] },
         { model: Player, through: TeamPlayer, as: "players" },
       ],
     });
@@ -63,52 +63,105 @@ router.get("/team/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+//===========================================================================
 
-
-
+//POST ROUTES================================================================
 //create a new team
 router.post("/", async (req, res) => {
+  //request should contain a team name, user_id, and array of playerIds
   try {
     //check how many teams this user already owns
     const userTeams = await Team.findAll({
       where: { user_id: req.body.user_id },
     });
 
+    //if the user has more than the alloted number of teams
     if (userTeams.length >= 25) {
       res.status(400).json({ message: "Users are limited to 25 teams" });
       return;
     }
+
+    //if there are not five players in the request
+    if (req.body.playerIds !== 5) {
+      res.status(400).json({ message: "Team cannot be created with this many players!" });
+      return;
+    }
+
     //create new team
     const newTeam = await Team.create({
       name: req.body.name,
       user_id: req.session.user_id || req.body.user_id,
     });
-    res.status(201).json(newTeam);
+
+    //map out an array of objects to create teamPlayer links
+    const teamPlayerArr = req.body.playerIds.map((player_id) => {
+      return { 
+        team_id: newTeam.id,
+        player_id 
+      }
+    })
+    //create teamPlayer links for each object
+    const newTeamPlayers = await TeamPlayer.bulkCreate(teamPlayerArr)
+    res.status(200).json({
+      newTeam,
+      newTeamPlayers,
+    });
+
   } catch (err) {
     res.status(500).json(err);
   }
 });
+//==========================================================================
 
+//PUT ROUTES================================================================
 //update a team name
 router.put("/:id", async (req, res) => {
-    try {
-      const updatedTeam = await Team.update(req.body, {
-        where: { id: req.params.id },
-      });
-
-      if (!updatedTeam[0]) {
-        res.status(404).json({ message: "No team update performed" });
-        return;
-      }
-
-      res.status(200).json({
-        teamsUpdated: updatedTeam[0],
-      });
-    } catch (err) {
-      res.status(500).json(err);
+  //request should contain a team name, user_id, and array of playerIds
+  try {
+    //if there are not five players in the request
+    if (req.body.playerIds !== 5) {
+      res.status(400).json({ message: "Team cannot be created with this many players!" });
+      return;
     }
-})
 
+    //update the team at the supplied id
+    const updatedTeam = await Team.update(req.body, {
+      where: { id: req.params.id },
+    });
+    //get all TeamPlayer link associated with this team
+    const teamPlayers = await TeamPlayer.findAll({ where: { team_id: req.params.id }})
+    //get a list of all playerIds on this team
+    const currentPlayerIds = teamPlayers.map(({ player_id }) => player_id)
+    //find all players not currently on this team and create new tags
+    const newTeamPlayers = req.body.playerIds
+      .filter(player_id => !currentPlayerIds.includes(player_id))
+      .map(player_id => {
+        return {
+          team_id: req.params.id,
+          player_id
+        }
+      })
+    //find the ids for all TeamPlayer links that need removed
+    const teamPlayersToRemove = teamPlayers
+      .filter(({ player_id }) => !req.body.playerIds.includes(player_id))
+      .map(({ id }) => id)
+    //destroy teamPlayers that need removed and create ones that need added
+    const updatedData = await Promise.all([
+      TeamPlayer.destroy({ where: { id: teamPlayersToRemove } }),
+      TeamPlayer.bulkCreate(newTeamPlayers)
+    ]);
+    res.status(200).json({
+      teamUpdates: updatedTeam[0],
+      removedTeamPlayers: updatedData[0],
+      newTeamPlayers: updatedData[1]
+    })
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+//==========================================================================
+
+//DELETE ROUTES=============================================================
 //delete a team
 router.delete("/:id", async (req, res) => {
   try {
@@ -130,5 +183,6 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+//==========================================================================
 
 module.exports = router;

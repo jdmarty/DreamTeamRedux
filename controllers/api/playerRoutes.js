@@ -3,7 +3,6 @@ const { Team, Player, TeamPlayer } = require("../../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op
 
-
 // get all Players
 router.get("/", async (req, res) => {
   try {

@@ -1,37 +1,22 @@
 <div class="container" id="homepage-container">
-    <div class="row border border-primary">
-        <!-- left column -->
-        <div class="col-xs-12 col-md-2 col-lg-2 border border-danger" id="leftCol">
-            left column
-            <div class="container">
-                <div class="row">
-                    <div class="col border border-danger align-items-center">
-                        My Teams
-                    <button type="button" class="btn btn-primary btn-sm">
-                        Create Team
-                    </button>
-                    </div>
-                </div>
-                <button type="button" class="btn btn-primary">
-                    Create Team
+    <div class="row">
+        <div class="col-4">
+            <a href="/create-team" class="btn btn-primary">Create Team</a>
+        </div>
+        <div class="col-4">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Update Team
                 </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {{#each userTeams as |team|}}
+                    <li><a class="dropdown-item" href="/update-team/{{team.id}}">{{team.name}}</a></li>
+                    {{/each}}
+                </ul>
             </div>
         </div>
-        <!-- body -->
-        <div class="col-xs-12 col-md-8 col-lg-8 border border-danger" id="bodyCol">
-            body
-        </div>
-        <!-- right column -->
-        <div class="col-xs-12 col-md-2 col-lg-2 border border-danger" id="rightCol">
-            right column
-            <div class="container">
-                <div class="row">
-                    <div class="col border border-danger">
-                        Game Ticker
-                    </div>
-                </div>
-            </div>
+        <div class="col-4">
+            <a href="/game" class="btn btn-primary">Run Game</a>
         </div>
     </div>
 </div>
-

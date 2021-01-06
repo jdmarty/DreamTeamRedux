@@ -61,6 +61,26 @@ const teamPlayerData = [
     team_id: 3,
     player_id: 893,
   },
+  {
+    team_id: 4,
+    player_id: 893,
+  },
+  {
+    team_id: 4,
+    player_id: 77142,
+  },
+  {
+    team_id: 4,
+    player_id: 252,
+  },
+  {
+    team_id: 4,
+    player_id: 787,
+  },
+  {
+    team_id: 4,
+    player_id: 121,
+  },
 ];
 
 const seedTeamPlayer = () => TeamPlayer.bulkCreate(teamPlayerData);
