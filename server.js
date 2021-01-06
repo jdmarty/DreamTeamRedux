@@ -8,7 +8,6 @@ const routes = require('./controllers');
 
 //require connection
 const sequelize = require('./config/connection');
-const { Player } = require('./models')
 
 // Create a new sequelize store using the express-session package
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
