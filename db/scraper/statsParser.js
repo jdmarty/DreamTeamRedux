@@ -1,7 +1,13 @@
-const generatePlayers = (stats) => {
+const axios = require('axios').default
+
+const generatePlayers = async () => {
+    //get stats from nba API
+    const stats = await axios.get(
+        "https://stats.nba.com/stats/leagueLeaders?ActiveFlag=No&LeagueID=00&PerMode=Totals&Scope=S&Season=All+Time&SeasonType=Regular+Season&StatCategory=PTS"
+    );
     const output = [];
     //loop through allstats
-    stats.resultSet.rowSet.forEach((arr) => {
+    stats.data.resultSet.rowSet.forEach((arr) => {
         //if any data is missing, skip this player
         if (arr.includes(null)) return;
         let player = {};

@@ -1,0 +1,13 @@
+<div class="row sim-player-card rounded m-3">
+    <div class="col-4 d-none d-md-flex my-0 my-md-auto p-0 px-xxl-4 px-xl-3 px-lg-2">
+        {{#if img_url}}
+        <img src="{{img_url}}" class="img-thumbnail" alt="{{player_name}}">
+        {{else}}
+        <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/logoman.png" class="img-thumbnail" alt="{{player.player_name}}">
+        {{/if}}
+    </div>
+    <div class="col-md-8 col-12" data-playerId="{{id}}">
+        <h4 class="mt-2 sim-player-name">{{player_name}}</h4>
+        <p class="player-points">Pts:</p>
+    </div>
+</div>

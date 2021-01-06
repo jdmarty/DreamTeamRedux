@@ -1,0 +1,189 @@
+<div class="container-fluid px-0 px-md-2">
+
+    {{!-- Header Row --}}
+    <div class="row pt-4 py-4 pb-4 pb-md-0">
+        <div class="col-12 text-center">
+            {{#if ready}}
+            <button class="btn btn-success btn-lg sim-button" id="runGame">Run Game</button>
+            <a href="/testsim" class="btn btn-danger btn-lg sim-button">Reset</a>
+            {{else}}
+            <div class="sim-select-banner mb-2">
+                <h1 class="display-4">Select Your Teams</h1>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+
+    {{!-- Content Row --}}
+    <div class="row d-flex justify-content-center">
+
+        {{!-- Home Team Side --}}
+        <div class="col-md-3 col-6 order-2 order-md-1 text-center px-0 px-md-2">
+            {{!-- Home Team Dropdown --}}
+            <div class="dropdown">
+                <button 
+                    class="btn btn-secondary dropdown-toggle sim-dropdown" 
+                    type="button" 
+                    id="homeTeamMenuButton" 
+                    {{#if homeTeam}} data-teamid="{{homeTeam.id}}"{{/if}}
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">
+                        {{#if homeTeam}}
+                            {{homeTeam.name}}
+                        {{else}}
+                            Home Team
+                        {{/if}}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="homeTeamMenuButton">
+                    {{#each userTeams as |team|}}
+                        <li><a class="dropdown-item my-1 home-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{!-- Home Team Players --}}
+            <div id="home-player-list" class="my-2 animate fadeInLeft">
+                {{#each homeTeam.players as |player|}}
+                {{> simPlayerCard}}
+                {{/each}}
+            </div>
+        </div>
+
+        {{#if ready}}
+        {{!-- Game Zone Here --}}
+        <div class="col-md-6 col-12 order-1 order-md-3 d-flex justify-content-center mb-2 backdrop">
+            {{!-- Backdrop --}}
+            <img src="https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg" class="img-fluid center" alt="court">
+            {{!-- Scoreboard --}}
+            <div class="scoreboard container-fluid d-none">
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <h1 class="board-text" id="home-score-name"></h1>
+                    </div>
+                    <div class="col-6 text-center">
+                        <h1 class="board-text" id="away-score-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <span class="score-text" id="home-score-final"></span>
+                    </div>
+                    <div class="col-6 text-center">
+                        <span class="score-text" id="away-score-final"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="board-text" id="score-message">Home Team Wins!</h1>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 text-center">
+                        <span class="board-text link-secondary" data-bs-toggle="modal" data-bs-target="#statsModal">See Full Stats</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        {{!-- Away Team Side --}}
+        <div class="col-md-3 col-6 order-3 text-center px-0 px-md-2">
+            {{!-- Away Team Dropdown --}}
+            <button 
+                class="btn btn-secondary dropdown-toggle sim-dropdown" 
+                type="button" 
+                id="awayTeamMenuButton"
+                {{#if awayTeam}} data-teamid="{{awayTeam.id}}"{{/if}}
+                data-bs-toggle="dropdown" 
+                aria-expanded="false">
+                    {{#if awayTeam}}
+                        {{awayTeam.name}}
+                    {{else}}
+                        Away Team
+                    {{/if}}
+            </button>
+            {{!-- Away Team Players --}}
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="awayTeamMenuButton">
+                {{#each userTeams as |team|}}
+                    <li><a class="dropdown-item my-1 away-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
+                {{/each}}
+            </ul>
+            <div id="away-player-list" class="my-2 animate fadeInRight">
+                {{#each awayTeam.players as |player|}}
+                {{> simPlayerCard}}
+                {{/each}}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Stats Modal -->
+<div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Game Stats</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table table-sm" id="home-stats">
+            <thead>
+                <tr class="table-dark rounded">
+                    <th id="home-stats-name" class="px-2" colspan="6">Home Team</th>
+                </tr>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">Pts</th>
+                    <th scope="col">Ast</th>
+                    <th scope="col">Reb</th>
+                    <th scope="col">Stl</th>
+                    <th scope="col">Blk</th>
+                </tr>
+            </thead>
+            <tbody id="home-stats-body">
+            </tbody>
+        </table>
+
+        <table class="table table-sm" id="away-stats">
+            <thead>
+                <tr class="table-dark rounded">
+                    <th id="away-stats-name" class="px-2" colspan="6">Away Team</th>
+                </tr>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">Pts</th>
+                    <th scope="col">Ast</th>
+                    <th scope="col">Reb</th>
+                    <th scope="col">Stl</th>
+                    <th scope="col">Blk</th>
+                </tr>
+            </thead>
+            <tbody id="away-stats-body">
+            </tbody>
+        </table>
+        <hr>
+        <table class="table table-sm table-striped" id="away-stats">
+            <thead>
+                <tr class="table-dark rounded">
+                    <th id="stats-log" class="px-2" colspan="6">Game Log</th>
+                </tr>
+                <tr>
+                    <th scope="col" id="home-log-name">Home</th>
+                    <th scope="col" id="away-log-name">Away</th>
+                    <th scope="col">Possession</th>
+                </tr>
+            </thead>
+            <tbody id="stats-log-body">
+            </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Include jQuery --}}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+{{!-- Include Test Script --}}
+<script src="./js/testsim.js"></script>
