@@ -26,7 +26,7 @@ router.get("/", withAuth, async (req, res) => {
 router.get("/create-team", withAuth, async (req, res) => {
 
 
-  res.render("createteam")
+  res.render("createteam", { logged_in: req.session.logged_in });
 })
 
 //Route to visit update team page
@@ -43,7 +43,7 @@ router.get("/update-team/:id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 
-  res.render("createteam")
+  res.render("createteam", { logged_in: req.session.logged_in });
 })
 
 
@@ -97,12 +97,12 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("login");
+  res.render("login", { logged_in: req.session.logged_in });
 });
 
 //Route to visit the about page
 router.get('/about', async (req, res) => {
-  res.render('about');
+  res.render("about", { logged_in: req.session.logged_in });
 });
 
 module.exports = router;

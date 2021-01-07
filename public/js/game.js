@@ -120,7 +120,6 @@ $(document).ready(() => {
           $newRow.append(`<td>${obj.type}: ${obj.player}</td>`);
         });
         //fill out any empty columns
-        console.log($newRow.children().length);
         while ($newRow.children().length < 5) {
           $newRow.append("<td>");
         }
@@ -157,7 +156,6 @@ $(document).ready(() => {
       //print full stats table
       printStatsTable(game);
       printGameLog(game);
-      console.log(game);
   }
 
   //add event listener to run game

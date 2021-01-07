@@ -73,7 +73,8 @@ const addPlayer = (playerData) => {
     .addClass("on-team-card animate fadeIn");
   const newRemove = $("<span>x</span>")
     .attr("type", "button")
-    .addClass("remove-player");
+    .addClass("remove-player")
+    .on('click', removePlayer);
   const newName = $("<h5>")
     .addClass("on-team-name")
     .text(playerData.player_name);
@@ -86,9 +87,29 @@ const addPlayer = (playerData) => {
   checkTeam();
 };
 
+//remove a player from a team
+const removePlayer = e => {
+    const thisPlayer = $(e.currentTarget).parent();
+    thisPlayer.remove();
+    $("#add-player").show();
+}
+
 //create a team
-const createTeam = () => {
-    //get player ids
+const createTeam = async () => {
+  //get team name
+  const teamName = $('#team-name').val().trim();
+  //get playerIds
+  const playerIds = [];
+  const currentPlayers = $("#current-players").children();
+  for (let key of currentPlayers) {
+      playerIds.push(parseInt(key.dataset.playerid))
+  }
+  const body = {
+      name: teamName,
+      playerIds
+  }
+  const newTeam = await $.post('/api/teams', body);
+  if (newTeam) alert("New Team Created!")
 }
 
 //event listeners
