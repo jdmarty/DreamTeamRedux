@@ -1,50 +1,70 @@
 <div class="container">
+
     <div class="row">
-        <div class="col">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Input Team Name" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Create Team</button>
+        <div class="col-10 text-center">
+            <div class="input-group my-3">
+                <input id="team-name" class="form-control form-control-lg" type="text" placeholder="Enter Team Name" aria-label="team-name">
             </div>    
         </div>
+        <div class="col-2 text-end">
+            <button type="button" id="create-team" class="btn btn-lg btn-secondary my-3" disabled>Create Team</button>
+        </div>
     </div>
-    <div class="row" id="players-current">
-        {{!-- <div class="col">
-            <img class="fluid" src="https://via.placeholder.com/100">
+
+    <div class="row mb-3">
+        <div id="current-players" class="col d-flex justify-content-around">
         </div>
-        <div class="col">
-            <img class="fluid" src="https://via.placeholder.com/100">
-        </div>
-        <div class="col">
-            <img class="fluid" src="https://via.placeholder.com/100">
-        </div>
-        <div class="col">
-            <img class="fluid" src="https://via.placeholder.com/100">
-        </div>
-        <div class="col">
-            <img class="fluid" src="https://via.placeholder.com/100">
-        </div> --}}
     </div>
+
     <div class="row">
-        <div class="col">
-            <div class="input-group mb-3">
-                <input type="text" id="player-name" class="form-control" placeholder="Search Player" aria-label="Search Player" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" id="search-players" type="button" id="button-addon2">Search</button>
+        <div class="col-12 col-lg-6">
+            <form class="input-group mb-3">
+                <input type="text" id="search-name" class="form-control" placeholder="Search Player" aria-label="Search Player" aria-describedby="button-addon2">
+                <button type="button" id="search-players" class="btn btn-secondary">Search</button>
+            </form>
+
+            <div id="players-list" class="text-center">
             </div>
-            <br>
-            <ul id="players-list">
-            </ul>
         </div>
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/100" id="player-image" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Player Name</h5>
-                    <p class="card-text">Stats</p>
+        <div class="col-12 col-lg-6">
+            <div id="player-panel" class="card">
+                <div class="card-header d-flex justify-content-center">
+                    <img src="https://via.placeholder.com/100" id="player-image" alt="...">
+                    <table class="table table-borderless text-white text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="2">Games Played</th>
+                                <th scope="col" colspan="2">Total Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2" id="player-gp">533</td>
+                                <td colspan="2" id="player-pts">11973</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Points</th>
+                                <th scope="col">Assists</th>
+                                <th scope="col">Rebounds</th>
+                                <th scope="col">FG %</th>
+                            </tr>
+                            <tr>
+                                <td id="player-ppg">22.5</td>
+                                <td id="player-apg">5.7</td>
+                                <td id="player-rpg">3.7</td>
+                                <td id="player-fgp">46.7%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body text-center">
+                    <h3 id="player-name">Player Name</h3>
                     <button id="add-player" class="btn btn-primary">Add To Team</button>
                 </div>
             </div>
         </div> 
     </div>
+
 </div>
 
 {{!-- Include jQuery --}}

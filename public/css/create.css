@@ -1,0 +1,79 @@
+/* Search Players List */
+#players-list {
+    max-height: 50vh;
+    overflow: auto;
+    
+}
+
+.search-card {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #d3b300;
+    width: 80%;
+    margin: 5px auto;
+}
+
+/* Player Panel */
+#player-panel {
+    display: none
+}
+
+#player-image {
+    margin: 0% auto;
+    width: auto;
+    height: 100%;
+    border-radius: 5px;
+}
+
+/* On team */
+.on-team-card {
+    text-align: center;
+    position: relative;
+    padding: 18px;
+    max-width: 20%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #d3b300;
+    border-radius: 5px;
+}
+
+.remove-player {
+    position: absolute;
+    top: 0;
+    right: 9px;
+}
+
+/* ANIMATIONS */
+
+/*=== Trigger  ===*/
+.animate {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+/*=== FADE IN  ===*/
+@-webkit-keyframes fadeIn {
+    from {
+    
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+  }
