@@ -2,16 +2,32 @@
     <div class="row">
         <div class="col-10 text-center">
             <div class="input-group my-3">
-                <input id="team-name" class="form-control form-control-lg" type="text" placeholder="Enter Team Name" aria-label="team-name">
+                <input 
+                    id="team-name" 
+                    class="form-control form-control-lg" 
+                    type="text" 
+                    placeholder="Enter Team Name" 
+                    aria-label="team-name"
+                    {{#if team}}value="{{team.name}}" data-teamId="{{team.id}}"{{/if}}>
             </div>    
         </div>
         <div class="col-2 text-end">
+            {{#if team}}
+             <button type="button" id="update-team" class="btn btn-lg btn-secondary my-3" disabled>Update Team</button>
+            {{else}}
             <button type="button" id="create-team" class="btn btn-lg btn-secondary my-3" disabled>Create Team</button>
+            {{/if}}
         </div>
     </div>
 
     <div class="row mb-3">
         <div id="current-players" class="col d-flex justify-content-around">
+            {{#each players as |player|}}
+            <div class="on-team-card animate fadeIn" data-playerId="{{player.id}}">
+                <span type="button" class="remove-player">x</span>
+                <h5 class="on-team-name">{{player.player_name}}</h5>
+            </div>
+            {{/each}}
         </div>
     </div>
 
@@ -38,8 +54,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="2" id="player-gp">533</td>
-                                <td colspan="2" id="player-pts">11973</td>
+                                <td colspan="2" id="player-gp"></td>
+                                <td colspan="2" id="player-pts"></td>
                             </tr>
                             <tr>
                                 <th scope="col">Points</th>
@@ -48,10 +64,10 @@
                                 <th scope="col">FG %</th>
                             </tr>
                             <tr>
-                                <td id="player-ppg">22.5</td>
-                                <td id="player-apg">5.7</td>
-                                <td id="player-rpg">3.7</td>
-                                <td id="player-fgp">46.7%</td>
+                                <td id="player-ppg"></td>
+                                <td id="player-apg"></td>
+                                <td id="player-rpg"></td>
+                                <td id="player-fgp"></td>
                             </tr>
                         </tbody>
                     </table>

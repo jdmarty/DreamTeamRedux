@@ -9,8 +9,10 @@ const checkTeam = () => {
     const teamName = $('#team-name').val().trim();
     if (currentPlayers === 5 && teamName) {
         $('#create-team').attr('disabled', false)
+        $("#update-team").attr("disabled", false);
     } else {
         $("#create-team").attr('disabled', true);
+        $("#update-team").attr("disabled", false);
     }
 }
 
@@ -65,6 +67,13 @@ const searchPlayers = async () => {
   });
 };
 
+//remove a player from a team
+const removePlayer = e => {
+    const thisPlayer = $(e.currentTarget).parent();
+    thisPlayer.remove();
+    $("#add-player").show();
+}
+
 //add player to team
 const addPlayer = (playerData) => {
   //create new elements
@@ -87,13 +96,6 @@ const addPlayer = (playerData) => {
   checkTeam();
 };
 
-//remove a player from a team
-const removePlayer = e => {
-    const thisPlayer = $(e.currentTarget).parent();
-    thisPlayer.remove();
-    $("#add-player").show();
-}
-
 //create a team
 const createTeam = async () => {
   //get team name
@@ -112,6 +114,31 @@ const createTeam = async () => {
   if (newTeam) alert("New Team Created!")
 }
 
+//update a team
+const updateTeam = async () => {
+  //get team name
+  const teamName = $("#team-name").val().trim();
+  //get team id
+  const teamId = $('#team-name').attr('data-teamId');
+  //get playerIds
+  const playerIds = [];
+  const currentPlayers = $("#current-players").children();
+  for (let key of currentPlayers) {
+    playerIds.push(parseInt(key.dataset.playerid));
+  }
+  const body = {
+    name: teamName,
+    playerIds,
+  };
+  console.log(body)
+  const newTeam = await $.ajax({
+      type: "PUT",
+      url: "/api/teams/"+teamId,
+      data: body
+  })
+  if (newTeam) alert("Team Updated!");
+};
+
 //event listeners
 $("#search-players").on("click", searchPlayers);
 $("#add-player").on("click", () => {
@@ -120,3 +147,5 @@ $("#add-player").on("click", () => {
 });
 $('#team-name').on("keyup", checkTeam);
 $('#create-team').on("click", createTeam);
+$('#update-team').on("click", updateTeam);
+$('.remove-player').on('click', removePlayer);

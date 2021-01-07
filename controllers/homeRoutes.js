@@ -37,13 +37,13 @@ router.get("/update-team/:id", withAuth, async (req, res) => {
     });
     team = teamData.get({ plain: true });
     res.render("createteam", {
-      team
+      logged_in: req.session.logged_in,
+      team,
+      players: team.players
     });
   } catch (err) {
     res.status(500).json(err);
   }
-
-  res.render("createteam", { logged_in: req.session.logged_in });
 })
 
 

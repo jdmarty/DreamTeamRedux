@@ -119,7 +119,7 @@ router.put("/:id", async (req, res) => {
   //request should contain a team name, user_id, and array of playerIds
   try {
     //if there are not five players in the request
-    if (req.body.playerIds !== 5) {
+    if (req.body.playerIds.length !== 5) {
       res.status(400).json({ message: "Team cannot be created with this many players!" });
       return;
     }
