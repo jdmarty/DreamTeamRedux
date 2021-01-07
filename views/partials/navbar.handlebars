@@ -11,16 +11,24 @@
              <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link 
+                            {{#if home}}active{{/if}}" 
+                            {{#if home}}aria-current="home"{{/if}} href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/create-team">Create Team</a>
+                        <a class="nav-link 
+                            {{#if createTeam}}active{{/if}}" 
+                            {{#if createTeam}}aria-current="create team"{{/if}} href="/create-team">Create Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/game">Run Game</a>
+                        <a class="nav-link 
+                            {{#if game}}active{{/if}}" 
+                            {{#if game}}aria-current="game"{{/if}} href="/game">Run Game</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about">Meet Our Team</a>
+                        <a class="nav-link 
+                            {{#if about}}active{{/if}}" 
+                            {{#if about}}aria-current="about"{{/if}} href="/about">Meet Our Team</a>
                     </li>
                     <li class="nav-item d-block d-lg-none">
                         {{#if logged_in}}

@@ -14,7 +14,8 @@ router.get("/", withAuth, async (req, res) => {
 
     res.render("homepage", {
       logged_in: req.session.logged_in,
-      userTeams
+      userTeams,
+      home: true
     });
   } catch (err) {
     console.log(err)
@@ -24,9 +25,10 @@ router.get("/", withAuth, async (req, res) => {
 
 //Route to visit create team page
 router.get("/create-team", withAuth, async (req, res) => {
-
-
-  res.render("createteam", { logged_in: req.session.logged_in });
+  res.render("createteam", { 
+    logged_in: req.session.logged_in,
+    createTeam: true,
+  });
 })
 
 //Route to visit update team page
@@ -39,7 +41,8 @@ router.get("/update-team/:id", withAuth, async (req, res) => {
     res.render("createteam", {
       logged_in: req.session.logged_in,
       team,
-      players: team.players
+      players: team.players,
+      createTeam: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -84,6 +87,7 @@ router.get("/game", withAuth, async (req, res) => {
       homeTeam,
       awayTeam,
       ready,
+      game: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -102,7 +106,10 @@ router.get("/login", (req, res) => {
 
 //Route to visit the about page
 router.get('/about', async (req, res) => {
-  res.render("about", { logged_in: req.session.logged_in });
+  res.render("about", { 
+    logged_in: req.session.logged_in,
+    about: true
+  });
 });
 
 module.exports = router;
