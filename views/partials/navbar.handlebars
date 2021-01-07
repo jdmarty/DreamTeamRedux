@@ -15,6 +15,7 @@
                             {{#if home}}active{{/if}}" 
                             {{#if home}}aria-current="home"{{/if}} href="/">Home</a>
                     </li>
+                    {{#if logged_in}}
                     <li class="nav-item">
                         <a class="nav-link 
                             {{#if createTeam}}active{{/if}}" 
@@ -25,6 +26,7 @@
                             {{#if game}}active{{/if}}" 
                             {{#if game}}aria-current="game"{{/if}} href="/game">Run Game</a>
                     </li>
+                    {{/if}}
                     <li class="nav-item">
                         <a class="nav-link 
                             {{#if about}}active{{/if}}" 
@@ -34,15 +36,16 @@
                         {{#if logged_in}}
                         <button class="btn btn-outline-danger" type="submit" id="logout">Logout</button>
                         {{else}}
-                        <button class="btn btn-outline-success" type="submit" id="login">Login</button>
+                         <a href="/login" class="btn btn-outline-success" type="submit" id="login">Login</a>
                         {{/if}}
                     </li>
+
                 </ul>
             </div>
             {{#if logged_in}}
-            <button class="btn btn-outline-danger d-none d-lg-block" type="submit" id="logout">Logout</button>
+            <button class="btn btn-outline-danger d-none d-lg-inline" type="submit" id="logout2">Logout</button>
             {{else}}
-            <button class="btn btn-outline-success d-none d-lg-block" type="submit" id="login">Login</button>
+            <a href="/login" class="btn btn-outline-success d-none d-lg-inline" type="submit" id="login2">Login</a>
             {{/if}}
         </div>
     </nav>
