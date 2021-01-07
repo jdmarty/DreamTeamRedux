@@ -56,7 +56,7 @@ router.get("/game", withAuth, async (req, res) => {
     let homeTeam, awayTeam
     //find all teams for this user
     const userTeamsData = await Team.findAll({
-      where: { user_id: req.session.user_id || 2 },
+      where: { user_id: req.session.user_id },
     });
     //serialize teams
     const userTeams = userTeamsData.map((team) => team.get({ plain: true }));

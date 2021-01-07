@@ -6,6 +6,13 @@
             {{#if ready}}
             <button class="btn btn-success btn-lg sim-button" id="runGame">Run Game</button>
             <a href="/game" class="btn btn-danger btn-lg sim-button">Reset</a>
+            <select id="game-speed"class="btn btn-lg btn-secondary sim-button" aria-label="Game Speed">
+                <option value="1">Super Fast</option>
+                <option value="2">Fast</option>
+                <option value="3" selected>Medium</option>
+                <option value="4">Slow</option>
+                <option value="5">Super Slow</option>
+            </select>
             {{else}}
             <div class="sim-select-banner mb-2">
                 <h1 class="display-4">Select Your Teams</h1>
@@ -51,6 +58,7 @@
         {{#if ready}}
         {{!-- Game Zone Here --}}
         <div class="col-md-6 col-12 order-1 order-md-3 d-flex justify-content-center mb-2 backdrop">
+            
             {{!-- Backdrop --}}
             <img src="https://pixfeeds.com/images/basketball/1280-538482034-wooden-basketball-court.jpg" class="img-fluid center" alt="court">
             {{!-- Scoreboard --}}
@@ -73,16 +81,17 @@
                 </div>
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="board-text" id="score-message">Home Team Wins!</h1>
+                        <h1 class="board-text" id="score-message"></h1>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-12 text-center">
-                        <span class="board-text link-secondary" data-bs-toggle="modal" data-bs-target="#statsModal">See Full Stats</span>
+                        <span id="stats-link" class="board-text link-secondary" data-bs-toggle="modal" data-bs-target="#statsModal">See Full Stats</span>
                     </div>
                 </div>
             </div>
         </div>
+        
         {{/if}}
 
         {{!-- Away Team Side --}}
