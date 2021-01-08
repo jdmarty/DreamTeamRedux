@@ -1,37 +1,38 @@
+/* eslint-disable new-cap */
 const router = require("express").Router();
-const { User, Team, Player, TeamPlayer } = require("../models");
-const withAuth = require('../util/auth')
+const { Team, Player, TeamPlayer } = require("../models");
+const withAuth = require("../util/auth");
 
-//If authorization passes, render homepage
+// If authorization passes, render homepage
 router.get("/", withAuth, async (req, res) => {
   try {
-    //get all teams for this user
+    // get all teams for this user
     const userTeamsData = await Team.findAll({
       where: { user_id: req.session.user_id || 2 },
     });
-    //serialize teams
+    // serialize teams
     const userTeams = userTeamsData.map((team) => team.get({ plain: true }));
 
     res.render("homepage", {
       logged_in: req.session.logged_in,
       userTeams,
-      home: true
+      home: true,
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).json(err);
   }
 });
 
-//Route to visit create team page
+// Route to visit create team page
 router.get("/create-team", withAuth, async (req, res) => {
-  res.render("createteam", { 
+  res.render("createteam", {
     logged_in: req.session.logged_in,
     createTeam: true,
   });
-})
+});
 
-//Route to visit update team page
+// Route to visit update team page
 router.get("/update-team/:id", withAuth, async (req, res) => {
   try {
     const teamData = await Team.findByPk(req.params.id, {
@@ -47,21 +48,21 @@ router.get("/update-team/:id", withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
-
-//Route to visit game page
+// Route to visit game page
 router.get("/game", withAuth, async (req, res) => {
   try {
-    let homeTeam, awayTeam
-    //find all teams for this user
+    let homeTeam;
+    let awayTeam;
+    // find all teams for this user
     const userTeamsData = await Team.findAll({
       where: { user_id: req.session.user_id },
     });
-    //serialize teams
+    // serialize teams
     const userTeams = userTeamsData.map((team) => team.get({ plain: true }));
 
-    //find a home team if one is requested in the search
+    // find a home team if one is requested in the search
     if (req.query.home) {
       const homeTeamData = await Team.findByPk(req.query.home, {
         include: { model: Player, through: TeamPlayer, as: "players" },
@@ -69,7 +70,7 @@ router.get("/game", withAuth, async (req, res) => {
       homeTeam = homeTeamData.get({ plain: true });
     }
 
-    //find an away team if one is request in the search
+    // find an away team if one is request in the search
     if (req.query.away) {
       const awayTeamData = await Team.findByPk(req.query.away, {
         include: { model: Player, through: TeamPlayer, as: "players" },
@@ -77,10 +78,10 @@ router.get("/game", withAuth, async (req, res) => {
       awayTeam = awayTeamData.get({ plain: true });
     }
 
-    //create a variable to describe if the game is ready
-    const ready = homeTeam && awayTeam ? true : false
+    // create a variable to describe if the game is ready
+    const ready = homeTeam && awayTeam ? true : false;
     console.log(userTeams);
-    //render the page with retrieved data
+    // render the page with retrieved data
     res.render("game", {
       logged_in: req.session.logged_in,
       userTeams,
@@ -92,11 +93,11 @@ router.get("/game", withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
-//Route to visit the login page
+// Route to visit the login page
 router.get("/login", (req, res) => {
-  //If a session exists, redirect the request to the homepage
+  // If a session exists, redirect the request to the homepage
   if (req.session.logged_in) {
     res.redirect("/");
     return;
@@ -104,11 +105,11 @@ router.get("/login", (req, res) => {
   res.render("login", { logged_in: req.session.logged_in });
 });
 
-//Route to visit the about page
-router.get('/about', async (req, res) => {
-  res.render("about", { 
+// Route to visit the about page
+router.get("/about", async (req, res) => {
+  res.render("about", {
     logged_in: req.session.logged_in,
-    about: true
+    about: true,
   });
 });
 

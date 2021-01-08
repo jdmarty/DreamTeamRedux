@@ -1,16 +1,16 @@
-//require modules
-const path = require('path');
-const express = require('express');
-const session = require('express-session');
-const exphbs = require('express-handlebars');
-const routes = require('./controllers');
+// require modules
+const path = require("path");
+const express = require("express");
+const session = require("express-session");
+const exphbs = require("express-handlebars");
+const routes = require("./controllers");
 // const helpers = require('./utils/helpers');
 
-//require connection
-const sequelize = require('./config/connection');
+// require connection
+const sequelize = require("./config/connection");
 
 // Create a new sequelize store using the express-session package
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 // Basic App variables
 const app = express();
@@ -21,7 +21,7 @@ const hbs = exphbs.create();
 const sess = {
   secret: "Super secret secret",
   cookie: {
-    //expire session after 30 minutes
+    // expire session after 30 minutes
     maxAge: 1800000,
   },
   rolling: true,
@@ -32,25 +32,31 @@ const sess = {
   }),
 };
 
-//require functions to create players database
-const seedPlayers = require('./seeds/playerData')
+// require functions to create players database
+const seedPlayers = require("./seeds/playerData");
 
 // Add express-session and store as Express.js middleware
 app.use(session(sess));
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
 // adding image path for server side image rendering
-app.use(express.static('./public/img'));
+app.use(express.static("./public/img"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
+// Seed Database
+app.post("/seeder", (req, res) => {
+  if (req.body.secret === process.ENV.secret) {
+    seedPlayers();
+  }
+});
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then( async () => {
+sequelize.sync({ force: false }).then(async () => {
   app.listen(PORT, () => console.log("Now listening"));
 });

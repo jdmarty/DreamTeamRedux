@@ -1,15 +1,16 @@
+/* eslint-disable new-cap */
 const router = require("express").Router();
 const { Team, Player, TeamPlayer } = require("../../models");
 const Sequelize = require("sequelize");
-const Op = Sequelize.Op
+const Op = Sequelize.Op;
 
 // get all Players
 router.get("/", async (req, res) => {
   try {
-    //find all Players
+    // find all Players
     const playerData = await Player.findAll({
       include: { model: Team, through: TeamPlayer, as: "teams" },
-      order: [['pts_total', 'DESC']],
+      order: [["pts_total", "DESC"]],
       limit: 25,
     });
     res.status(200).json(playerData);
@@ -21,7 +22,7 @@ router.get("/", async (req, res) => {
 // get one player by id
 router.get("/player/:id", async (req, res) => {
   try {
-    //find one player by the associated id
+    // find one player by the associated id
     const playerData = await Player.findByPk(req.params.id, {
       include: { model: Team, through: TeamPlayer, as: "teams" },
     });
@@ -40,8 +41,8 @@ router.get("/player/:id", async (req, res) => {
 // get one player by name
 router.get("/name", async (req, res) => {
   try {
-    //remember to replace spaces with %20 when creating url
-    //find one player by name
+    // remember to replace spaces with %20 when creating url
+    // find one player by name
     const playerData = await Player.findAll({
       include: { model: Team, through: TeamPlayer, as: "teams" },
       order: [["pts_total", "DESC"]],

@@ -1,6 +1,7 @@
-// const { Cavs, Warriors, Best } = require("./baseData");
+/* eslint-disable require-jsdoc */
+// import team
 const SimTeam = require("./SimTeam");
-
+// class to create a game with two teams
 class SimGame {
   constructor(homeTeam, awayTeam) {
     this.homeTeam = new SimTeam(homeTeam);
@@ -10,21 +11,22 @@ class SimGame {
     this.log = [];
   }
 
+  // resolve a single possession
   resolvePossession(offTeam, defTeam) {
     const record = {};
-    //calculate which offset to use
+    // calculate which offset to use
     const offset =
       offTeam === this.homeTeam ? this.homeScoreOffset : this.awayScoreOffset;
     const shootingOffset = offset > 100 ? 25 : offset * 0.25;
-    //calculate which player takes the shot
+    // calculate which player takes the shot
     const shooter = offTeam.calcParticipant("scoreChance");
-    //calculate which player is on defense
+    // calculate which player is on defense
     const defender = defTeam.calcParticipant("scoreChance");
-    //take a defended shot
+    // take a defended shot
     const shotResult = Math.random() * 100 + defender.defense - shootingOffset;
     if (shotResult <= shooter.stats.fgPercent) {
       const poss = offTeam.scoreTeam(shooter);
-      record.possession = poss
+      record.possession = poss;
     } else {
       const poss = defTeam.defenseTeam();
       record.possession = poss;
@@ -34,13 +36,14 @@ class SimGame {
     return record;
   }
 
+  // run game
   runGame() {
     let pos = 0;
     let posCount = 0;
     this.log.push("First Quarter");
-    //run the game until all possessions are complete
+    // run the game until all possessions are complete
     while (posCount < 210 || this.homeTeam.score === this.awayTeam.score) {
-      //alternate possession
+      // alternate possession
       if (pos % 2) {
         const current = this.resolvePossession(this.awayTeam, this.homeTeam);
         this.log.push(current);
@@ -48,7 +51,7 @@ class SimGame {
         const current = this.resolvePossession(this.homeTeam, this.awayTeam);
         this.log.push(current);
       }
-      //push messages to show quarter boundaries
+      // push messages to show quarter boundaries
       if (Math.floor(posCount) > 50 && !this.log.includes("Second Quarter")) {
         this.log.push("Second Quarter");
       }
@@ -58,11 +61,11 @@ class SimGame {
       if (Math.floor(posCount) > 150 && !this.log.includes("Fourth Quarter")) {
         this.log.push("Fourth Quarter");
       }
-      //alternate possesion and increase posCount by a random toll
+      // alternate possesion and increase posCount by a random toll
       posCount += 1 + Math.random() * 0.5;
       pos++;
     }
-    //log the final result
+    // log the final result
     this.log.push(
       `${this.homeTeam.name}: ${this.homeTeam.score} | ${this.awayTeam.name}: ${this.awayTeam.score}`
     );
@@ -74,42 +77,6 @@ class SimGame {
     // console.log(this.log)
     return this;
   }
-
-  // getPlayerStats() {
-  //   const homeStats = this.homeTeam.players.map((player) => {
-  //     return {
-  //       name: player.name,
-  //       points: player.gameStats.points,
-  //       assists: player.gameStats.assists,
-  //       rebounds: player.gameStats.rebounds,
-  //       blocks: player.gameStats.blocks,
-  //       steals: player.gameStats.steals,
-  //     };
-  //   });
-  //   const awayStats = this.awayTeam.players.map((player) => {
-  //     return {
-  //       name: player.name,
-  //       points: player.gameStats.points,
-  //       assists: player.gameStats.assists,
-  //       rebounds: player.gameStats.rebounds,
-  //       blocks: player.gameStats.blocks,
-  //       steals: player.gameStats.steals,
-  //     };
-  //   });
-  //   console.log(homeStats, awayStats);
-  // }
-
-  // getFinalScore() {
-  //   console.log(
-  //     { home: this.homeTeam.name, score: this.homeTeam.score },
-  //     { away: this.awayTeam.name, score: this.awayTeam.score }
-  //   );
-  // }
 }
-
-// const game = new SimGame(Best, Cavs);
-// game.runGame();
-// game.getPlayerStats();
-// game.getFinalScore();
 
 module.exports = SimGame;

@@ -1,4 +1,4 @@
-const { TeamPlayer } = require('../models')
+const { TeamPlayer } = require("../models");
 
 const teamPlayerData = [
   {
@@ -85,4 +85,4 @@ const teamPlayerData = [
 
 const seedTeamPlayer = () => TeamPlayer.bulkCreate(teamPlayerData);
 
-module.exports = seedTeamPlayer
+module.exports = seedTeamPlayer;
