@@ -6,26 +6,47 @@
                 <i class="fas fa-basketball-ball" style="color:orange;font-size:2rem"></i>
                 <span id="navBarTitle" style="font-size:2rem">DreamTeam</span>
             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
              <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link 
+                            {{#if home}}active{{/if}}" 
+                            {{#if home}}aria-current="home"{{/if}} href="/">Home</a>
+                    </li>
+                    {{#if logged_in}}
+                    <li class="nav-item">
+                        <a class="nav-link 
+                            {{#if createTeam}}active{{/if}}" 
+                            {{#if createTeam}}aria-current="create team"{{/if}} href="/create-team">Create Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/create-team">Create Team</a>
+                        <a class="nav-link 
+                            {{#if game}}active{{/if}}" 
+                            {{#if game}}aria-current="game"{{/if}} href="/game">Run Game</a>
                     </li>
+                    {{/if}}
                     <li class="nav-item">
-                        <a class="nav-link" href="/game">Run Game</a>
+                        <a class="nav-link 
+                            {{#if about}}active{{/if}}" 
+                            {{#if about}}aria-current="about"{{/if}} href="/about">Meet Our Team</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">Meet Our Team</a>
+                    <li class="nav-item d-block d-lg-none">
+                        {{#if logged_in}}
+                        <button class="btn btn-outline-danger" type="submit" id="logout">Logout</button>
+                        {{else}}
+                         <a href="/login" class="btn btn-outline-success" type="submit" id="login">Login</a>
+                        {{/if}}
                     </li>
+
                 </ul>
             </div>
             {{#if logged_in}}
-            <button class="btn btn-outline-success" type="submit" id="logout">Logout</button>
+            <button class="btn btn-outline-danger d-none d-lg-inline" type="submit" id="logout2">Logout</button>
             {{else}}
-            <button class="btn btn-outline-success" type="submit" id="login">Login</button>
+            <a href="/login" class="btn btn-outline-success d-none d-lg-inline" type="submit" id="login2">Login</a>
             {{/if}}
         </div>
     </nav>

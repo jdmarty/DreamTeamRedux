@@ -36,6 +36,10 @@
   color: #d3b300;
 }
 
+.winning {
+  color: #4abd4c
+}
+
 /* Stats table name header */
 .player-stats-name {
   width: 50%;
@@ -62,8 +66,8 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .sim-player-name, .sim-dropdown {
-    font-size: 1em;
+  .sim-player-name, .player-points, .sim-dropdown {
+    font-size: 0.7em;
   }
   .scoreboard {
     top: 30%;
@@ -75,10 +79,10 @@
     top: 30%;
   }
   .score-text {
-    font-size: 3.2em;
+    font-size: 3em;
   }
   .board-text {
-    font-size: 1.7em;
+    font-size: 1.4em;
   }
 }
 
@@ -87,7 +91,7 @@
     font-size: 1.5em;
   }
   .scoreboard {
-    top: 25%;
+    top: 20%;
   }
 }
 

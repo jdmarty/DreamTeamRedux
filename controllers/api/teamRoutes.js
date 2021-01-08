@@ -72,7 +72,7 @@ router.post("/", async (req, res) => {
   try {
     //check how many teams this user already owns
     const userTeams = await Team.findAll({
-      where: { user_id: req.body.user_id },
+      where: { user_id: req.session.user_id },
     });
 
     //if the user has more than the alloted number of teams
@@ -82,7 +82,7 @@ router.post("/", async (req, res) => {
     }
 
     //if there are not five players in the request
-    if (req.body.playerIds !== 5) {
+    if (req.body.playerIds.length !== 5) {
       res.status(400).json({ message: "Team cannot be created with this many players!" });
       return;
     }
@@ -119,7 +119,7 @@ router.put("/:id", async (req, res) => {
   //request should contain a team name, user_id, and array of playerIds
   try {
     //if there are not five players in the request
-    if (req.body.playerIds !== 5) {
+    if (req.body.playerIds.length !== 5) {
       res.status(400).json({ message: "Team cannot be created with this many players!" });
       return;
     }

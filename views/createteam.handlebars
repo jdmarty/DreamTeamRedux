@@ -1,83 +1,89 @@
-  <div class="createteamcontainer shadow-lg p-3 mb-5 rounded">
-  
-  <div class="row">
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Input Team Name" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Create Team</button>
-</div>    </div>
-<br>
-
-<div class="align-center">
-
-<div class="row">
-   <div class="col">
-<img class="fluid" src="https://via.placeholder.com/100">
-   </div>
-   <div class="col">
-<img class="fluid" src="https://via.placeholder.com/100">
-   </div>
-   <div class="col">
-<img class="fluid" src="https://via.placeholder.com/100">
-   </div>
-   <div class="col">
-<img class="fluid" src="https://via.placeholder.com/100">
-   </div>
-   <div class="col">
-<img class="fluid" src="https://via.placeholder.com/100">
-   </div>
-</div>
-
-</div>
-
-<br>
-
 <div class="container">
-  <div class="row">
-    <div class="col">
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search Player" aria-label="Search Player" aria-describedby="button-addon2">
-  <button class="btn btn-outline-secondary css-selector text-white" type="button" id="button-addon2">Search</button>
-</div> 
-
-<div class="container">
-<br>
-<ul>
-<li>1</li>
-<li>2</li>
-<li>3</li>
-<li>4</li>
-<li>5</li>
-<li>6</li>
-<li>7</li>
-
-
-</ul>
-
-</div>
-
-   </div>
-
-
-    <div class="col">
-<div class="containerplayer">
-
-<div class="card" style="width: 18rem;">
-  <img src="nba.png" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title text-white">Player Name</h5>
-    <p class="card-text text-white">Stats</p>
-    <div class="align-center">
-    <a href="#" class="btn btn-primary css-selector text-white align-center">Add To Team</a>
+    <div class="row">
+        <div class="col-10 text-center">
+            <div class="input-group my-3">
+                <input 
+                    id="team-name" 
+                    class="form-control form-control-lg" 
+                    type="text" 
+                    placeholder="Enter Team Name" 
+                    aria-label="team-name"
+                    {{#if team}}value="{{team.name}}" data-teamId="{{team.id}}"{{/if}}>
+            </div>    
+        </div>
+        <div class="col-2 text-end">
+            {{#if team}}
+             <button type="button" id="update-team" class="btn btn-lg btn-secondary my-3" disabled>Update Team</button>
+            {{else}}
+            <button type="button" id="create-team" class="btn btn-lg btn-secondary my-3" disabled>Create Team</button>
+            {{/if}}
+        </div>
     </div>
-  </div>
+
+    <div class="row mb-3">
+        <div id="current-players" class="col d-flex justify-content-around">
+            {{#each players as |player|}}
+            <div class="on-team-card animate fadeIn" data-playerId="{{player.id}}">
+                <span type="button" class="remove-player">x</span>
+                <h5 class="on-team-name">{{player.player_name}}</h5>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <form class="input-group mb-3">
+                <input type="text" id="search-name" class="form-control" placeholder="Search Player" aria-label="Search Player" aria-describedby="button-addon2">
+                <button type="button" id="search-players" class="btn btn-secondary">Search</button>
+            </form>
+
+            <div id="players-list" class="text-center">
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div id="player-panel" class="card">
+                <div class="card-header d-flex justify-content-center">
+                    <img src="https://via.placeholder.com/100" id="player-image" alt="...">
+                    <table class="table table-borderless text-white text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="2">Games Played</th>
+                                <th scope="col" colspan="2">Total Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2" id="player-gp"></td>
+                                <td colspan="2" id="player-pts"></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Points</th>
+                                <th scope="col">Assists</th>
+                                <th scope="col">Rebounds</th>
+                                <th scope="col">FG %</th>
+                            </tr>
+                            <tr>
+                                <td id="player-ppg"></td>
+                                <td id="player-apg"></td>
+                                <td id="player-rpg"></td>
+                                <td id="player-fgp"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body text-center">
+                    <h3 id="player-name">Player Name</h3>
+                    <button id="add-player" class="btn btn-primary">Add To Team</button>
+                </div>
+            </div>
+        </div> 
+    </div>
+
 </div>
 
-
-
-</div>  
-
-  </div>
-  </div>
-  </div>
+{{!-- Include jQuery --}}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="/js/create.js"
 
   
