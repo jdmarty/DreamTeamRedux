@@ -66,6 +66,7 @@ router.get("/game", withAuth, async (req, res) => {
         createTeam: true,
       });
     }
+
     // serialize teams
     const userTeams = userTeamsData.map((team) => team.get({ plain: true }));
 
