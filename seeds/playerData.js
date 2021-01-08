@@ -5,11 +5,11 @@ const seedPlayers = async () => {
   let i;
   let j;
   let temparray;
-  let chunk = 50;
+  const chunk = 50;
   try {
     for (i = 0, j = playerData.length; i < j; i += chunk) {
       temparray = playerData.slice(i, i + chunk);
-      await Player.bulkCreate(playerData);
+      await Player.bulkCreate(temparray);
     }
   } catch (error) {
     console.error(error);

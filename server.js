@@ -33,7 +33,7 @@ const sess = {
 };
 
 // require functions to create players database
-const seedPlayers = require("./seeds/playerData");
+// const seedPlayers = require("./seeds/playerData");
 
 // Add express-session and store as Express.js middleware
 app.use(session(sess));
