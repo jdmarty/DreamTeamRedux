@@ -52,6 +52,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.post("/seeder", (req, res) => {
   if (req.body.secret === process.ENV.secret) {
     seedPlayers();
+    res.status(200).json("database seeded");
+  } else {
+    res.status(400).json("failure");
   }
 });
 
