@@ -4,9 +4,9 @@
     <div class="row pb-4 pb-md-0">
         <div class="col-12 text-center">
             {{#if ready}}
-            <button class="btn btn-success btn-lg sim-button" id="runGame">Run Game</button>
-            <a href="/game" class="btn btn-danger btn-lg sim-button">Reset</a>
-            <select id="game-speed"class="btn btn-lg btn-secondary sim-button" aria-label="Game Speed">
+            <button class="btn btn-success btn-lg css-selector" id="runGame">Run Game</button>
+            <a href="/game" class="btn btn-secondary btn-lg text-override">Reset</a>
+            <select id="game-speed"class="btn btn-lg btn-secondary" aria-label="Game Speed">
                 <option value="1">Super Fast</option>
                 <option value="2">Fast</option>
                 <option value="3" selected>Medium</option>
@@ -15,7 +15,7 @@
             </select>
             {{else}}
             <div class="sim-select-banner mb-4">
-                <h1 class="display-3">Select Your Teams</h1>
+                <h1 class="display-3 text-white">Select Your Teams</h1>
             </div>
             {{/if}}
         </div>

@@ -3,21 +3,18 @@
     src: url(../fonts/CursedTimerUlil-Aznm.ttf);
   }
 
-
-  
-
-
-
 body {
-    background-color: hsl(230deg 89% 50% / 58%) !important;
+    background-color: #17408B !important;
     overflow: auto;
     font-family: 'Inter', sans-serif;
-
 }
 
+.homepage-display {
+    height: 20vh;
+    padding: auto 0;
+}
 
-a {
-
+.navbar-nav a {
     font-family: scoreboard
 }
 
@@ -27,7 +24,7 @@ a {
 }
 
 .btn-outline-success:hover {
-background-color: rgb(201, 38, 38);
+    background-color: #C9082A;
 }
 
 .createteamcontainer {
