@@ -75,34 +75,38 @@ router.post("/", async (req, res) => {
       where: { user_id: req.body.user_id },
     });
 
+    //if the user has more than the alloted number of teams
     if (userTeams.length >= 25) {
       res.status(400).json({ message: "Users are limited to 25 teams" });
       return;
     }
+
+    //if there are not five players in the request
+    if (req.body.playerIds !== 5) {
+      res.status(400).json({ message: "Team cannot be created with this many players!" });
+      return;
+    }
+
     //create new team
     const newTeam = await Team.create({
       name: req.body.name,
       user_id: req.session.user_id || req.body.user_id,
     });
 
-    //if players were sent in the request
-    if (req.body.playerIds.length) {
-      //map out an array of objects to create teamPlayer links
-      const teamPlayerArr = req.body.playerIds.map((player_id) => {
-        return { 
-          team_id: newTeam.id,
-          player_id 
-        }
-      })
-      //create teamPlayer links for each object
-      const newTeamPlayers = await TeamPlayer.bulkCreate(teamPlayerArr)
-      res.status(200).json({
-        newTeam,
-        newTeamPlayers,
-      });
-    } else {
-      res.status(200).json(newTeam);
-    }
+    //map out an array of objects to create teamPlayer links
+    const teamPlayerArr = req.body.playerIds.map((player_id) => {
+      return { 
+        team_id: newTeam.id,
+        player_id 
+      }
+    })
+    //create teamPlayer links for each object
+    const newTeamPlayers = await TeamPlayer.bulkCreate(teamPlayerArr)
+    res.status(200).json({
+      newTeam,
+      newTeamPlayers,
+    });
+
   } catch (err) {
     res.status(500).json(err);
   }
@@ -114,6 +118,12 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   //request should contain a team name, user_id, and array of playerIds
   try {
+    //if there are not five players in the request
+    if (req.body.playerIds !== 5) {
+      res.status(400).json({ message: "Team cannot be created with this many players!" });
+      return;
+    }
+
     //update the team at the supplied id
     const updatedTeam = await Team.update(req.body, {
       where: { id: req.params.id },

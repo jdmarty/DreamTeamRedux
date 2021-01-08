@@ -1,0 +1,101 @@
+@font-face {
+    font-family: scoreboard;
+    src: url(../fonts/CursedTimerUlil-Aznm.ttf);
+  }
+
+
+  
+
+
+
+body {
+    background-color: hsl(230deg 89% 50% / 58%) !important;
+    overflow: auto;
+    font-family: 'Inter', sans-serif;
+
+}
+
+
+a {
+
+    font-family: scoreboard
+}
+
+.btn-outline-success {
+    color: #dad615;
+    border-color: #ccc051;
+}
+
+.btn-outline-success:hover {
+background-color: rgb(201, 38, 38);
+}
+
+.createteamcontainer {
+    background-color: rgb(253 255 253);
+    padding: 2rem;
+}
+
+.align-center {
+
+text-align: center;
+
+}
+
+.containerplayer {
+
+    margin-left: 25%;
+    margin-right: 25%;
+
+}
+
+.card-img, .card-img-top {
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+    border-radius: 4%;
+}
+
+.gradient {
+
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    animation: animate 16s linear infinite;
+
+}
+
+
+
+/* animated buttons */
+
+.css-selector {
+    background: linear-gradient(286deg, #184bb4, #ca2a2f, #ffffff);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 11s ease infinite;
+    -moz-animation: AnimationName 11s ease infinite;
+    animation: AnimationName 11s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 74%}
+    50%{background-position:100% 27%}
+    100%{background-position:0% 74%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 74%}
+    50%{background-position:100% 27%}
+    100%{background-position:0% 74%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 74%}
+    50%{background-position:100% 27%}
+    100%{background-position:0% 74%}
+}
+
+.text-override {
+
+    font-family: 'Inter', sans-serif;
+
+}
+
+
+
+

@@ -51,10 +51,9 @@ footer p {
 
 .card {
   border: 2px hsl(51, 100%, 41%);
-  border-style: solid;
   border-radius: 25px;
-  background-color: rgb(12, 12, 12);
-  color: hsl(0, 0%, 80%);
+  background-color: rgb(204 33 33);
+    color: hsl(0, 0%, 80%);
 }
 
 .profile-img {
