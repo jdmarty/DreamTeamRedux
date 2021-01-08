@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
@@ -13,7 +14,7 @@ Team.init(
     },
     name: {
       type: DataTypes.STRING,
-      defaultValue: `Team ${this.id}`,
+      defaultValue: "New Team",
       allowNull: false,
     },
     user_id: {

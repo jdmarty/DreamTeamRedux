@@ -1,3 +1,5 @@
+/* eslint-disable new-cap */
+/* eslint-disable require-jsdoc */
 const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection.js");
@@ -17,7 +19,7 @@ Player.init(
     },
     pts_total: {
       type: DataTypes.INTEGER,
-      allowNull: false,   
+      allowNull: false,
     },
     gp: {
       type: DataTypes.INTEGER,
@@ -72,8 +74,8 @@ Player.init(
       allowNull: false,
     },
     img_url: {
-      type: DataTypes.STRING
-    }
+      type: DataTypes.STRING,
+    },
   },
   {
     sequelize,

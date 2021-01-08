@@ -414,7 +414,7 @@ const Best = {
 };
 
 module.exports = {
-    Cavs,
-    Warriors,
-    Best
-}
+  Cavs,
+  Warriors,
+  Best,
+};

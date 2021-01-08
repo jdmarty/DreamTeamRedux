@@ -1,7 +1,7 @@
+/* eslint-disable require-jsdoc */
 const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection");
-const Team = require("./Team");
 
 class TeamPlayer extends Model {}
 

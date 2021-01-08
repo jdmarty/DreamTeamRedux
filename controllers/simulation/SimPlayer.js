@@ -1,8 +1,10 @@
+/* eslint-disable require-jsdoc */
+// class to create a player
 class SimPlayer {
   constructor(stats) {
     this.id = stats.id;
     this.name = stats.player_name;
-    //player stats
+    // player stats
     this.stats = {
       points: stats.pts,
       assists: stats.ast,
@@ -14,10 +16,10 @@ class SimPlayer {
       fgmade: stats.fgm,
       fgPercent: stats.fgpct*100
     };
-    //overall offense and defense score
-    this.offense = stats.pts + stats.oreb + stats.ast
+    // overall offense and defense score
+    this.offense = stats.pts + stats.oreb + stats.ast;
     this.defense = stats.dreb + stats.stl + stats.blk;
-    //initialize with empty stats
+    // initialize with empty stats
     this.gameStats = {
       points: 0,
       assists: 0,
