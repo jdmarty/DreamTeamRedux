@@ -17,7 +17,7 @@ const loginFormHandler = async (event) => {
       // If successful, redirect the browser to the profile page
       document.location.replace("/");
     } else {
-      const jsonResponse = await response.json()
+      const jsonResponse = await response.json();
       alert(jsonResponse.message);
     }
   }
