@@ -49,20 +49,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Seed Database
-app.post("/seeder", async (req, res) => {
-  try {
-    if (req.body.secret === process.ENV.secret) {
-      await seedPlayers();
-      res.status(200).json("database seeded");
-    } else {
-      res.status(400).json("failure");
-    }
-  } catch(err) {
-    console.log(err);
-    res.status(500).json(error);
-  }
-
-});
+// app.post("/seeder", async (req, res) => {
+//   try {
+//     if (req.body.secret === process.ENV.secret) {
+//       await seedPlayers();
+//       res.status(200).json("database seeded");
+//     } else {
+//       res.status(400).json("failure");
+//     }
+//   } catch(err) {
+//     console.log(err);
+//     res.status(500).json(error);
+//   }
+// });
 
 app.use(routes);
 
