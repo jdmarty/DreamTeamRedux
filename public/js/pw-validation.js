@@ -12,7 +12,7 @@ function displayStatus() {
   console.log(validate);
 
   status.innerHTML = "";
-  validate.forEach((validate) => {
+  validate.forEach(validate => {
     if (!validate) return;
     const message = document.createElement("div");
     message.setAttribute("class", "col-2 pw-checks");
@@ -36,13 +36,13 @@ function validateLength(password) {
 
   if (length <= 8) {
     return {
-      message: "8 Char",
+      message: "8 Char"
     };
   }
 
   if (length >= 8) {
     return {
-      message: "",
+      message: ""
     };
   }
 }
@@ -63,13 +63,18 @@ function validateSpecial(password) {
   return validateCharacters(password, /[^0-9a-zA-Z\s]/g, "!@#$");
 }
 
-function validateCharacters(password, regex, type) {
+function validateCharacters(password, regex, type){
   const match = password.match(regex) || [];
-
-  if (match.length === 0) {
+  if (match.length === 0){
     return {
-      message: `${type}`,
+      message: `${type}`
     };
   }
 }
 
+/* eslint-disable */
+function myFunction() {
+  const popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+/* eslint-enable */
