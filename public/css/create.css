@@ -1,8 +1,12 @@
+
+
 /* Search Players List */
 #players-list {
-    max-height: 50vh;
+    padding: 2%;
+    height: 50vh;
     overflow: auto;
-    
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
 }
 
 .search-card {
@@ -14,7 +18,7 @@
 
 /* Player Panel */
 #player-panel {
-    display: none
+    display: none;
 }
 
 #player-image {
