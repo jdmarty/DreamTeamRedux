@@ -45,6 +45,7 @@
                     {{#each userTeams as |team|}}
                         <li><a class="dropdown-item my-1 home-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
                     {{/each}}
+                    <li><a class="dropdown-item my-1" data-teamid="{{team.id}}" href="/create-team">+ New Team</a></li>
                 </ul>
             </div>
             {{!-- Home Team Players --}}
@@ -115,6 +116,7 @@
                 {{#each userTeams as |team|}}
                     <li><a class="dropdown-item my-1 away-team-select" data-teamid="{{team.id}}" href="#">{{team.name}}</a></li>
                 {{/each}}
+                <li><a class="dropdown-item my-1" data-teamid="{{team.id}}" href="/create-team">+ New Team</a></li>
             </ul>
             <div id="away-player-list" class="my-2 animate fadeInRight">
                 {{#each awayTeam.players as |player|}}
