@@ -50,10 +50,9 @@ footer p {
 }
 
 .card {
-  border: 2px hsl(51, 100%, 41%);
   border-radius: 25px;
-  background-color: rgb(204 33 33);
-    color: hsl(0, 0%, 80%);
+  background-color: hsl(0, 72%, 36%);
+  color: hsl(0, 0%, 80%);
 }
 
 .profile-img {
@@ -65,5 +64,7 @@ footer p {
   border-radius: 0 0 25px 25px;
 }
 
-/* footer styling */
+.my-button {
+  background-color: #17408B;
+}
 
