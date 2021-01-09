@@ -30,8 +30,7 @@
     "lint": "eslint '**/*.js'",
     "start": "node server.js",
     "seed": "node seeds/seed.js",
-    "refDb": "node db/scraper/",
-    "heroku-postbuild": "npm run seed"
+    "refDb": "node db/scraper/"
   },
   "repository": {
     "type": "git",
