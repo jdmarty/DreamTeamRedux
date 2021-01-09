@@ -94,7 +94,7 @@ router.post("/", async (req, res) => {
     // create new team
     const newTeam = await Team.create({
       name: req.body.name,
-      user_id: req.session.user_id || req.body.user_id,
+      user_id: req.session.user_id,
     });
 
     // map out an array of objects to create teamPlayer links
@@ -111,6 +111,7 @@ router.post("/", async (req, res) => {
       newTeamPlayers,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

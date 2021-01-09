@@ -33,7 +33,7 @@ const sess = {
 };
 
 // require functions to create players database
-const seedPlayers = require("./seeds/playerData");
+// const seedPlayers = require("./seeds/playerData");
 
 // Add express-session and store as Express.js middleware
 app.use(session(sess));
@@ -49,14 +49,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Seed Database
-app.post("/seeder", (req, res) => {
-  if (req.body.secret === process.ENV.secret) {
-    seedPlayers();
-    res.status(200).json("database seeded");
-  } else {
-    res.status(400).json("failure");
-  }
-});
+// app.post("/seeder", async (req, res) => {
+//   try {
+//     if (req.body.secret === process.ENV.secret) {
+//       await seedPlayers();
+//       res.status(200).json("database seeded");
+//     } else {
+//       res.status(400).json("failure");
+//     }
+//   } catch(err) {
+//     console.log(err);
+//     res.status(500).json(error);
+//   }
+// });
 
 app.use(routes);
 
