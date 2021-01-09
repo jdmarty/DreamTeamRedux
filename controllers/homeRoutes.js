@@ -59,14 +59,7 @@ router.get("/game", withAuth, async (req, res) => {
     const userTeamsData = await Team.findAll({
       where: { user_id: req.session.user_id },
     });
-    // redirect to create a team page if no teams are available
-    if (!userTeamsData) {
-      res.render("createteam", {
-        logged_in: req.session.logged_in,
-        createTeam: true,
-      });
-    }
-
+    
     // serialize teams
     const userTeams = userTeamsData.map((team) => team.get({ plain: true }));
 
