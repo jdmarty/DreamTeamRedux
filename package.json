@@ -31,7 +31,6 @@
     "start": "node server.js",
     "seed": "node seeds/seed.js",
     "refDb": "node db/scraper/",
-    "heroku-postbuild": "npm run seed"
   },
   "repository": {
     "type": "git",
