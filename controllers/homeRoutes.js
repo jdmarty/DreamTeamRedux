@@ -59,7 +59,7 @@ router.get("/game", withAuth, async (req, res) => {
     const userTeamsData = await Team.findAll({
       where: { user_id: req.session.user_id },
     });
-    
+
     // serialize teams
     const userTeams = userTeamsData.map((team) => team.get({ plain: true }));
 
