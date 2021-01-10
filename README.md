@@ -2,7 +2,7 @@
 ## NBA Fantasy Basketball Simulator
 
 ## Summary
-Ever wondered if the 92' Dream Team in their prime could beat the 2015 Warriors? Wonder no more.
+Ever wondered if the 2015 Warriors could beat the '92 Dream Team in their prime? Wonder no more.
 
 This application combines a database of the Top 1000+ scorers in NBA history and an internal API to simulate a full game of professional basketball between user created teams. Once a user has created an account, they can pick and choose players for their very own five man fantasy teams and pit these teams together in a javascript powered simulation engine to finally put those old locker room debates to rest, and determine which lineup reigns supreme.
 
