@@ -1,61 +1,63 @@
-Hello World
-Joshua Marty
-Lesley Worden
-Ivan
-Ben Shostak
-AJ
+# Dream Team
+## NBA Fantasy Basketball Simulator
+
+## Summary
+This application combines a database of the Top 1000+ scorers in NBA history and an internal API to simulate a full game of professional basketball between user created teams. Once a user has created an account, they can pick and choose players for their very own five man fantasy teams and pit these teams together in a javascript powered simulation engine to finally put those old locker room debates to rest, and determine which lineup reigns supreme.
+
+## Getting Started
+New users must create an account to use this app. Enter your desired username, email address, and password in the Register panel on the landing page and click the Register button to create a new account
+
+![Login Page]()
+
+Returning users can log in to their existing accounts using the Sign In panel
+
+## Creating and Updating Teams
+
+To create a new team, click the Create Team button on the home page to be redirected to the team creator.
+- Give your a team a name using the input bar at the top of the page. Note that the create/update team will be disabled until your team includes five players and a team name
+- Search for a player that you would like to add in the Search Players input bar and click to submit to run a search.
+- Click on a players name once the search completes to view their stats and be given the option to add them to a team
+- If you would like to add this player to your team, click the Add To Team button at the bottom of their card. Players cannot be on a team more than once and a team cannot have more than five players.
+- Click the "x" next to a players name on the current roster to remove them from the roster
+
+![Update Team Page]()
+
+Update an existing team by selecting that team from the Update Team dropdown menu on the home page
+
+## Running a Game
+
+Once you are satisfied with your teams, click the Run Game button on the homepage or navigation bar to start simulating play.
+- Select a Home and Away team from the dropdown menus at the top of the game page
+- Once both teams are selected, a court will appear in the center of the page and you will be presented with the options to run a game or reset. There is also a dropdown menu to adjust the rate at which the simulation runs.
 
 
+- When you are ready to run a game at the selected speed, click Run Game to start a simulation. Scores will be printed as each possession resolves.
+- Once the game is complete, click the See Full Stats link at the bottom of the scoreboard to view the complete box score and game log
 
+-------------------------------------------------------
 
-STYLES OF SOFTWARE DEVELOPEMENT
-----------------------------------------------
-Agile software developement-scrum
-cross functional teams- 
-        EXAMPLES
-    ivan - helping with css
-    josh - helping with the log in routes
-    AJ - offering help for front end developement despite working on the backend
-    Lesley - ability to adapt and rock a powerpoint
+## Technologies
+### Back End
+- MySQL
+- JawsDB
+- Node.js
+- Express
+- Sequelize ORM
 
-Featured Driven developement. 
-        - Thinking what would get the user excited.
+## Front End
+- Bootstrap
+- Handlebars
+- jQuery
 
+## Credits
+This app was developed by a team of developers from the UCI Full Stack Flex Web Development program
+- Andrew Novobilski
+- Ben Shostak
+- Ivan Flores
+- Joshua Marty
+- Lesley Worden
 
-self organizing
-_____________________________________
--everyone decided what they wanted to work on.
--utilized the kanban via github to out line our plan/used bordes to create 
--used Luci Charts for wire framing ideas
+## License
 
-Technoliges Utilized
-_____________________________________
--Utlized our own linting pracatices...........
-
--continuous integration-github updates
-
--API scraping techniques of NBA the site(s)
-
-
-the WHY
-___________________________________ 
-
- - we saw something not yet available to the market- fantasy of a fantasy right at your keyboard. not a person with the controls. but imperical data based on real life progress by players of their day.
- - the world today may need more distractions just to calm the nerves a bit. 
- - selfish reasons -it sounded cool
- - our teacher mentioned he liked games
-
-
-
-
-
-
-500 million nba fans in china The footprint of the NBA has grown at an extremely rapid pace over the last two decades in China, where more than 500 million people watched games
- last season and where one new streaming deal alone will pump $1.5 billion into the league’s coffers over the next five years.
- 40 million are registered to play the 2K video game
-
- may seem limited by doing only basketball. it was a world wide passion. by keeping the ability to play on a computer it is accessible to fans globally.
-
-
-
- Test driven developement.....
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+This project uses the ISC license
