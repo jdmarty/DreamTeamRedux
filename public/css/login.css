@@ -6,8 +6,6 @@
 }
 
 body {
-    /* hsl (hue, saturation, lightness) */
-    background-color: hsl(51, 100%, 41%);
     overflow: auto;
 }
 

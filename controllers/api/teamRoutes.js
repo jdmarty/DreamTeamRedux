@@ -188,6 +188,7 @@ router.delete("/:id", async (req, res) => {
       deletedTeamPlayers: removedItems[0],
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

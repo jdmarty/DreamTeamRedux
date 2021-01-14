@@ -14,9 +14,9 @@ body {
     padding: auto 0;
 }
 
-.navbar-nav a {
+/* .navbar-nav a {
     font-family: scoreboard
-}
+} */
 
 .btn-outline-success {
     color: #dad615;
@@ -33,16 +33,12 @@ body {
 }
 
 .align-center {
-
-text-align: center;
-
+    text-align: center;
 }
 
 .containerplayer {
-
     margin-left: 25%;
     margin-right: 25%;
-
 }
 
 .card-img, .card-img-top {
@@ -52,10 +48,8 @@ text-align: center;
 }
 
 .gradient {
-
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     animation: animate 16s linear infinite;
-
 }
 
 

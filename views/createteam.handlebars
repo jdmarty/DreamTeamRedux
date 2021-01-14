@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-10 text-center">
+        <div class="col text-center">
             <div class="input-group my-3">
                 <input 
                     id="team-name" 
@@ -11,13 +11,18 @@
                     {{#if team}}value="{{team.name}}" data-teamId="{{team.id}}"{{/if}}>
             </div>    
         </div>
+        {{#if team}}
         <div class="col-2 text-end">
-            {{#if team}}
-             <button type="button" id="update-team" class="btn btn-lg btn-secondary my-3" disabled>Update Team</button>
-            {{else}}
-            <button type="button" id="create-team" class="btn btn-lg btn-secondary my-3" disabled>Create Team</button>
-            {{/if}}
+            <button type="button" id="update-team" class="btn btn-lg btn-secondary my-3" disabled>Update Team</button>
         </div>
+        <div class="col-2 text-end">
+            <button type="button" id="delete-team" class="btn btn-lg btn-danger my-3">Delete Team</button>
+        </div>
+        {{else}}
+        <div class="col-2 text-end">
+            <button type="button" id="create-team" class="btn btn-lg btn-secondary my-3" disabled>Create Team</button>
+        </div>
+        {{/if}}
     </div>
 
     <div class="row mb-3">

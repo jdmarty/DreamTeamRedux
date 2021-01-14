@@ -35,9 +35,15 @@ router.get("/create-team", withAuth, async (req, res) => {
 // Route to visit update team page
 router.get("/update-team/:id", withAuth, async (req, res) => {
   try {
+    // get data for the requested team
     const teamData = await Team.findByPk(req.params.id, {
       include: { model: Player, through: TeamPlayer, as: "players" },
     });
+    // if there is no team with that id, redirect to a create team page
+    if (!teamData) {
+      res.redirect("/create-team");
+    }
+    // otherwise, render a create team page with the retrieved team
     team = teamData.get({ plain: true });
     res.render("createteam", {
       logged_in: req.session.logged_in,

@@ -136,6 +136,21 @@ const updateTeam = async () => {
   if (newTeam) alert("Team Updated!");
 };
 
+// delete a team
+const deleteTeam = async () => {
+  // get team id
+  const teamId = $("#team-name").attr("data-teamId");
+  console.log(teamId);
+  // send delete request
+  await $.ajax({
+    type: "DELETE",
+    url: "/api/teams/" + teamId,
+  });
+  // alert and redirect
+  alert("Team Deleted");
+  document.location.replace("/");
+};
+
 // event listeners
 $("#search-players").on("click", searchPlayers);
 $("#add-player").on("click", () => {
@@ -145,4 +160,5 @@ $("#add-player").on("click", () => {
 $("#team-name").on("keyup", checkTeam);
 $("#create-team").on("click", createTeam);
 $("#update-team").on("click", updateTeam);
+$("#delete-team").on("click", deleteTeam);
 $(".remove-player").on("click", removePlayer);
