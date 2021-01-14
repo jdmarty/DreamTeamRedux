@@ -107,8 +107,10 @@ const createTeam = async () => {
     name: teamName,
     playerIds,
   };
-  const newTeam = await $.post("/api/teams", body);
-  if (newTeam) alert("New Team Created!");
+  //make api call
+  const { newTeam } = await $.post("/api/teams", body);
+  //reset modal to display new team information
+  $('#create-modal-title').text(newTeam.name + ' created!');
 };
 
 // update a team
@@ -127,13 +129,14 @@ const updateTeam = async () => {
     name: teamName,
     playerIds,
   };
-  console.log(body);
-  const newTeam = await $.ajax({
+  //make API call
+  await $.ajax({
     type: "PUT",
     url: "/api/teams/" + teamId,
     data: body,
   });
-  if (newTeam) alert("Team Updated!");
+  //update modal
+  $("#create-modal-title").text("Team updated!");
 };
 
 // delete a team

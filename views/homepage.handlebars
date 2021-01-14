@@ -7,12 +7,13 @@
     <div class="align-center">
         <div class="row homepage-display d-flex align-content-center">
             <div class="col-4">
-                <a href="/create-team" class="btn btn-lg css-selector text-white">Create Team</a>
+                
+                <a href="/create-team" class="btn btn-lg css-selector text-white"><i class="fas fa-user-friends me-2"></i>Create Team</a>
             </div>
             <div class="col-4">
                 <div class="dropdown">
                     <button class="btn btn-secondary btn-lg dropdown-toggle css-selector" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Update Team
+                        <i class="fas fa-clipboard-list-check me-2"></i>Update Team
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
                         {{#each userTeams as |team|}}
@@ -22,7 +23,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <a href="/game" class="btn btn-lg css-selector text-white">Run Game</a>
+                <a href="/game" class="btn btn-lg css-selector text-white"><i class="fas fa-basketball-hoop me-2"></i>Run Game</a>
             </div>
         </div>
     </div>
