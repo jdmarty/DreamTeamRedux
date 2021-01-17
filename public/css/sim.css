@@ -12,13 +12,14 @@
 }
 
 /* Court Container */
-.center {
+.center-image {
   margin: auto;
   width: 100%;
 }
 
-.backdrop {
+.sim-center-column {
   position: relative;
+  margin-bottom: 2em;
 }
 
 .scoreboard {
