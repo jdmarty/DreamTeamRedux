@@ -49,11 +49,16 @@
 
 /* Text Sizing and Positioning*/
 .sim-player-name {
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .board-text {
   font-size: 2em;
+}
+
+.sim-action-button {
+  font-size: 1.4em;
+  padding: 0.5em;
 }
 
 @font-face {
@@ -71,14 +76,11 @@
     font-size: 0.7em;
   }
   .scoreboard {
-    top: 30%;
+    top: 25%;
   }
 }
 
 @media only screen and (max-width: 992px) {
-  .scoreboard {
-    top: 30%;
-  }
   .score-text {
     font-size: 3em;
   }
@@ -107,6 +109,9 @@
     font-size: 2.4em;
   }
   .board-text {
+    font-size: 1em;
+  }
+  .sim-action-button {
     font-size: 1em;
   }
 }

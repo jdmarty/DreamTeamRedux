@@ -2,14 +2,14 @@
 
     {{!-- Header Row --}}
     <div class="row pb-4 pb-md-0">
-        <div class="col-12 text-center">
+        <div class="col text-center">
             {{#if ready}}
             {{!-- Start button --}}
-            <button class="btn btn-success btn-lg css-selector" id="runGame">Run Game</button>
+            <button class="btn btn-success btn-lg css-selector sim-action-button" id="runGame">Run Game</button>
             {{!-- Reset Button --}}
-            <a href="/game" class="btn btn-danger btn-lg text-override">Reset</a>
+            <a href="/game" class="btn btn-secondary btn-lg sim-action-button">Reset</a>
             {{!-- Speed Selector --}}
-            <select id="game-speed"class="btn btn-lg btn-secondary" aria-label="Game Speed">
+            <select id="game-speed"class="btn btn-secondary btn-lg sim-action-button" aria-label="Game Speed">
                 <option value="1">Super Fast</option>
                 <option value="2">Fast</option>
                 <option value="3" selected>Medium</option>
