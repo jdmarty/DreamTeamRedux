@@ -32,8 +32,7 @@ const sess = {
   }),
 };
 
-// require functions to create players database
-// const seedPlayers = require("./seeds/playerData");
+
 
 // Add express-session and store as Express.js middleware
 app.use(session(sess));
@@ -48,20 +47,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Seed Database
-// app.post("/seeder", async (req, res) => {
-//   try {
-//     if (req.body.secret === process.ENV.secret) {
-//       await seedPlayers();
-//       res.status(200).json("database seeded");
-//     } else {
-//       res.status(400).json("failure");
-//     }
-//   } catch(err) {
-//     console.log(err);
-//     res.status(500).json(error);
-//   }
-// });
+//seed Database
+// require functions to create players database
+const seedPlayers = require("./seeds/playerData");
+
+// post route to seed database
+app.post("/seeder", async (req, res) => {
+  try {
+    if (req.body.secret === process.ENV.secret) {
+      await seedPlayers();
+      res.status(200).json("database seeded");
+    } else {
+      res.status(400).json("failure");
+    }
+  } catch(err) {
+    console.log(err);
+    res.status(500).json(error);
+  }
+});
 
 app.use(routes);
 
