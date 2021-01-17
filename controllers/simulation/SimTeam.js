@@ -11,13 +11,13 @@ class SimTeam {
     this.offense = this.players.reduce((a, b) => a + b.offense, 0);
     this.defense = this.players.reduce((a, b) => a + b.defense, 0);
     // sum other stats for calculations of assists and rebounds
-    this.totalAssists = this.players.reduce((a, b) => a + b.stats.assists, 0);
-    this.totalFGM = this.players.reduce((a, b) => a + b.stats.fgmade, 0);
-    this.assistPerFGM = this.totalAssists / this.totalFGM;
-    this.assistBeat = (1 - this.assistPerFGM) * 100;
-    this.totalORebs = this.players.reduce((a, b) => a + b.stats.offRebs, 0);
-    this.oRebsPerPos = this.totalORebs / 105;
-    this.oRebBeat = (1 - this.oRebsPerPos) * 100;
+    const totalAssists = this.players.reduce((a, b) => a + b.stats.assists, 0);
+    const totalFGM = this.players.reduce((a, b) => a + b.stats.fgmade, 0);
+    const assistPerFGM = totalAssists / totalFGM;
+    this.assistBeat = (1 - assistPerFGM) * 100;
+    const totalORebs = this.players.reduce((a, b) => a + b.stats.offRebs, 0);
+    const oRebsPerPos = totalORebs / 105;
+    this.oRebBeat = (1 - oRebsPerPos) * 100;
     // generate an array of ids to represent a players chance of performing an action
     const generateChance = (players, type) => {
       const output = [];
@@ -89,8 +89,13 @@ class SimTeam {
     // Randomly give a player an assist based on assist chance
     const didContribute = Math.random() * 100;
     if (didContribute > this.assistBeat) {
-      const assist = this.calcParticipant("assistChance", "assist");
-      result.push({ type: "Assist", player: assist.name });
+      //keep running until you get an assistant other than the shooter
+      let assistant = this.calcParticipant("assistChance");
+      while (assistant === shooter) {
+        assistant = this.calcParticipant("assistChance");
+      }
+      assistant.assist();
+      result.push({ type: "Assist", player: assistant.name });
     }
     // Randomly give a player a rebound based on rebound chance
     if (didContribute > this.oRebBeat) {

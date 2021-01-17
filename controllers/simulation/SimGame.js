@@ -1,6 +1,8 @@
 /* eslint-disable require-jsdoc */
 // import team
 const SimTeam = require("./SimTeam");
+const { Cavs, Warriors } = require("./baseData");
+
 // class to create a game with two teams
 class SimGame {
   constructor(homeTeam, awayTeam) {
@@ -78,5 +80,8 @@ class SimGame {
     return this;
   }
 }
+
+const game = new SimGame(Cavs, Warriors);
+game.runGame();
 
 module.exports = SimGame;
