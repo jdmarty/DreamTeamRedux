@@ -54,8 +54,7 @@ const seedPlayers = require("./seeds/playerData");
 // post route to seed database
 app.post("/seeder", async (req, res) => {
   try {
-    console.log(process.ENV)
-    if (req.body.secret === process.ENV.secret) {
+    if (req.body.secret === process.env.secret) {
       await seedPlayers();
       res.status(200).json("database seeded");
     } else {
