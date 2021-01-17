@@ -9,7 +9,7 @@
 
 .search-card {
     background-color: rgba(0, 0, 0, 0.8);
-    color: #C9082A;
+    color: #d3b300;
     width: 80%;
     margin: 5px auto;
 }
@@ -17,6 +17,14 @@
 /* Player Panel */
 #player-panel {
     display: none;
+}
+
+.player-panel-wrap {
+  padding: 2%;
+  height: 57.5vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
 }
 
 #player-image {

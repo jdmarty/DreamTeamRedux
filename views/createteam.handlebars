@@ -16,15 +16,24 @@
         {{!-- Action Buttons --}}
         {{#if team}}
         <div class="col-2 text-end">
+            {{!-- Update button --}}
             <button 
                 type="button" 
                 id="update-team" 
                 class="btn btn-lg btn-secondary my-3" 
                 data-bs-toggle="modal" 
-                data-bs-target="#createModal" disabled>Update Team</button>
+                data-bs-target="#createModal" disabled>Update Team
+            </button>
         </div>
         <div class="col-2 text-end">
-            <button type="button" id="delete-team" class="btn btn-lg btn-danger my-3">Delete Team</button>
+            {{!-- Delete Button --}}
+            <button 
+                type="button" 
+                id="delete-team" 
+                class="btn btn-lg btn-danger my-3"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteModal" >Delete Team
+            </button>
         </div>
         {{else}}
         <div class="col-2 text-end">
@@ -113,9 +122,28 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-footer">
-                    <a href="/create-team" class="btn btn-primary" data-bs-dismiss="modal">Create Another Team</a>
+                    <a href="/create-team" class="btn btn-primary">New Team</a>
                     <a href="/game" class="btn btn-primary">Play Game</a>
-                    <a href="/" class="btn btn-primary">Home</a>
+                    <a href="/home" class="btn btn-primary">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Delete Team Modal --}}
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteTeamModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="delete-modal-title">Are you sure?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this team?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" id="delete-team-confirm" data-bs-dismiss="modal">Yes</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">No</button>
                 </div>
             </div>
         </div>

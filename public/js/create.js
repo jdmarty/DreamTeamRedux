@@ -16,20 +16,19 @@ const projectPlayer = async (e) => {
   // show player panel and add button
   $("#player-panel").show();
   $("#add-player").show();
-  //  get player data
+  // get player data
   const playerData = $(e.currentTarget).data();
-  //  check the current player count
+  // check the current player count
   const currentPlayers = $("#current-players").children().length;
-  const includesPlayer = $("#current-players").find(
-    `[data-playerId=${playerData.id}]`
-  ).length;
+  const includesPlayer = $("#current-players").find(`[data-playerId=${playerData.id}]`).length;
+  // hide the add button if the team is full or has that player
   if (currentPlayers >= 5 || includesPlayer > 0) {
     $("#add-player").hide();
   }
-  //  set image to display player and store data
+  // set image to display player and store data
   const imgSource = playerData.img_url || "/img/logoman.jpg";
   $("#player-image").attr("src", imgSource).data(playerData);
-  //  set stats table
+  // set stats table
   $("#player-gp").text(playerData.gp);
   $("#player-pts").text(playerData.pts_total);
   const ppg = playerData.pts.toFixed(1);
@@ -149,9 +148,8 @@ const deleteTeam = async () => {
     type: "DELETE",
     url: "/api/teams/" + teamId,
   });
-  // alert and redirect
-  alert("Team Deleted");
-  document.location.replace("/");
+  // Redirect
+  document.location.replace("/create-team");
 };
 
 // event listeners
@@ -163,5 +161,5 @@ $("#add-player").on("click", () => {
 $("#team-name").on("keyup", checkTeam);
 $("#create-team").on("click", createTeam);
 $("#update-team").on("click", updateTeam);
-$("#delete-team").on("click", deleteTeam);
+$("#delete-team-confirm").on("click", deleteTeam);
 $(".remove-player").on("click", removePlayer);
