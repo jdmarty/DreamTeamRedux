@@ -5,7 +5,7 @@ const fetch = require("isomorphic-fetch");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const fs = require("fs");
-// const rawStats = require('./rawStats.json')
+//import generate players function
 const generatePlayers = require("./statsParser");
 
 // scraper function to return image from basketball reference
@@ -26,6 +26,7 @@ const findImgUrl = async (name) => {
     let text = await response.text();
     let dom = await new JSDOM(text);
     let image = dom.window.document.querySelector(".media-item");
+    //match name to alt of image
     if (image) {
       if (image.firstChild.alt.replace(/[^a-z]/gi, "").match(firstNameMatch)) {
         return image.firstChild.src;
@@ -59,6 +60,7 @@ async function asyncForEach(array, callback) {
 const start = async () => {
   // get current leaderboard from api
   const players = await generatePlayers();
+  // loop through players and assign image urls
   await asyncForEach(players, async (player) => {
     const imgUrl = await findImgUrl(player.player_name);
     player.img_url = imgUrl;
