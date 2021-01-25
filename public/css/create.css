@@ -27,6 +27,12 @@
   border-radius: 5px;
 }
 
+@media screen and (max-width: 768px) {
+  .player-panel-wrap {
+    background-color: transparent
+  }
+}
+
 #player-image {
     margin: 0% auto;
     width: auto;
