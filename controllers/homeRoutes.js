@@ -109,7 +109,10 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("login", { logged_in: req.session.logged_in });
+  res.render("login", { 
+    logged_in: req.session.logged_in,
+    login: true 
+  });
 });
 
 // Route to visit the about page
