@@ -1,6 +1,6 @@
-<div class="container">
+<div class="ccontainer px-0 px-lg-2">
     {{!-- Name Input Row --}}
-    <div class="row">
+    <header class="row">
         {{!-- Name Input --}}
         <div class="col-12 text-center">
             <div class="input-group my-3">
@@ -12,6 +12,7 @@
                     aria-label="team-name"
                     {{#if team}}value="{{team.name}}" data-teamId="{{team.id}}"{{/if}}>
                 {{#if team}}
+                {{!-- Update Button --}}
                 <button 
                     type="button" 
                     id="update-team" 
@@ -19,6 +20,7 @@
                     data-bs-toggle="modal" 
                     data-bs-target="#createModal" disabled>Update Team
                 </button>
+                {{!-- Delete Button --}}
                 <button 
                     type="button" 
                     id="delete-team" 
@@ -27,6 +29,7 @@
                     data-bs-target="#deleteModal" >Delete Team
                 </button>
                 {{else}}
+                {{!-- Create Team --}}
                 <button 
                     type="button" 
                     id="create-team" 
@@ -37,7 +40,7 @@
                 {{/if}}
             </div>    
         </div>
-    </div>
+    </header>
 
     {{!-- Current Players Row --}}
     <div class="row mb-3">
@@ -59,8 +62,11 @@
                 <input type="text" id="search-name" class="form-control" placeholder="Search Player" aria-label="Search Player" aria-describedby="button-addon2">
                 <button type="button" id="search-players" class="btn btn-secondary">Search</button>
             </form>
-
-            <div id="players-list" class="text-center">
+            {{!-- Desktop player list --}}
+            <div class="players-list text-center d-none d-lg-block">
+            </div>
+            {{!-- Mobile player list --}}
+            <div id="players-list-mobile" class="players-list text-center collapse">
             </div>
         </div>
         {{!-- Player Card --}}
@@ -69,7 +75,7 @@
                 <div id="player-panel" class="card">
                     <div class="card-header d-flex justify-content-center">
                         <img src="https://via.placeholder.com/100" id="player-image" alt="...">
-                        <table class="table table-borderless text-white text-center">
+                        <table class="table table-sm table-borderless text-white text-center">
                             <thead>
                                 <tr>
                                     <th scope="col" colspan="2">Games Played</th>

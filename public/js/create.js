@@ -45,7 +45,7 @@ const projectPlayer = async (e) => {
 // Get players based on input name
 const searchPlayers = async () => {
   // clear the current list
-  $("#players-list").empty();
+  $(".players-list").empty();
   // build and run api call
   const name = $("#search-name").val().trim().replace(/\s/, "%20");
   const apiUrl = `/api/players/name?search=${name}`;
@@ -58,9 +58,14 @@ const searchPlayers = async () => {
       .data(player)
       .addClass("list-group-item list-group-item-action search-card")
       .text(player.player_name)
-      .on("click", projectPlayer);
-    $("#players-list").append(newPlayer);
+      .on("click", (e) => {
+        $("#players-list-mobile").slideUp();
+        projectPlayer(e)
+      });
+    $(".players-list").append(newPlayer);
   });
+  // show the mobile players list
+  $('#players-list-mobile').slideDown();
 };
 
 // remove a player from a team

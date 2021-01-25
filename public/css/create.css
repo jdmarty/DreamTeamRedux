@@ -1,5 +1,5 @@
 /* Search Players List */
-#players-list {
+.players-list {
     padding: 2%;
     height: 50vh;
     overflow: auto;
@@ -21,7 +21,7 @@
 
 .player-panel-wrap {
   padding: 2%;
-  height: 57.5vh;
+  height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 5px;
@@ -44,17 +44,27 @@
 .on-team-card {
     text-align: center;
     position: relative;
-    padding: 18px;
+    padding: 1em 1em 0.5em 1em;
     max-width: 20%;
     background-color: rgba(0, 0, 0, 0.8);
     color: #d3b300;
     border-radius: 5px;
 }
 
+.on-team-name {
+  font-size: 1em;
+}
+
+@media screen and (max-width: 768px) {
+  .on-team-name {
+    font-size: 0.75em;
+  }
+}
+
 .remove-player {
     position: absolute;
     top: 0;
-    right: 9px;
+    right: 0.25em;
 }
 
 /* ANIMATIONS */
